@@ -1,3 +1,5 @@
+import '@fontsource/averia-serif-libre'
+import '@fontsource/lato'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
