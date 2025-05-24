@@ -14,6 +14,9 @@ importers:
       '@emotion/react':
         specifier: ^11.14.0
         version: 11.14.0(@types/react@19.1.5)(react@19.1.0)
+      '@fontsource/averia-serif-libre':
+        specifier: ^5.2.5
+        version: 5.2.5
       '@tailwindcss/vite':
         specifier: ^4.0.6
         version: 4.1.7(vite@6.3.5(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.19.4))
@@ -473,6 +476,9 @@ packages:
 
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
+
+  '@fontsource/averia-serif-libre@5.2.5':
+    resolution: {integrity: sha512-/MxXn9fsQlyT5yyIsEb1ru9WXgYr5eJbjm5bSV8Oul8k57aj6TTSuJYkA1+LKKuO1R4+YSGqngUlQJLo+Kmqnw==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -2875,6 +2881,8 @@ snapshots:
       '@floating-ui/utils': 0.2.9
 
   '@floating-ui/utils@0.2.9': {}
+
+  '@fontsource/averia-serif-libre@5.2.5': {}
 
   '@humanfs/core@0.19.1': {}
 

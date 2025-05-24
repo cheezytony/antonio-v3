@@ -15,6 +15,7 @@
   "dependencies": {
     "@chakra-ui/react": "^3.19.1",
     "@emotion/react": "^11.14.0",
+    "@fontsource/averia-serif-libre": "^5.2.5",
     "@tailwindcss/vite": "^4.0.6",
     "@tanstack/react-router": "^1.114.3",
     "@tanstack/react-router-devtools": "^1.114.3",
