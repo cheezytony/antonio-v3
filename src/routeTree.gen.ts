@@ -11,60 +11,150 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as HomeRouteImport } from './routes/_home/route'
 import { Route as HomeIndexImport } from './routes/_home/index'
+import { Route as HomeStackImport } from './routes/_home/stack'
+import { Route as HomeGamingImport } from './routes/_home/gaming'
+import { Route as HomeBioImport } from './routes/_home/bio'
 
 // Create/Update Routes
 
-const HomeIndexRoute = HomeIndexImport.update({
-  id: '/_home/',
-  path: '/',
+const HomeRouteRoute = HomeRouteImport.update({
+  id: '/_home',
   getParentRoute: () => rootRoute,
+} as any)
+
+const HomeIndexRoute = HomeIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => HomeRouteRoute,
+} as any)
+
+const HomeStackRoute = HomeStackImport.update({
+  id: '/stack',
+  path: '/stack',
+  getParentRoute: () => HomeRouteRoute,
+} as any)
+
+const HomeGamingRoute = HomeGamingImport.update({
+  id: '/gaming',
+  path: '/gaming',
+  getParentRoute: () => HomeRouteRoute,
+} as any)
+
+const HomeBioRoute = HomeBioImport.update({
+  id: '/bio',
+  path: '/bio',
+  getParentRoute: () => HomeRouteRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/_home': {
+      id: '/_home'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof HomeRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/_home/bio': {
+      id: '/_home/bio'
+      path: '/bio'
+      fullPath: '/bio'
+      preLoaderRoute: typeof HomeBioImport
+      parentRoute: typeof HomeRouteImport
+    }
+    '/_home/gaming': {
+      id: '/_home/gaming'
+      path: '/gaming'
+      fullPath: '/gaming'
+      preLoaderRoute: typeof HomeGamingImport
+      parentRoute: typeof HomeRouteImport
+    }
+    '/_home/stack': {
+      id: '/_home/stack'
+      path: '/stack'
+      fullPath: '/stack'
+      preLoaderRoute: typeof HomeStackImport
+      parentRoute: typeof HomeRouteImport
+    }
     '/_home/': {
       id: '/_home/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof HomeIndexImport
-      parentRoute: typeof rootRoute
+      parentRoute: typeof HomeRouteImport
     }
   }
 }
 
 // Create and export the route tree
 
+interface HomeRouteRouteChildren {
+  HomeBioRoute: typeof HomeBioRoute
+  HomeGamingRoute: typeof HomeGamingRoute
+  HomeStackRoute: typeof HomeStackRoute
+  HomeIndexRoute: typeof HomeIndexRoute
+}
+
+const HomeRouteRouteChildren: HomeRouteRouteChildren = {
+  HomeBioRoute: HomeBioRoute,
+  HomeGamingRoute: HomeGamingRoute,
+  HomeStackRoute: HomeStackRoute,
+  HomeIndexRoute: HomeIndexRoute,
+}
+
+const HomeRouteRouteWithChildren = HomeRouteRoute._addFileChildren(
+  HomeRouteRouteChildren,
+)
+
 export interface FileRoutesByFullPath {
+  '': typeof HomeRouteRouteWithChildren
+  '/bio': typeof HomeBioRoute
+  '/gaming': typeof HomeGamingRoute
+  '/stack': typeof HomeStackRoute
   '/': typeof HomeIndexRoute
 }
 
 export interface FileRoutesByTo {
+  '/bio': typeof HomeBioRoute
+  '/gaming': typeof HomeGamingRoute
+  '/stack': typeof HomeStackRoute
   '/': typeof HomeIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
+  '/_home': typeof HomeRouteRouteWithChildren
+  '/_home/bio': typeof HomeBioRoute
+  '/_home/gaming': typeof HomeGamingRoute
+  '/_home/stack': typeof HomeStackRoute
   '/_home/': typeof HomeIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '' | '/bio' | '/gaming' | '/stack' | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/_home/'
+  to: '/bio' | '/gaming' | '/stack' | '/'
+  id:
+    | '__root__'
+    | '/_home'
+    | '/_home/bio'
+    | '/_home/gaming'
+    | '/_home/stack'
+    | '/_home/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  HomeIndexRoute: typeof HomeIndexRoute
+  HomeRouteRoute: typeof HomeRouteRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  HomeIndexRoute: HomeIndexRoute,
+  HomeRouteRoute: HomeRouteRouteWithChildren,
 }
 
 export const routeTree = rootRoute
@@ -77,11 +167,33 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
+        "/_home"
+      ]
+    },
+    "/_home": {
+      "filePath": "_home/route.tsx",
+      "children": [
+        "/_home/bio",
+        "/_home/gaming",
+        "/_home/stack",
         "/_home/"
       ]
     },
+    "/_home/bio": {
+      "filePath": "_home/bio.tsx",
+      "parent": "/_home"
+    },
+    "/_home/gaming": {
+      "filePath": "_home/gaming.tsx",
+      "parent": "/_home"
+    },
+    "/_home/stack": {
+      "filePath": "_home/stack.tsx",
+      "parent": "/_home"
+    },
     "/_home/": {
-      "filePath": "_home/index.tsx"
+      "filePath": "_home/index.tsx",
+      "parent": "/_home"
     }
   }
 }
