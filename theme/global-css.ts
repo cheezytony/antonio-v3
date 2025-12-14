@@ -32,6 +32,7 @@ export const globalCss = defineGlobalStyles({
     '--global-color-border': 'colors.border',
   },
   html: {
+    cursor: 'none !important',
     color: 'fg',
     bg: 'bg',
     lineHeight: '1.5',

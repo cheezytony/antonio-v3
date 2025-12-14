@@ -396,6 +396,7 @@ export function Tiles() {
   const [activeColors, setActiveColors] = useState(palettes['1'].colors);
   const [currentPalette, setCurrentPalette] = useState('1');
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
       const key = event.key;

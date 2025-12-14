@@ -1,0 +1,5 @@
+- use readable font for paragraphs
+- use colors to differentiate funding options
+- use title case for headings
+- increase testimonial font size
+- remove line at top of testimonials

@@ -11,150 +11,247 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as HomeRouteImport } from './routes/_home/route'
-import { Route as HomeIndexImport } from './routes/_home/index'
-import { Route as HomeStackImport } from './routes/_home/stack'
-import { Route as HomeGamingImport } from './routes/_home/gaming'
-import { Route as HomeBioImport } from './routes/_home/bio'
+import { Route as homeRouteImport } from './routes/__home/route'
+import { Route as homeIndexImport } from './routes/__home/index'
+import { Route as homeTimelineImport } from './routes/__home/timeline'
+import { Route as homeMyStackImport } from './routes/__home/my-stack'
+import { Route as homeMySocialsImport } from './routes/__home/my-socials'
+import { Route as homeMyProjectsImport } from './routes/__home/my-projects'
+import { Route as homeMyBioImport } from './routes/__home/my-bio'
+import { Route as homeGamingImport } from './routes/__home/gaming'
+import { Route as homeContactMeImport } from './routes/__home/contact-me'
 
 // Create/Update Routes
 
-const HomeRouteRoute = HomeRouteImport.update({
-  id: '/_home',
+const homeRouteRoute = homeRouteImport.update({
+  id: '/__home',
   getParentRoute: () => rootRoute,
 } as any)
 
-const HomeIndexRoute = HomeIndexImport.update({
+const homeIndexRoute = homeIndexImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => HomeRouteRoute,
+  getParentRoute: () => homeRouteRoute,
 } as any)
 
-const HomeStackRoute = HomeStackImport.update({
-  id: '/stack',
-  path: '/stack',
-  getParentRoute: () => HomeRouteRoute,
+const homeTimelineRoute = homeTimelineImport.update({
+  id: '/timeline',
+  path: '/timeline',
+  getParentRoute: () => homeRouteRoute,
 } as any)
 
-const HomeGamingRoute = HomeGamingImport.update({
+const homeMyStackRoute = homeMyStackImport.update({
+  id: '/my-stack',
+  path: '/my-stack',
+  getParentRoute: () => homeRouteRoute,
+} as any)
+
+const homeMySocialsRoute = homeMySocialsImport.update({
+  id: '/my-socials',
+  path: '/my-socials',
+  getParentRoute: () => homeRouteRoute,
+} as any)
+
+const homeMyProjectsRoute = homeMyProjectsImport.update({
+  id: '/my-projects',
+  path: '/my-projects',
+  getParentRoute: () => homeRouteRoute,
+} as any)
+
+const homeMyBioRoute = homeMyBioImport.update({
+  id: '/my-bio',
+  path: '/my-bio',
+  getParentRoute: () => homeRouteRoute,
+} as any)
+
+const homeGamingRoute = homeGamingImport.update({
   id: '/gaming',
   path: '/gaming',
-  getParentRoute: () => HomeRouteRoute,
+  getParentRoute: () => homeRouteRoute,
 } as any)
 
-const HomeBioRoute = HomeBioImport.update({
-  id: '/bio',
-  path: '/bio',
-  getParentRoute: () => HomeRouteRoute,
+const homeContactMeRoute = homeContactMeImport.update({
+  id: '/contact-me',
+  path: '/contact-me',
+  getParentRoute: () => homeRouteRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/_home': {
-      id: '/_home'
+    '/__home': {
+      id: '/__home'
       path: ''
       fullPath: ''
-      preLoaderRoute: typeof HomeRouteImport
+      preLoaderRoute: typeof homeRouteImport
       parentRoute: typeof rootRoute
     }
-    '/_home/bio': {
-      id: '/_home/bio'
-      path: '/bio'
-      fullPath: '/bio'
-      preLoaderRoute: typeof HomeBioImport
-      parentRoute: typeof HomeRouteImport
+    '/__home/contact-me': {
+      id: '/__home/contact-me'
+      path: '/contact-me'
+      fullPath: '/contact-me'
+      preLoaderRoute: typeof homeContactMeImport
+      parentRoute: typeof homeRouteImport
     }
-    '/_home/gaming': {
-      id: '/_home/gaming'
+    '/__home/gaming': {
+      id: '/__home/gaming'
       path: '/gaming'
       fullPath: '/gaming'
-      preLoaderRoute: typeof HomeGamingImport
-      parentRoute: typeof HomeRouteImport
+      preLoaderRoute: typeof homeGamingImport
+      parentRoute: typeof homeRouteImport
     }
-    '/_home/stack': {
-      id: '/_home/stack'
-      path: '/stack'
-      fullPath: '/stack'
-      preLoaderRoute: typeof HomeStackImport
-      parentRoute: typeof HomeRouteImport
+    '/__home/my-bio': {
+      id: '/__home/my-bio'
+      path: '/my-bio'
+      fullPath: '/my-bio'
+      preLoaderRoute: typeof homeMyBioImport
+      parentRoute: typeof homeRouteImport
     }
-    '/_home/': {
-      id: '/_home/'
+    '/__home/my-projects': {
+      id: '/__home/my-projects'
+      path: '/my-projects'
+      fullPath: '/my-projects'
+      preLoaderRoute: typeof homeMyProjectsImport
+      parentRoute: typeof homeRouteImport
+    }
+    '/__home/my-socials': {
+      id: '/__home/my-socials'
+      path: '/my-socials'
+      fullPath: '/my-socials'
+      preLoaderRoute: typeof homeMySocialsImport
+      parentRoute: typeof homeRouteImport
+    }
+    '/__home/my-stack': {
+      id: '/__home/my-stack'
+      path: '/my-stack'
+      fullPath: '/my-stack'
+      preLoaderRoute: typeof homeMyStackImport
+      parentRoute: typeof homeRouteImport
+    }
+    '/__home/timeline': {
+      id: '/__home/timeline'
+      path: '/timeline'
+      fullPath: '/timeline'
+      preLoaderRoute: typeof homeTimelineImport
+      parentRoute: typeof homeRouteImport
+    }
+    '/__home/': {
+      id: '/__home/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof HomeIndexImport
-      parentRoute: typeof HomeRouteImport
+      preLoaderRoute: typeof homeIndexImport
+      parentRoute: typeof homeRouteImport
     }
   }
 }
 
 // Create and export the route tree
 
-interface HomeRouteRouteChildren {
-  HomeBioRoute: typeof HomeBioRoute
-  HomeGamingRoute: typeof HomeGamingRoute
-  HomeStackRoute: typeof HomeStackRoute
-  HomeIndexRoute: typeof HomeIndexRoute
+interface homeRouteRouteChildren {
+  homeContactMeRoute: typeof homeContactMeRoute
+  homeGamingRoute: typeof homeGamingRoute
+  homeMyBioRoute: typeof homeMyBioRoute
+  homeMyProjectsRoute: typeof homeMyProjectsRoute
+  homeMySocialsRoute: typeof homeMySocialsRoute
+  homeMyStackRoute: typeof homeMyStackRoute
+  homeTimelineRoute: typeof homeTimelineRoute
+  homeIndexRoute: typeof homeIndexRoute
 }
 
-const HomeRouteRouteChildren: HomeRouteRouteChildren = {
-  HomeBioRoute: HomeBioRoute,
-  HomeGamingRoute: HomeGamingRoute,
-  HomeStackRoute: HomeStackRoute,
-  HomeIndexRoute: HomeIndexRoute,
+const homeRouteRouteChildren: homeRouteRouteChildren = {
+  homeContactMeRoute: homeContactMeRoute,
+  homeGamingRoute: homeGamingRoute,
+  homeMyBioRoute: homeMyBioRoute,
+  homeMyProjectsRoute: homeMyProjectsRoute,
+  homeMySocialsRoute: homeMySocialsRoute,
+  homeMyStackRoute: homeMyStackRoute,
+  homeTimelineRoute: homeTimelineRoute,
+  homeIndexRoute: homeIndexRoute,
 }
 
-const HomeRouteRouteWithChildren = HomeRouteRoute._addFileChildren(
-  HomeRouteRouteChildren,
+const homeRouteRouteWithChildren = homeRouteRoute._addFileChildren(
+  homeRouteRouteChildren,
 )
 
 export interface FileRoutesByFullPath {
-  '': typeof HomeRouteRouteWithChildren
-  '/bio': typeof HomeBioRoute
-  '/gaming': typeof HomeGamingRoute
-  '/stack': typeof HomeStackRoute
-  '/': typeof HomeIndexRoute
+  '': typeof homeRouteRouteWithChildren
+  '/contact-me': typeof homeContactMeRoute
+  '/gaming': typeof homeGamingRoute
+  '/my-bio': typeof homeMyBioRoute
+  '/my-projects': typeof homeMyProjectsRoute
+  '/my-socials': typeof homeMySocialsRoute
+  '/my-stack': typeof homeMyStackRoute
+  '/timeline': typeof homeTimelineRoute
+  '/': typeof homeIndexRoute
 }
 
 export interface FileRoutesByTo {
-  '/bio': typeof HomeBioRoute
-  '/gaming': typeof HomeGamingRoute
-  '/stack': typeof HomeStackRoute
-  '/': typeof HomeIndexRoute
+  '/contact-me': typeof homeContactMeRoute
+  '/gaming': typeof homeGamingRoute
+  '/my-bio': typeof homeMyBioRoute
+  '/my-projects': typeof homeMyProjectsRoute
+  '/my-socials': typeof homeMySocialsRoute
+  '/my-stack': typeof homeMyStackRoute
+  '/timeline': typeof homeTimelineRoute
+  '/': typeof homeIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/_home': typeof HomeRouteRouteWithChildren
-  '/_home/bio': typeof HomeBioRoute
-  '/_home/gaming': typeof HomeGamingRoute
-  '/_home/stack': typeof HomeStackRoute
-  '/_home/': typeof HomeIndexRoute
+  '/__home': typeof homeRouteRouteWithChildren
+  '/__home/contact-me': typeof homeContactMeRoute
+  '/__home/gaming': typeof homeGamingRoute
+  '/__home/my-bio': typeof homeMyBioRoute
+  '/__home/my-projects': typeof homeMyProjectsRoute
+  '/__home/my-socials': typeof homeMySocialsRoute
+  '/__home/my-stack': typeof homeMyStackRoute
+  '/__home/timeline': typeof homeTimelineRoute
+  '/__home/': typeof homeIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '' | '/bio' | '/gaming' | '/stack' | '/'
+  fullPaths:
+    | ''
+    | '/contact-me'
+    | '/gaming'
+    | '/my-bio'
+    | '/my-projects'
+    | '/my-socials'
+    | '/my-stack'
+    | '/timeline'
+    | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/bio' | '/gaming' | '/stack' | '/'
+  to:
+    | '/contact-me'
+    | '/gaming'
+    | '/my-bio'
+    | '/my-projects'
+    | '/my-socials'
+    | '/my-stack'
+    | '/timeline'
+    | '/'
   id:
     | '__root__'
-    | '/_home'
-    | '/_home/bio'
-    | '/_home/gaming'
-    | '/_home/stack'
-    | '/_home/'
+    | '/__home'
+    | '/__home/contact-me'
+    | '/__home/gaming'
+    | '/__home/my-bio'
+    | '/__home/my-projects'
+    | '/__home/my-socials'
+    | '/__home/my-stack'
+    | '/__home/timeline'
+    | '/__home/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  HomeRouteRoute: typeof HomeRouteRouteWithChildren
+  homeRouteRoute: typeof homeRouteRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  HomeRouteRoute: HomeRouteRouteWithChildren,
+  homeRouteRoute: homeRouteRouteWithChildren,
 }
 
 export const routeTree = rootRoute
@@ -167,33 +264,53 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/_home"
+        "/__home"
       ]
     },
-    "/_home": {
-      "filePath": "_home/route.tsx",
+    "/__home": {
+      "filePath": "__home/route.tsx",
       "children": [
-        "/_home/bio",
-        "/_home/gaming",
-        "/_home/stack",
-        "/_home/"
+        "/__home/contact-me",
+        "/__home/gaming",
+        "/__home/my-bio",
+        "/__home/my-projects",
+        "/__home/my-socials",
+        "/__home/my-stack",
+        "/__home/timeline",
+        "/__home/"
       ]
     },
-    "/_home/bio": {
-      "filePath": "_home/bio.tsx",
-      "parent": "/_home"
+    "/__home/contact-me": {
+      "filePath": "__home/contact-me.tsx",
+      "parent": "/__home"
     },
-    "/_home/gaming": {
-      "filePath": "_home/gaming.tsx",
-      "parent": "/_home"
+    "/__home/gaming": {
+      "filePath": "__home/gaming.tsx",
+      "parent": "/__home"
     },
-    "/_home/stack": {
-      "filePath": "_home/stack.tsx",
-      "parent": "/_home"
+    "/__home/my-bio": {
+      "filePath": "__home/my-bio.tsx",
+      "parent": "/__home"
     },
-    "/_home/": {
-      "filePath": "_home/index.tsx",
-      "parent": "/_home"
+    "/__home/my-projects": {
+      "filePath": "__home/my-projects.tsx",
+      "parent": "/__home"
+    },
+    "/__home/my-socials": {
+      "filePath": "__home/my-socials.tsx",
+      "parent": "/__home"
+    },
+    "/__home/my-stack": {
+      "filePath": "__home/my-stack.tsx",
+      "parent": "/__home"
+    },
+    "/__home/timeline": {
+      "filePath": "__home/timeline.tsx",
+      "parent": "/__home"
+    },
+    "/__home/": {
+      "filePath": "__home/index.tsx",
+      "parent": "/__home"
     }
   }
 }

@@ -1,16 +1,18 @@
+import { AppContextProvider } from '@/contexts/app-context';
 import { HistoryProvider } from '@/contexts/history';
-import { Cursor } from '@/modules/cursor';
 import { HeadContent, Outlet, createRootRoute } from '@tanstack/react-router';
-import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 
 export const Route = createRootRoute({
   component: () => {
     return (
       <HistoryProvider>
-        <HeadContent />
-        <Outlet />
-        <TanStackRouterDevtools />
-        <Cursor />
+        <AppContextProvider>
+          <HeadContent />
+
+          <Outlet />
+
+          {/* <TanStackRouterDevtools /> */}
+        </AppContextProvider>
       </HistoryProvider>
     );
   },
