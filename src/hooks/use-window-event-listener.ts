@@ -1,17 +1,14 @@
 import { useLayoutEffect } from 'react';
 
-export function useWindowEventListener<
-  TEventName extends keyof HTMLElementEventMap,
->(
+export function useWindowEventListener<TEventName extends keyof WindowEventMap>(
   eventName: TEventName,
-  handler: EventListenerOrEventListenerObject,
-  element: Element | Window = window,
+  handler: (event: WindowEventMap[TEventName]) => void,
 ) {
   useLayoutEffect(() => {
-    element.addEventListener(eventName, handler, { capture: true });
+    window.addEventListener(eventName, handler);
 
     return () => {
-      element.removeEventListener(eventName, handler, { capture: true });
+      window.removeEventListener(eventName, handler);
     };
   }, [eventName, handler]);
 }

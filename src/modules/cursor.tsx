@@ -1,5 +1,5 @@
 import { useCursor } from '@/hooks/use-cursor';
-import { useWindowEventListener } from '@/hooks/use-window-event-listener';
+import { useDOMEventListener } from '@/hooks/use-dom-event-listener';
 import type { BoxProps } from '@chakra-ui/react';
 import { Box } from '@chakra-ui/react';
 import { motion, useAnimationFrame } from 'framer-motion';
@@ -23,7 +23,7 @@ export function Cursor() {
     cursorRef.current.style.translate = `${offset.x}px ${offset.y}px`;
   });
 
-  useWindowEventListener(
+  useDOMEventListener(
     'mouseenter',
     useCallback((event: Event) => {
       const target = event.target as HTMLElement;
@@ -39,7 +39,7 @@ export function Cursor() {
     document.body,
   );
 
-  useWindowEventListener(
+  useDOMEventListener(
     'mouseleave',
     useCallback((event: Event) => {
       const target = event.target as HTMLElement;
