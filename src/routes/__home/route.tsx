@@ -3,7 +3,7 @@ import { Cursor } from '@/modules/cursor';
 import { SplashScreen } from '@/modules/splash-screen';
 import { generateColorVariants } from '@/utils/colors';
 import type { CenterProps } from '@chakra-ui/react';
-import { Box, Center, Flex, HStack, Text } from '@chakra-ui/react';
+import { Box, Center, Flex, HStack, Stack, Text } from '@chakra-ui/react';
 import {
   Link,
   Outlet,
@@ -13,10 +13,6 @@ import {
 } from '@tanstack/react-router';
 import { AnimatePresence, motion } from 'framer-motion';
 import { use, useMemo, useState } from 'react';
-
-export const Route = createFileRoute('/__home')({
-  component: RouteComponent,
-});
 
 interface RouteProps {
   title: string;
@@ -31,6 +27,9 @@ interface TileProps extends CenterProps {
 }
 
 const PRIMARY_COLOR = '#F06056';
+
+const MotionBox = motion.create(Box);
+const MotionCenter = motion.create(Center);
 
 const ROUTES: Array<RouteProps> = [
   {
@@ -77,8 +76,9 @@ const ROUTES: Array<RouteProps> = [
   },
 ];
 
-const MotionBox = motion.create(Box);
-const MotionCenter = motion.create(Center);
+export const Route = createFileRoute('/__home')({
+  component: RouteComponent,
+});
 
 function Tile({ route, shade, ...props }: TileProps) {
   const navigator = useNavigate();
@@ -91,17 +91,36 @@ function Tile({ route, shade, ...props }: TileProps) {
     route.href && navigator({ to: route.href });
   };
 
+  const transition = useMemo(() => {
+    const transitions = ['color 300ms', 'height 200ms'];
+
+    transitions.push(
+      isOnHomepage ? 'background-color 500ms, flex 500ms' : 'flex 200ms',
+    );
+
+    return transitions.join(',');
+  }, [isOnHomepage]);
+
   return (
     <Center
       {...props}
       as="button"
       aria-current={isActive && 'page'}
-      bg={isOnHomepage ? shade || route.color : undefined}
+      bg={
+        isOnHomepage
+          ? { base: route.color, md: shade || route.color }
+          : undefined
+      }
       className="group"
       flex={1}
       h="full"
-      transition="flex 200ms, color 300ms, height 200ms"
-      _hover={isOnHomepage ? { flex: 1.5 } : { bg: route.color }}
+      transition={transition}
+      w={{ base: 'full', md: 'auto' }}
+      _hover={
+        isOnHomepage
+          ? { flex: 1.5 }
+          : { bg: !isActive ? `${route.color}/50` : undefined }
+      }
       _currentPage={{
         bg: route.color,
         h: 'calc(100% + 0.5rem)',
@@ -109,7 +128,7 @@ function Tile({ route, shade, ...props }: TileProps) {
       }}
       onClick={handleClick}
     >
-      <HStack gap={1}>
+      <HStack gap={1} pos="relative" justify="center">
         <Text
           aria-current={isActive && 'page'}
           color={`rgb(255 255 255 / ${isOnHomepage ? 0.64 : 0.4})`}
@@ -123,61 +142,35 @@ function Tile({ route, shade, ...props }: TileProps) {
           _groupHover={{
             color: 'white',
             fontWeight: 800,
+            ...(isOnHomepage && {
+              left: {
+                md: '-0.25rem',
+              },
+            }),
           }}
           overflow="clip"
+          pos="relative"
+          left={0}
+          transitionDuration="200ms"
+          transform="auto"
         >
-          {route.title.split('').map((char, index) => (
-            <Box as="span" key={index} pos="relative">
-              <Box as="i" opacity={0}>
-                {char}
-              </Box>
-              <Box
-                as="span"
-                key="initial"
-                pos="absolute"
-                left={0}
-                top={0}
-                transform="auto"
-                transitionDelay={`${index * 25}ms`}
-                transitionDuration="100ms"
-                _groupHover={
-                  !isOnHomepage
-                    ? {
-                        translateY: '-100%',
-                      }
-                    : {}
-                }
-              >
-                {char}
-              </Box>
-              {!isOnHomepage && (
-                <Box
-                  as="span"
-                  key="hovered"
-                  pos="absolute"
-                  left={0}
-                  top={0}
-                  transform="auto"
-                  transitionDelay={`${index * 25}ms`}
-                  transitionDuration="100ms"
-                  translateY="100%"
-                  _groupHover={{
-                    translateY: '0',
-                  }}
-                >
-                  {char}
-                </Box>
-              )}
-            </Box>
-          ))}
+          {route.title}
         </Text>
 
         <AnimatePresence>
           {isOnHomepage && (
             <MotionBox
               asChild
-              display="none"
-              _groupHover={{ display: 'block' }}
+              pos="absolute"
+              left="100%"
+              opacity={0}
+              translate="0 0"
+              transitionDuration="200ms"
+              hideBelow="md"
+              _groupHover={{
+                opacity: 1,
+                translate: '0.25rem 0',
+              }}
             >
               <svg
                 width="24"
@@ -205,6 +198,7 @@ function Tile({ route, shade, ...props }: TileProps) {
 function RouteComponent() {
   const { isReady } = use(AppContext);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const isOnHomepage = pathname === '/';
 
@@ -250,24 +244,35 @@ function RouteComponent() {
   };
 
   return (
-    <div>
+    <Box overflowX="clip">
       <SplashScreen />
 
-      <Flex
-        h="100dvh"
+      <Stack
         bg={accentColor}
+        direction={{ base: 'column', md: 'row' }}
+        gap={0}
+        h="100dvh"
         ml="auto"
         transitionDuration="1000ms"
         transitionTimingFunction="ease-in-smooth"
-        w={isReady ? 'full' : 0}
+        pos="relative"
+        zIndex={1}
+        translate={isReady ? '0 0' : { base: '100% 0', md: '0 0 ' }}
+        w={isReady ? 'full' : { base: 'full', md: 0 }}
       >
-        <Center bg="rgb(0 0 0 / 0.85)" as="aside" w="4.75rem">
+        <Center
+          bg="rgb(0 0 0 / 0.85)"
+          as="aside"
+          flexShrink={0}
+          h={{ base: '3.5rem', md: 'auto' }}
+          w={{ base: 'full', md: '4.75rem' }}
+        >
           <Text
             fontSize="2.5rem"
             fontWeight="bold"
             lineHeight={1.1}
             letterSpacing="-0.02em"
-            rotate="-90deg"
+            rotate={{ md: '-90deg' }}
           >
             antonio
             <Box as="span" color={accentColor}>
@@ -276,23 +281,104 @@ function RouteComponent() {
           </Text>
         </Center>
 
-        <Flex pos="relative" pb="3.5rem" flex={1}>
-          <Box as="main" bg="rgb(0 0 0 / 92)" flex={1}>
-            <Outlet />
-          </Box>
+        <Flex pos="relative" pb={{ md: '3.5rem' }} flex={1}>
+          <Flex as="main" bg="rgb(0 0 0 / 92)" flex={1} pos="relative">
+            <MotionBox
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              flex={1}
+              key={pathname}
+            >
+              <Outlet />
+            </MotionBox>
 
-          <HStack
+            <Box
+              asChild
+              pos="absolute"
+              top={0}
+              right={0}
+              pointerEvents="none"
+              hideBelow="md"
+              w="max(20rem, 20%)"
+            >
+              <svg
+                viewBox="0 0 320 864"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clipPath="url(#clip0_648_2)">
+                  <path
+                    d="M419.5 784L245.5 784L245.5 293L113.5 293L113.5 105.5L40 105.499L40 -116"
+                    stroke="white"
+                    strokeOpacity="0.08"
+                  />
+                  <g filter="url(#filter0_d_648_2)">
+                    <path
+                      d="M113.5 136.001L113.5 105.501L103 105.5"
+                      stroke={accentColor}
+                    />
+                  </g>
+                </g>
+                <defs>
+                  <filter
+                    id="filter0_d_648_2"
+                    x="95"
+                    y="97"
+                    width="27"
+                    height="47"
+                    filterUnits="userSpaceOnUse"
+                    colorInterpolationFilters="sRGB"
+                  >
+                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                    <feColorMatrix
+                      in="SourceAlpha"
+                      type="matrix"
+                      values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                      result="hardAlpha"
+                    />
+                    <feOffset />
+                    <feGaussianBlur stdDeviation="4" />
+                    <feComposite in2="hardAlpha" operator="out" />
+                    <feColorMatrix
+                      type="matrix"
+                      values="0 0 0 0 0.941176 0 0 0 0 0.376471 0 0 0 0 0.337255 0 0 0 0.8 0"
+                    />
+                    <feBlend
+                      mode="normal"
+                      in2="BackgroundImageFix"
+                      result="effect1_dropShadow_648_2"
+                    />
+                    <feBlend
+                      mode="normal"
+                      in="SourceGraphic"
+                      in2="effect1_dropShadow_648_2"
+                      result="shape"
+                    />
+                  </filter>
+                  <clipPath id="clip0_648_2">
+                    <rect width="320" height="864" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </Box>
+          </Flex>
+
+          <Stack
             align="flex-end"
             as="nav"
             bg="rgb(0 0 0 / 0.85)"
             bottom="0"
+            direction={{ base: 'column', md: 'row' }}
             pos="absolute"
             gap={0}
-            h={isOnHomepage ? 'full' : '3.5rem'}
+            h={isOnHomepage ? 'full' : { base: 0, md: '3.5rem' }}
             transitionDuration="200ms"
             w="full"
+            overflow="clip"
+            translate={isOnHomepage ? {} : { base: '0 100%', md: '0 0 ' }}
           >
-            <AnimatePresence mode="wait">
+            <AnimatePresence>
               {!isOnHomepage && (
                 <MotionCenter
                   initial={{ opacity: 0, translateX: '-100%', width: 0 }}
@@ -310,9 +396,10 @@ function RouteComponent() {
                   aspectRatio={1}
                   className="group"
                   key="home-button"
+                  hideBelow="md"
                   h="full"
                   _hover={{
-                    bg: '#F0605677',
+                    bg: `${accentColor}/50`,
                   }}
                   {...{ to: '/' }}
                 >
@@ -353,11 +440,53 @@ function RouteComponent() {
                 onMouseLeave={handleMouseLeave}
               />
             ))}
-          </HStack>
+          </Stack>
         </Flex>
-      </Flex>
+
+        <AnimatePresence>
+          {!isOnHomepage && (
+            <Center
+              as="button"
+              bg="rgb(255 255 255 / 0.05)"
+              color="rgb(255 255 255 / 0.4)"
+              boxSize="3.5rem"
+              pos="absolute"
+              top={0}
+              right={0}
+              transitionDuration="200ms"
+              _hover={{
+                bg: accentColor,
+                color: 'white',
+              }}
+              _active={{
+                bg: accentColor,
+                color: 'white',
+              }}
+              onClick={() => navigate({ to: '/' })}
+            >
+              <Box asChild>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15 5L5.00068 14.9993M14.9993 15L5 5.00071"
+                    stroke="currentColor"
+                    strokeWidth="1.25"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </Box>
+            </Center>
+          )}
+        </AnimatePresence>
+      </Stack>
 
       <Cursor />
-    </div>
+    </Box>
   );
 }

@@ -61,6 +61,7 @@ export function Cursor() {
       top={0}
       pointerEvents="none"
       zIndex="max"
+      hideBelow="md"
     >
       {isHovering ? (
         <MotionBox asChild>
