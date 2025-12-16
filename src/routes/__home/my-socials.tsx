@@ -28,19 +28,19 @@ const PROFESSIONAL_LINKS: Array<SocialLinkProps> = [
   {
     href: 'https://github.com/cheezytony',
     key: 'github',
-    thumbnailUrl: '/images/my-socials-github.png',
+    thumbnailUrl: '/images/my-socials-github.webp',
     title: 'Github',
   },
   {
     href: 'https://linkedin.com/in/antonio-okoro',
     key: 'linkedin',
-    thumbnailUrl: '/images/my-socials-linkedin.png',
+    thumbnailUrl: '/images/my-socials-linkedin.webp',
     title: 'Linkedin',
   },
   {
     href: 'https://',
     key: 'my-resume',
-    thumbnailUrl: '/images/my-socials-resume.png',
+    thumbnailUrl: '/images/my-socials-resume.webp',
     title: 'My Resume',
   },
 ];
