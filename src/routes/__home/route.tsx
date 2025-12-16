@@ -283,15 +283,7 @@ function RouteComponent() {
 
         <Flex pos="relative" pb={{ md: '3.5rem' }} flex={1}>
           <Flex as="main" bg="rgb(0 0 0 / 92)" flex={1} pos="relative">
-            <MotionBox
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              flex={1}
-              key={pathname}
-            >
-              <Outlet />
-            </MotionBox>
+            <Outlet />
 
             <Box
               asChild
