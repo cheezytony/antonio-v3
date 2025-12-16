@@ -320,7 +320,7 @@ function SocialLink({
 
 function RouteComponent() {
   return (
-    <Center h="full">
+    <Center h="full" w="full">
       <VStack
         align="stretch"
         gap={2}
