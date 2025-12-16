@@ -28,7 +28,7 @@ function RouteComponent() {
           objectPosition="center"
         >
           <Image
-            src="/images/bio-antonio.png"
+            src="/images/bio-antonio.webp"
             alt="Antonio Okoro"
             layout="fullWidth"
           />

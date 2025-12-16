@@ -38,7 +38,7 @@ function RouteComponent() {
           objectPosition="center"
         >
           <Image
-            src="/images/contact-me-daft-punk.png"
+            src="/images/contact-me-daft-punk.webp"
             alt="Antonio Okoro"
             layout="fullWidth"
           />
