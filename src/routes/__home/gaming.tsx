@@ -13,37 +13,37 @@ const GAMES = [
   {
     title: 'EA FC 26',
     key: 'EA FC 26',
-    thumbnailUrl: '/images/gaming-ea-fc26.jpg',
+    thumbnailUrl: '/images/gaming-ea-fc26.webp',
   },
   {
     title: 'Apex Legends',
     key: 'Apex Legends',
-    thumbnailUrl: '/images/gaming-apex-legends.png',
+    thumbnailUrl: '/images/gaming-apex-legends.webp',
   },
   {
     title: 'Fortnite',
     key: 'Fortnite',
-    thumbnailUrl: '/images/gaming-fortnite.jpg',
+    thumbnailUrl: '/images/gaming-fortnite.webp',
   },
   {
     title: 'Cyberpunk 2077',
     key: 'Cyberpunk 2077',
-    thumbnailUrl: '/images/gaming-cyberpunk-2077.png',
+    thumbnailUrl: '/images/gaming-cyberpunk-2077.webp',
   },
   {
     title: 'Red Dead Redemption 2',
     key: 'Red Dead Redemption 2',
-    thumbnailUrl: '/images/gaming-red-dead-redemption-2.png',
+    thumbnailUrl: '/images/gaming-red-dead-redemption-2.webp',
   },
   {
     title: 'Alan Wake 2',
     key: 'Alan Wake 2',
-    thumbnailUrl: '/images/gaming-alan-wake-2.png',
+    thumbnailUrl: '/images/gaming-alan-wake-2.webp',
   },
   {
     title: 'Hell Divers 2',
     key: 'Hell Divers 2',
-    thumbnailUrl: '/images/gaming-helldivers-2.png',
+    thumbnailUrl: '/images/gaming-helldivers-2.webp',
   },
 ];
 
