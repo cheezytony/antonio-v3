@@ -81,14 +81,14 @@ export const Route = createFileRoute('/__home')({
 });
 
 function Tile({ route, shade, ...props }: TileProps) {
-  const navigator = useNavigate();
+  const navigate = useNavigate();
   const { pathname } = useLocation();
 
   const isActive = pathname === route.href;
   const isOnHomepage = pathname === '/';
 
   const handleClick = () => {
-    route.href && navigator({ to: route.href });
+    route.href && navigate({ to: route.href });
   };
 
   const transition = useMemo(() => {
@@ -198,7 +198,7 @@ function Tile({ route, shade, ...props }: TileProps) {
 function RouteComponent() {
   const { isReady } = use(AppContext);
   const { pathname } = useLocation();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const isOnHomepage = pathname === '/';
 
