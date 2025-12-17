@@ -1,6 +1,6 @@
 import { AppContext } from '@/contexts/app-context';
 import { useTypewriter } from '@/hooks/useTypewriter';
-import { Box, Center, Text } from '@chakra-ui/react';
+import { Box, Center, Span, Text } from '@chakra-ui/react';
 import { use } from 'react';
 
 const TYPEWRITER_TEXT = 'antonio';
@@ -20,9 +20,7 @@ export function SplashScreen() {
       <Box>
         <Text fontSize="5.5rem" fontWeight="bold" letterSpacing="-0.04em">
           {text}
-          <Box as="span" color="red">
-            /
-          </Box>
+          <Span color="red">/</Span>
         </Text>
       </Box>
 

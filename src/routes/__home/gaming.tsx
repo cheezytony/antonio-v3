@@ -66,7 +66,7 @@ function RouteComponent() {
     <Grid
       className="group"
       gap={0}
-      overflow="auto"
+      overflowY="auto"
       templateColumns={{
         base: 'repeat(2, 1fr)',
         md: 'repeat(3, 1fr)',

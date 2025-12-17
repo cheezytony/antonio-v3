@@ -1,3 +1,5 @@
+import { LeftGlyph } from '@/components/left-glyph';
+import { RightGlyph } from '@/components/right-glyph';
 import {
   Box,
   Center,
@@ -321,6 +323,8 @@ function SocialLink({
 function RouteComponent() {
   return (
     <Center h="full" w="full">
+      <LeftGlyph />
+
       <VStack
         align="stretch"
         gap={2}
@@ -363,6 +367,8 @@ function RouteComponent() {
           ))}
         </Grid>
       </VStack>
+
+      <RightGlyph accentColor="theme.orange" />
     </Center>
   );
 }

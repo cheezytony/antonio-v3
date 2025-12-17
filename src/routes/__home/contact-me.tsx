@@ -1,3 +1,4 @@
+import { RightGlyph } from '@/components/right-glyph';
 import { Field } from '@/components/ui/field';
 import {
   Box,
@@ -28,7 +29,7 @@ function RouteComponent() {
         animate={{ scale: 1 }}
         exit={{ scale: 0.9 }}
         h="12.5rem"
-        md={{ w: 'max(40rem, 35%)', h: 'auto' }}
+        md={{ w: 'max(40rem, 40%)', h: 'auto' }}
       >
         <Box
           asChild
@@ -162,6 +163,8 @@ function RouteComponent() {
           </form>
         </VStack>
       </MotionVStack>
+
+      <RightGlyph accentColor="theme.violet" />
     </Stack>
   );
 }

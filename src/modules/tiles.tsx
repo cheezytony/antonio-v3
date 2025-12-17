@@ -1,5 +1,13 @@
 import { useHistory } from '@/hooks/use-history';
-import { Box, Center, Flex, Heading, Portal, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Center,
+  Flex,
+  Heading,
+  Portal,
+  Span,
+  Text,
+} from '@chakra-ui/react';
 import '@fontsource/averia-serif-libre';
 import { useNavigate } from '@tanstack/react-router';
 import { AnimatePresence, useAnimate } from 'framer-motion';
@@ -532,18 +540,12 @@ export function Tiles() {
             transform: 'translateY(-2px)',
           }}
         >
-          Press{' '}
-          <Text as="span" fontWeight="bold">
-            0-9
-          </Text>{' '}
-          to switch palettes • Current:{' '}
-          <Text as="span" fontWeight="bold">
-            {currentPalette}
-          </Text>
+          Press <Span fontWeight="bold">0-9</Span> to switch palettes • Current:{' '}
+          <Span fontWeight="bold">{currentPalette}</Span>
           {' - '}
-          <Text as="span" fontWeight="bold">
+          <Span fontWeight="bold">
             {palettes[currentPalette as keyof typeof palettes].name}
-          </Text>
+          </Span>
         </Text>
       </Flex>
     </Box>

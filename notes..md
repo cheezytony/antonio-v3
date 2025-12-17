@@ -1,27 +1,15 @@
-# Home page
+## Layout
 
-Make homepage the menu
-move tiles to bottom or the side
-Active tile scales up when viewing page, rest are minimized or scaled down
-Reduce scale on hover, speed up transsition
-Scale up the title text, remove description text
+## My Bio
 
-# Bio
+## My Stack
 
-# Stack
+## Timeline
 
-- use stack design from v2
+## Projects
 
-# Projects
+## Gaming
 
-- use design from stack
+## My Socials
 
-# Timeline
-
-- move line to left of right
-- scroll vertically instead of horizontally
-
-# Gaming
-
-- Retain grid design
-- last grid item is a button that shows next set of games
+## Contact Me

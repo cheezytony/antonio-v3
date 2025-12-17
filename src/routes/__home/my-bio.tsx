@@ -1,3 +1,4 @@
+import { RightGlyph } from '@/components/right-glyph';
 import { Box, Heading, Stack, Text, VStack } from '@chakra-ui/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { Image } from '@unpic/react';
@@ -87,6 +88,8 @@ function RouteComponent() {
           </Text>
         </VStack>
       </MotionVStack>
+
+      <RightGlyph accentColor="theme.red" />
     </Stack>
   );
 }
