@@ -66,13 +66,13 @@ function RouteComponent() {
     <Grid
       className="group"
       gap={0}
-      overflowY="auto"
+      h="full"
+      overflowY={{ md: 'auto' }}
       templateColumns={{
         base: 'repeat(2, 1fr)',
         md: 'repeat(3, 1fr)',
         '2xl': 'repeat(4, 1fr)',
       }}
-      h="full"
     >
       {items.map((game, index) => (
         <MotionCenter

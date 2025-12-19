@@ -1,8 +1,10 @@
+import { IconArrowDown } from '@/components/icons/icon-arrow-down';
+import { IconArrowUp } from '@/components/icons/icon-arrow-up';
+import { IconX } from '@/components/icons/icon-x';
+import { SquareButton } from '@/components/square-button';
 import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
-import type { ButtonProps, CenterProps } from '@chakra-ui/react';
 import {
   Box,
-  Center,
   Grid,
   GridItem,
   Heading,
@@ -10,7 +12,6 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
-import type { LinkProps } from '@tanstack/react-router';
 import { Link, createFileRoute } from '@tanstack/react-router';
 import { Image } from '@unpic/react';
 import { AnimatePresence, motion, useAnimationFrame } from 'framer-motion';
@@ -237,34 +238,6 @@ const TIMELINE: Array<Item> = [
   },
 ];
 
-function SquareButton({
-  children,
-  ...props
-}: CenterProps & ButtonProps & LinkProps) {
-  return (
-    <Center
-      as="button"
-      boxSize="3.5rem"
-      bg="white/5"
-      color="white/40"
-      _active={{
-        bg: 'theme.blue',
-        color: 'white',
-      }}
-      _hover={{
-        bg: 'theme.blue',
-        color: 'white',
-      }}
-      _disabled={{
-        opacity: 0.24,
-      }}
-      {...props}
-    >
-      {children}
-    </Center>
-  );
-}
-
 function RouteComponent() {
   const trackRef = useRef<HTMLDivElement>(null);
   const itemRef = useRef<Array<HTMLDivElement>>([]);
@@ -338,30 +311,35 @@ function RouteComponent() {
 
   return (
     <Stack
+      ref={trackRef}
       flexDir="column"
       gap={0}
-      h="full"
-      md={{ flexDir: 'row', h: 'full' }}
-      w="full"
-      ref={trackRef}
-      overflowY="auto"
-      scrollbarWidth="0"
-      scrollbar="hidden"
-      scrollBehavior="smooth"
-      scrollSnapType="y mandatory"
       pos="relative"
+      w="full"
+      md={{
+        flexDir: 'row',
+        h: 'full',
+        overflowY: 'auto',
+        scrollbar: 'hidden',
+        scrollbarWidth: '0',
+        scrollBehavior: 'smooth',
+        scrollSnapType: 'y mandatory',
+      }}
     >
       <Grid
+        bg="black"
+        h="35dvh"
+        hideBelow="md"
         overflow="clip"
-        h="12.5rem"
+        pos="sticky"
+        top={0}
+        templateColumns="repeat(2, minmax(0, 1fr))"
+        templateRows="repeat(4, minmax(0, 1fr))"
         w="full"
+        zIndex="sticky"
         md={{
-          w: 'max(40rem, 35%)',
           h: 'auto',
-          gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-          gridTemplateRows: 'repeat(4, minmax(0, 1fr))',
-          pos: 'sticky',
-          top: 0,
+          w: 'max(40rem, 35%)',
         }}
       >
         <AnimatePresence mode="popLayout">
@@ -410,7 +388,6 @@ function RouteComponent() {
             data-index={index}
             gap={5}
             flexShrink={0}
-            h="100dvh"
             px={5}
             py={10}
             md={{ h: 'calc(100dvh - 3.5rem)', p: '5rem' }}
@@ -438,6 +415,38 @@ function RouteComponent() {
               </Heading>
             </VStack>
 
+            <Grid
+              bg="black"
+              h="35dvh"
+              overflow="clip"
+              hideFrom="md"
+              gridTemplateColumns="repeat(2, minmax(0, 1fr))"
+              gridTemplateRows="repeat(4, minmax(0, 1fr))"
+              w="full"
+            >
+              {activity.images.map((image, imageIndex) => (
+                <GridItem
+                  key={`${activeIndex}-${imageIndex}`}
+                  colSpan={image.colSpan}
+                  rowSpan={image.rowSpan}
+                >
+                  <Box
+                    asChild
+                    h="full"
+                    w="full"
+                    objectFit="cover"
+                    objectPosition="center"
+                  >
+                    <Image
+                      src={image.src}
+                      alt="Antonio Okoro"
+                      layout="fullWidth"
+                    />
+                  </Box>
+                </GridItem>
+              ))}
+            </Grid>
+
             <VStack align="stretch" gap={3}>
               {activity.description.map((paragraph, paragraphIndex) => (
                 <Text
@@ -454,23 +463,16 @@ function RouteComponent() {
         ))}
       </VStack>
 
-      <VStack gap={0} justify="center" ml="auto" pos="sticky" top={0}>
-        <SquareButton as={Link} to="/">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M15 5L5.00068 14.9993M14.9993 15L5 5.00071"
-              stroke="currentColor"
-              strokeWidth="1.25"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+      <VStack
+        gap={0}
+        justify="center"
+        hideBelow="md"
+        ml="auto"
+        pos="sticky"
+        top={0}
+      >
+        <SquareButton as={Link} accentColor="theme.blue" href="/">
+          <IconX />
         </SquareButton>
 
         <VStack
@@ -510,45 +512,19 @@ function RouteComponent() {
 
         <VStack gap={0}>
           <SquareButton
+            accentColor="theme.blue"
             disabled={activeIndex === 0}
             onClick={() => scrollTo({ direction: -1 })}
           >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M10 4.58199L10 15.832M5 9.16537C5 9.16537 8.68242 4.16545 10 4.16536C11.3177 4.16536 15 9.16537 15 9.16537"
-                stroke="currentColor"
-                strokeWidth="1.25"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <IconArrowUp />
           </SquareButton>
 
           <SquareButton
+            accentColor="theme.blue"
             disabled={activeIndex >= TIMELINE.length - 1}
             onClick={() => scrollTo({ direction: 1 })}
           >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M10 15.418V4.16797M15 10.8346C15 10.8346 11.3176 15.8346 10 15.8346C8.68233 15.8346 5 10.8346 5 10.8346"
-                stroke="currentColor"
-                strokeWidth="1.25"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <IconArrowDown />
           </SquareButton>
         </VStack>
       </VStack>

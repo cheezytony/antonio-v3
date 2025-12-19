@@ -7,13 +7,13 @@ import {
   Box,
   Button,
   Center,
-  HStack,
   Heading,
   Span,
   Square,
   Stack,
   Text,
   VStack,
+  Wrap,
 } from '@chakra-ui/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { Image } from '@unpic/react';
@@ -53,7 +53,7 @@ const PROJECTS: Array<Project> = [
     client: {
       name: 'Daniel Koya',
     },
-    tags: [],
+    tags: ['Website', 'PWA', 'Vue', 'Nuxt', 'TypeScript'],
   },
   {
     title: 'CredPal Product Development',
@@ -67,7 +67,21 @@ const PROJECTS: Array<Project> = [
     client: {
       name: 'CredPal (Crednet Technologies)',
     },
-    tags: ['Web Design', 'Backend', 'Vue.js', 'React Native'],
+    tags: [
+      'Website',
+      'Micro-service',
+      'Full-stack',
+      'Frontend',
+      'Backend',
+      'PHP',
+      'Laravel',
+      'Node.Js',
+      'Next.Js',
+      'Vue',
+      'Nuxt',
+      'React',
+      'Next',
+    ],
   },
   {
     title: 'Bootstrap/Vue Datatable NPM Package',
@@ -82,7 +96,7 @@ const PROJECTS: Array<Project> = [
       'https://res.cloudinary.com/cheezytony/image/upload/v1664377056/Portfolio/rnirbnxwip2qrsaqhvet.webp',
     ],
     url: 'https://www.npmjs.com/bootstrap-vue-datatable',
-    tags: [],
+    tags: ['NPM', 'Library', 'Vue', 'Bootstrap'],
   },
   {
     title: 'Mighty NG Product Development',
@@ -96,7 +110,16 @@ const PROJECTS: Array<Project> = [
     client: {
       name: 'Mighty Interactive',
     },
-    tags: ['Web Design', 'Backend', 'Vue.js', 'React Native'],
+    tags: [
+      'Web App',
+      'Full-stack',
+      'Frontend',
+      'Backend',
+      'PHP',
+      'Laravel',
+      'JavaScript',
+      'jQuery',
+    ],
   },
   {
     title: 'Mighty Interactive Website Development',
@@ -110,7 +133,7 @@ const PROJECTS: Array<Project> = [
     client: {
       name: 'Mighty Interactive',
     },
-    tags: ['Web Design', 'Backend', 'Vue.js', 'React Native'],
+    tags: ['Website', 'HTML', 'CSS', 'SASS/SCSS', 'JavaScript', 'jQuery'],
   },
   {
     title: 'Adlantique Website Design',
@@ -124,7 +147,15 @@ const PROJECTS: Array<Project> = [
     client: {
       name: 'Adlantique',
     },
-    tags: [],
+    tags: [
+      'Website',
+      'PUG',
+      'HTML',
+      'CSS',
+      'Bootstrap',
+      'JavaScript',
+      'jQUery',
+    ],
   },
   {
     title: 'Trifta Website design',
@@ -138,7 +169,7 @@ const PROJECTS: Array<Project> = [
     client: {
       name: 'Trifta',
     },
-    tags: [],
+    tags: ['Website', 'Vue', 'Nuxt', 'TypeScript'],
   },
   {
     title: 'Fluxhub Legal Website Development',
@@ -152,7 +183,7 @@ const PROJECTS: Array<Project> = [
     client: {
       name: 'Fluxhub Legal',
     },
-    tags: [],
+    tags: ['Website', 'Vue', 'Nuxt', 'TypeScript'],
   },
   {
     title: 'Vue3 Form NPM Package',
@@ -166,7 +197,7 @@ const PROJECTS: Array<Project> = [
     screenshots: [
       'https://res.cloudinary.com/cheezytony/image/upload/v1664377018/Portfolio/vn9t1fnfk1hjsfpitksn.webp',
     ],
-    tags: [],
+    tags: ['NPM', 'Library', 'Vue', 'TypeScript'],
     url: 'https://npmjs.com/vue3-form',
   },
   {
@@ -181,7 +212,7 @@ const PROJECTS: Array<Project> = [
     screenshots: [
       'https://res.cloudinary.com/cheezytony/image/upload/v1664377148/Portfolio/tgusatsdh7sabshs1edq1.webp',
     ],
-    tags: [],
+    tags: ['NPM', 'Library', 'TypeScript'],
     url: 'https://npmjs.com/storagedotjs',
   },
 ];
@@ -213,21 +244,25 @@ function RouteComponent() {
   return (
     <>
       <Stack
+        ref={trackRef}
         flexDir="column"
         gap={0}
         h="full"
-        md={{ flexDir: 'row', h: 'full' }}
-        w="full"
-        ref={trackRef}
-        overflowY="auto"
-        scrollbarWidth="0"
-        scrollbar="hidden"
-        scrollBehavior="smooth"
-        scrollSnapType="y mandatory"
         pos="relative"
+        w="full"
+        md={{
+          flexDir: 'row',
+          h: 'full',
+          overflowY: 'auto',
+          scrollbarWidth: '0',
+          scrollbar: 'hidden',
+          scrollBehavior: 'smooth',
+          scrollSnapType: 'y mandatory',
+        }}
       >
         <Center
           h="12.5rem"
+          hideBelow="md"
           pl={5}
           py={10}
           w="full"
@@ -298,15 +333,25 @@ function RouteComponent() {
               data-index={index}
               gap={10}
               flexShrink={0}
-              h="100dvh"
               px={5}
               py={10}
               md={{ h: 'calc(100dvh - 3.5rem)', p: '5rem' }}
-              maxW="40.25rem"
+              maxW="50.25rem"
               w="full"
               scrollSnapAlign="center"
             >
               <VStack align="stretch" gap={6}>
+                <Square
+                  bg="theme.yellow"
+                  color="bg"
+                  hideFrom="md"
+                  size={12}
+                  overflow="clip"
+                >
+                  <Span fontSize="2rem" fontWeight="extrabold">
+                    {index + 1}
+                  </Span>
+                </Square>
                 <Heading
                   fontWeight="900"
                   lineHeight={1.0625}
@@ -316,13 +361,34 @@ function RouteComponent() {
                   {project.title}
                 </Heading>
 
-                <HStack gap={1}>
+                <Wrap gap={1}>
                   {project.tags.map((tag, tagIndex) => (
                     <Box key={tagIndex} bg="theme.yellow/16" px={3} py={2}>
                       {tag}
                     </Box>
                   ))}
-                </HStack>
+                </Wrap>
+
+                <Center hideFrom="md" pl={3} pb={3} pt={10} w="full">
+                  {activeItem && (
+                    <Box pos="relative" w="full">
+                      <Box
+                        asChild
+                        aspectRatio={640 / 370}
+                        border="1px solid"
+                        borderColor="theme.yellow"
+                        boxShadow="-12px 12px 0px #BFA336"
+                        w="full"
+                      >
+                        <Image
+                          src={project.screenshots[0]}
+                          alt={project.title}
+                          layout="fullWidth"
+                        />
+                      </Box>
+                    </Box>
+                  )}
+                </Center>
 
                 <VStack align="stretch" gap={3}>
                   {project.description.map((paragraph, paragraphIndex) => (
@@ -357,7 +423,7 @@ function RouteComponent() {
           ))}
         </VStack>
 
-        <VStack gap={0} ml="auto" pos="sticky" top={0}>
+        <VStack gap={0} hideBelow="md" ml="auto" pos="sticky" top={0}>
           <SquareButton accentColor="theme.yellow" href="/">
             <IconX />
           </SquareButton>

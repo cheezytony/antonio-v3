@@ -1,5 +1,6 @@
 import type { ButtonProps, CenterProps } from '@chakra-ui/react';
 import { Center } from '@chakra-ui/react';
+import type { LinkProps } from '@tanstack/react-router';
 import { Link } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
 
@@ -7,7 +8,7 @@ export type SquareButtonProps = CenterProps &
   ButtonProps & {
     accentColor: string;
     children: ReactNode;
-    href?: string;
+    href?: LinkProps['to'];
   };
 
 export function SquareButton({
