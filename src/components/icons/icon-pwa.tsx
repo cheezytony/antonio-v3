@@ -8,7 +8,7 @@ export function IconPwa(props: Readonly<SVGProps<SVGSVGElement>>) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <g clip-path="url(#clip0_545_241)">
+      <g clipPath="url(#clip0_545_241)">
         <path
           d="M48.2145 41.239L49.8322 37.1644H54.5033L52.2865 30.9834L55.059 24.0002L63 45.0002H57.1438L55.7868 41.239H48.2145Z"
           fill="#3D3D3D"

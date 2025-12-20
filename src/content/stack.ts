@@ -191,7 +191,7 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
         style: { x: 518, y: 94, size: 50 },
       },
       {
-        name: 'SASS',
+        name: 'SASS/SCSS',
         icon: IconSass,
         description: [''],
         parent: 'frontend',
@@ -201,7 +201,7 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
         style: { x: 132, y: 140, size: 34 },
       },
       {
-        name: 'Tailwindcss',
+        name: 'Tailwind CSS',
         icon: IconTailwind,
         description: [''],
         parent: 'frontend',
@@ -241,7 +241,7 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
         style: { x: 225, y: 123, size: 23 },
       },
       {
-        name: 'Bootstrap',
+        name: 'Bootstrap CSS',
         icon: IconBootstrap,
         description: [''],
         parent: 'frontend',
@@ -427,7 +427,7 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
         parent: 'design',
         proficiency: 7,
         slug: 'jira',
-        type: 'product-tracking',
+        type: 'Product Management Tool',
         style: { x: 196, y: 628, size: 30 },
       },
       {
@@ -445,7 +445,7 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
         parent: 'design',
         proficiency: 6,
         slug: 'asana',
-        type: 'product-tracking',
+        type: 'Product Management Tool',
         style: { x: 225, y: 565, size: 20 },
       },
       {
@@ -460,7 +460,7 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
     ],
   },
   {
-    name: 'Package and Dependency Management',
+    name: 'Package & Dependency Management',
     description: [''],
     slug: 'package_management',
     tags: [],
@@ -536,3 +536,5 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
     ],
   },
 ];
+
+export const ALL_ITEMS = STACK_CATEGORIES.flatMap((category) => category.tools);

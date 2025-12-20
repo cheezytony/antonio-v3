@@ -1,7 +1,8 @@
+import { IconArrowRight } from '@/components/icons/icon-arrow-right';
 import { IconX } from '@/components/icons/icon-x';
 import { SquareButton } from '@/components/square-button';
-import { STACK_CATEGORIES } from '@/content/stack';
-import { StackContext } from '@/contexts/stack-context';
+import { ALL_ITEMS, STACK_CATEGORIES } from '@/content/stack';
+import { StackContext, StackContextProvider } from '@/contexts/stack-context';
 import type { DialogOpenChangeDetails } from '@chakra-ui/react';
 import {
   Box,
@@ -11,10 +12,16 @@ import {
   HStack,
   Icon,
   Portal,
+  Text,
   VStack,
+  useMediaQuery,
 } from '@chakra-ui/react';
 import { createFileRoute } from '@tanstack/react-router';
-import { use, useCallback, useMemo, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { use, useCallback, useMemo } from 'react';
+
+const MotionVStack = motion.create(VStack);
+const MotionBox = motion.create(Box);
 
 export const Route = createFileRoute('/__home/my-stack')({
   component: RouteComponent,
@@ -82,8 +89,8 @@ function StackCategory({ category }: { category: StackCategory }) {
   );
 }
 
-function RouteComponent() {
-  const [activeItem, setActiveItem] = useState<StackItem | null>(null);
+function LargeScreen() {
+  const { activeItem, setActiveItem } = use(StackContext);
 
   const handleOpenChange = ({ open }: DialogOpenChangeDetails) => {
     if (!open) {
@@ -92,19 +99,12 @@ function RouteComponent() {
   };
 
   return (
-    <StackContext
-      value={{
-        activeItem,
-        setActiveItem,
-      }}
-    >
-      <Center w="full" h="full" md={{ h: 'full', overflowY: 'auto' }}>
-        <Box className="group" pos="relative" w="43.5rem" h="45rem" mx="auto">
-          {STACK_CATEGORIES.map((category) => (
-            <StackCategory key={category.slug} category={category} />
-          ))}
-        </Box>
-      </Center>
+    <Center w="full" h="full" md={{ h: 'full', overflowY: 'auto' }}>
+      <Box className="group" pos="relative" w="43.5rem" h="45rem" mx="auto">
+        {STACK_CATEGORIES.map((category) => (
+          <StackCategory key={category.slug} category={category} />
+        ))}
+      </Box>
 
       <Dialog.Root
         open={!!activeItem}
@@ -171,6 +171,125 @@ function RouteComponent() {
           </Dialog.Positioner>
         </Portal>
       </Dialog.Root>
-    </StackContext>
+    </Center>
+  );
+}
+
+function SmallScreen() {
+  const { activeItem, setActiveItem } = use(StackContext);
+
+  return (
+    <Box pos="relative" h="full" overflowX="clip">
+      <AnimatePresence>
+        {!activeItem && (
+          <MotionVStack
+            initial={{ opacity: 0, translateX: '-100%' }}
+            animate={{ opacity: 1, translateX: 0 }}
+            exit={{ opacity: 0, translateX: '-100%' }}
+            align="stretch"
+            gap={0}
+            h="full"
+            inset={0}
+            pos="absolute"
+            overflowY="auto"
+            w="full"
+          >
+            {ALL_ITEMS.map((item) => (
+              <HStack
+                key={item.slug}
+                bg="theme.green/8"
+                borderBottom="1px solid"
+                borderColor="theme.green/16"
+                className="group"
+                px={5}
+                py={5}
+                _active={{
+                  bg: 'theme.green',
+                }}
+                onClick={() => setActiveItem(item)}
+              >
+                <Center boxSize="3.5rem">
+                  {item.icon && <Icon as={item.icon} />}
+                </Center>
+                <VStack align="flex-start" gap={0}>
+                  <Text fontSize="xl" fontWeight="black">
+                    {item.name}
+                  </Text>
+                  <Text
+                    color="theme.green"
+                    fontSize="md"
+                    fontWeight="black"
+                    _groupActive={{ color: 'white' }}
+                  >
+                    {item.type}
+                  </Text>
+                </VStack>
+
+                <Icon as={IconArrowRight} color="theme.green" ml="auto" />
+              </HStack>
+            ))}
+          </MotionVStack>
+        )}
+
+        {activeItem && (
+          <MotionBox
+            initial={{ opacity: 0, translateX: '100%' }}
+            animate={{ opacity: 1, translateX: 0 }}
+            exit={{ opacity: 0, translateX: '100%' }}
+            inset={0}
+            pos="absolute"
+            overflowY="auto"
+            w="full"
+          >
+            <HStack
+              bg="theme.green/8"
+              borderBottom="1px solid"
+              borderColor="theme.green/16"
+              className="group"
+              gap={4}
+            >
+              <SquareButton
+                accentColor="theme.green"
+                onClick={() => setActiveItem(null)}
+              >
+                <Icon as={IconArrowRight} rotate="180deg" />
+              </SquareButton>
+
+              <Text fontSize="xl" fontWeight="black">
+                {activeItem.name}
+              </Text>
+            </HStack>
+            <Box p={5}>
+              {activeItem.icon && (
+                <Icon as={activeItem.icon} boxSize="4.5rem" />
+              )}
+              <VStack align="stretch" gap={2} mb={6}>
+                <Text fontSize="3xl" fontWeight="extrabold">
+                  {activeItem.name}
+                </Text>
+                <Text color="theme.green" fontSize="xl" fontWeight="extrabold">
+                  {activeItem.type}
+                </Text>
+              </VStack>
+              <Text color="fg/64">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Debitis, placeat soluta! Laborum eligendi sit excepturi
+                accusantium doloribus nesciunt natus delectus qui quasi minima,
+                magni voluptatem repudiandae earum! Consequatur, eum magni!
+              </Text>
+            </Box>
+          </MotionBox>
+        )}
+      </AnimatePresence>
+    </Box>
+  );
+}
+
+function RouteComponent() {
+  const [isLargeScreen] = useMediaQuery(['(min-width: 48rem)']);
+  return (
+    <StackContextProvider>
+      {isLargeScreen ? <LargeScreen /> : <SmallScreen />}
+    </StackContextProvider>
   );
 }

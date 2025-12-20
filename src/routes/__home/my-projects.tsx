@@ -405,6 +405,7 @@ function RouteComponent() {
               </VStack>
 
               <Button
+                as="a"
                 alignSelf="flex-start"
                 fontSize="sm"
                 gap={2}
@@ -415,6 +416,7 @@ function RouteComponent() {
                 _hover={{
                   bg: 'theme.yellow',
                 }}
+                {...{ href: project.url, target: '_blank' }}
               >
                 <Span>View Project</Span>
                 <IconArrowUpRight />

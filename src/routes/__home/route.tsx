@@ -312,6 +312,7 @@ function RouteComponent() {
             translate={isOnHomepage ? {} : { base: '0 100%', md: '0 0 ' }}
             w="full"
             zIndex="sticky"
+            overflow={{ base: isOnHomepage ? 'unset' : 'clip', md: 'unset' }}
           >
             <AnimatePresence>
               {!isOnHomepage && (

@@ -151,7 +151,7 @@ function ProfessionalLink({
         pos="relative"
         zIndex={1}
         md={{
-          opacity: 0.24,
+          opacity: 0.48,
           filter: 'saturate(0)',
           _groupHover: {
             filter: 'none',
@@ -183,7 +183,7 @@ function SocialLink({
       pos="relative"
       className="group"
       md={{
-        color: 'white/40',
+        color: 'white/50',
         _hover: {
           borderBottomColor: 'theme.orange',
           color: 'theme.orange',

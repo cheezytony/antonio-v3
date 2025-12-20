@@ -8,7 +8,7 @@ export function IconReact(props: Readonly<SVGProps<SVGSVGElement>>) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <g clip-path="url(#clip0_545_117)">
+      <g clipPath="url(#clip0_545_117)">
         <path
           d="M50.5 53.2075C52.8136 53.2075 54.6892 51.3237 54.6892 49C54.6892 46.6762 52.8136 44.7925 50.5 44.7925C48.1865 44.7925 46.3109 46.6762 46.3109 49C46.3109 51.3237 48.1865 53.2075 50.5 53.2075Z"
           fill="#61DAFB"

@@ -8,7 +8,7 @@ export function IconYarn(props: Readonly<SVGProps<SVGSVGElement>>) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <g clip-path="url(#clip0_545_177)">
+      <g clipPath="url(#clip0_545_177)">
         <path
           d="M36.5084 17C46.6186 17.0199 54.7342 25.0631 54.9939 34.9983C55.2688 45.6697 46.5743 54.2382 36.0762 53.9954C26.2607 53.7724 18.452 45.94 18.0198 36.3575C17.5388 25.738 26.0347 16.9924 36.5084 17Z"
           fill="#3398C2"
