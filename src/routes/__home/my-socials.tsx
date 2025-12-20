@@ -216,7 +216,7 @@ function SocialLink({
 
 function RouteComponent() {
   return (
-    <Center h="full" w="full">
+    <Center h="full" isolation="isolate" w="full">
       <LeftGlyph />
 
       <VStack

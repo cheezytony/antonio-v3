@@ -186,7 +186,7 @@ function Tile({ route, shade, ...props }: TileProps) {
 }
 
 function RouteComponent() {
-  const { isReady } = use(AppContext);
+  const { canHideLoader, canShowRoute } = use(AppContext);
   const { pathname } = useLocation();
 
   const isOnHomepage = pathname === '/';
@@ -242,12 +242,12 @@ function RouteComponent() {
         gap={0}
         h="100dvh"
         ml="auto"
+        pos="relative"
         transitionDuration="1000ms"
         transitionTimingFunction="ease-in-smooth"
-        pos="relative"
+        translate={canHideLoader ? '0 0' : { base: '100% 0', md: '0 0 ' }}
+        w={canHideLoader ? 'full' : { base: 'full', md: 0 }}
         zIndex={1}
-        translate={isReady ? '0 0' : { base: '100% 0', md: '0 0 ' }}
-        w={isReady ? 'full' : { base: 'full', md: 0 }}
       >
         <Center
           bg="rgb(0 0 0 / 0.85)"
@@ -288,8 +288,15 @@ function RouteComponent() {
         </Center>
 
         <Flex pos="relative" pb={{ md: '3.5rem' }} flex={1}>
-          <Flex as="main" bg="rgb(0 0 0 / 92)" flex={1} pos="relative">
-            <Outlet />
+          <Flex
+            as="main"
+            bg="rgb(0 0 0 / 84)"
+            key={pathname}
+            flexDirection="column"
+            flex={1}
+            pos="relative"
+          >
+            <AnimatePresence>{canShowRoute && <Outlet />}</AnimatePresence>
           </Flex>
 
           <Stack
@@ -300,11 +307,11 @@ function RouteComponent() {
             direction={{ base: 'column', md: 'row' }}
             gap={0}
             h={isOnHomepage ? 'full' : { base: 0, md: '3.5rem' }}
-            overflow="clip"
             pos="absolute"
             transitionDuration="200ms"
             translate={isOnHomepage ? {} : { base: '0 100%', md: '0 0 ' }}
             w="full"
+            zIndex="sticky"
           >
             <AnimatePresence>
               {!isOnHomepage && (

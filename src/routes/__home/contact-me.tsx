@@ -24,13 +24,23 @@ const MotionVStack = motion.create(VStack);
 
 function RouteComponent() {
   return (
-    <Stack flexDir="column" gap={0} md={{ flexDir: 'row', h: 'full' }}>
+    <Stack
+      flexDir="column"
+      gap={0}
+      md={{
+        alignItems: 'flex-start',
+        flexDir: 'row',
+        h: 'full',
+        isolation: 'isolate',
+        overflowY: 'auto',
+      }}
+    >
       <MotionBox
         initial={{ scale: 0.9 }}
         animate={{ scale: 1 }}
         exit={{ scale: 0.9 }}
         h="12.5rem"
-        md={{ w: 'max(40rem, 40%)', h: 'auto' }}
+        md={{ w: 'max(40rem, 40%)', h: 'full', pos: 'sticky', top: 0 }}
       >
         <Box
           asChild

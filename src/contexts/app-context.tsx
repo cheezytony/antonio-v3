@@ -2,33 +2,45 @@ import type { PropsWithChildren } from 'react';
 import { createContext, useEffect, useState } from 'react';
 
 export interface AppContextProps {
-  isLoaded: boolean;
-  isReady: boolean;
+  canStartLoader: boolean;
+  canHideLoader: boolean;
+  canShowRoute: boolean;
 }
 
-export const AppContext = createContext({ isLoaded: false } as AppContextProps);
+export const AppContext = createContext<AppContextProps>({
+  canStartLoader: false,
+  canHideLoader: false,
+  canShowRoute: false,
+});
 
 export function AppContextProvider({ children }: PropsWithChildren) {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isReady, setIsReady] = useState(false);
+  const [canStartLoader, setcanStartLoader] = useState(false);
+  const [canHideLoader, setcanHideLoader] = useState(false);
+  const [canShowRoute, setCanShowRoute] = useState(false);
 
   useEffect(() => {
-    const isLoadedTimeout = setTimeout(() => {
-      setIsLoaded(true);
+    const canStartLoaderTimeout = setTimeout(() => {
+      setcanStartLoader(true);
     }, 1);
 
-    const isReadyTimeout = setTimeout(
-      () => {
-        setIsReady(true);
-      },
-      150 * (7 + 1),
-    );
+    const canHideLoaderTimeout = setTimeout(() => {
+      setcanHideLoader(true);
+    }, 1200);
+
+    const canShowRouteTimeout = setTimeout(() => {
+      setCanShowRoute(true);
+    }, 1700);
 
     return () => {
-      clearTimeout(isLoadedTimeout);
-      clearTimeout(isReadyTimeout);
+      clearTimeout(canStartLoaderTimeout);
+      clearTimeout(canHideLoaderTimeout);
+      clearTimeout(canShowRouteTimeout);
     };
   }, []);
 
-  return <AppContext value={{ isLoaded, isReady }}>{children}</AppContext>;
+  return (
+    <AppContext value={{ canStartLoader, canHideLoader, canShowRoute }}>
+      {children}
+    </AppContext>
+  );
 }

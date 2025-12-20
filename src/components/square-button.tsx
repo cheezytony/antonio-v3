@@ -31,6 +31,12 @@ export function SquareButton({
         bg: accentColor,
         color: 'white',
       }}
+      _focus={{
+        outlineOffset: '-1px',
+        outlineWidth: '1px',
+        outlineStyle: 'groove',
+        outlineColor: accentColor,
+      }}
       _disabled={{
         opacity: 0.24,
       }}

@@ -11,7 +11,7 @@ const ANIMATION_DURATION = TYPEWRITER_TEXT.length * TYPEWRITER_INTERVAL;
 const CIRCLE_STROKE_DASHARRAY = 4876;
 
 export function SplashScreen() {
-  const { isLoaded } = use(AppContext);
+  const { canStartLoader } = use(AppContext);
 
   const text = useTypewriter(TYPEWRITER_TEXT, TYPEWRITER_INTERVAL);
 
@@ -35,7 +35,7 @@ export function SplashScreen() {
         w="full"
         transitionDuration={`${ANIMATION_DURATION}ms`}
         strokeDasharray={CIRCLE_STROKE_DASHARRAY}
-        strokeDashoffset={isLoaded ? 0 : CIRCLE_STROKE_DASHARRAY}
+        strokeDashoffset={canStartLoader ? 0 : CIRCLE_STROKE_DASHARRAY}
       >
         <svg
           viewBox="0 0 1920 1920"

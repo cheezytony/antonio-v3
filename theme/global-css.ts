@@ -38,6 +38,9 @@ export const globalCss = defineGlobalStyles({
     lineHeight: '1.5',
     colorPalette: 'gray',
     scrollBehavior: 'smooth',
+    fontSize: {
+      md: '0.9vw',
+    },
   },
   body: {
     overflowX: 'clip',
