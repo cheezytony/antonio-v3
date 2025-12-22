@@ -39,7 +39,13 @@ export function AppContextProvider({ children }: PropsWithChildren) {
   }, []);
 
   return (
-    <AppContext value={{ canStartLoader, canHideLoader, canShowRoute }}>
+    <AppContext
+      value={{
+        canStartLoader,
+        canHideLoader,
+        canShowRoute,
+      }}
+    >
       {children}
     </AppContext>
   );

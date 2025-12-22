@@ -221,9 +221,26 @@ function RouteComponent() {
   const trackRef = useRef<HTMLDivElement>(null);
   const itemRef = useRef<Array<HTMLDivElement>>([]);
 
+  const [previousIndex, setPreviousIndex] = useState<number>(0);
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const activeItem = useMemo(() => PROJECTS.at(activeIndex), [activeIndex]);
+
+  const counterAnimationVariants = {
+    initial: ([prev, active]: [number, number]) => {
+      return {
+        translateY: prev > active ? '-100%' : '100%',
+        scale: 0.9,
+      };
+    },
+    animate: { translateY: 0, scale: 1 },
+    exit: ([prev, active]: [number, number]) => {
+      return {
+        translateY: prev > active ? '100%' : '-100%',
+        scale: 0.9,
+      };
+    },
+  };
 
   useIntersectionObserver(
     itemRef,
@@ -231,7 +248,10 @@ function RouteComponent() {
       entries.map((entry) => {
         if (entry.isIntersecting) {
           const index = Number(entry.target.getAttribute('data-index'));
-          setActiveIndex(index);
+          setActiveIndex((currentIndex) => {
+            setPreviousIndex(currentIndex);
+            return index;
+          });
         }
       });
     },
@@ -243,16 +263,30 @@ function RouteComponent() {
 
   return (
     <>
+      <Box
+        bgGradient="to-r"
+        gradientFrom="theme.yellow"
+        gradientTo="transparent"
+        hideBelow="md"
+        opacity={0.17}
+        pos="absolute"
+        top={0}
+        left={0}
+        h="full"
+        w="max(25rem, 25%)"
+      />
+
       <Stack
         ref={trackRef}
         flexDir="column"
         gap={0}
-        h="full"
+        // h="full"
         pos="relative"
         w="full"
         md={{
           flexDir: 'row',
           h: 'full',
+          isolation: 'isolate',
           overflowY: 'auto',
           scrollbarWidth: '0',
           scrollbar: 'hidden',
@@ -287,9 +321,11 @@ function RouteComponent() {
               >
                 <AnimatePresence mode="popLayout">
                   <MotionSpan
-                    initial={{ translateY: '-100%', scale: 0.9 }}
-                    animate={{ translateY: 0, scale: 1 }}
-                    exit={{ translateY: '100%', scale: 0.9 }}
+                    variants={counterAnimationVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    custom={[previousIndex, activeIndex]}
                     key={activeIndex}
                     fontSize="2rem"
                     fontWeight="extrabold"
@@ -363,7 +399,7 @@ function RouteComponent() {
 
                 <Wrap gap={1}>
                   {project.tags.map((tag, tagIndex) => (
-                    <Box key={tagIndex} bg="theme.yellow/16" px={3} py={2}>
+                    <Box key={tagIndex} bg="theme.yellow/8" px={3} py={2}>
                       {tag}
                     </Box>
                   ))}
@@ -431,6 +467,7 @@ function RouteComponent() {
           </SquareButton>
         </VStack>
       </Stack>
+
       <RightGlyph accentColor="theme.yellow" />
     </>
   );

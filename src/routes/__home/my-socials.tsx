@@ -100,7 +100,7 @@ function ExternalIndicator() {
       top={0}
       zIndex={2}
       md={{
-        bg: 'white/16',
+        bg: 'white/8',
         boxSize: 14,
         color: 'white',
         opacity: 0,
@@ -141,7 +141,7 @@ function ProfessionalLink({
       isolation="isolate"
       {...{ to: href, target: '_blank' }}
     >
-      <Box pos="absolute" inset={0} bg="theme.orange/8" zIndex={0} />
+      <Box pos="absolute" inset={0} bg="theme.orange/4" zIndex={0} />
       <Box
         asChild
         w="full"
@@ -151,7 +151,7 @@ function ProfessionalLink({
         pos="relative"
         zIndex={1}
         md={{
-          opacity: 0.48,
+          opacity: 0.24,
           filter: 'saturate(0)',
           _groupHover: {
             filter: 'none',
@@ -177,13 +177,13 @@ function SocialLink({
       {...props}
       as={Link}
       aspectRatio={1}
-      bg="theme.orange/8"
+      bg="theme.orange/4"
       borderBottom="1px solid transparent"
       color="theme.orange"
       pos="relative"
       className="group"
       md={{
-        color: 'white/50',
+        color: 'white/40',
         _hover: {
           borderBottomColor: 'theme.orange',
           color: 'theme.orange',
@@ -217,7 +217,7 @@ function SocialLink({
 function RouteComponent() {
   return (
     <Center h="full" isolation="isolate" w="full">
-      <LeftGlyph />
+      <LeftGlyph accentColor="theme.orange" />
 
       <VStack
         align="stretch"

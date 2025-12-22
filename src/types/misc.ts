@@ -1,3 +1,10 @@
+interface AppRoute {
+  title: string;
+  key: string;
+  color: string;
+  href?: string;
+}
+
 type StackItem = {
   icon?: any;
   description: Array<string>;

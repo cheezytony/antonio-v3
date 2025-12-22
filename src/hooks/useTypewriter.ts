@@ -1,8 +1,24 @@
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useMemo, useRef, useState } from 'react';
 
-export function useTypewriter(text: string, interval: number) {
-  const [renderedText, setRenderedText] = useState('');
-  const previousIndex = useRef<number | null>(null);
+export interface UseTypewriterOptions {
+  interval?: number;
+  delay?: number;
+  index?: number;
+}
+
+export function useTypewriter(
+  text: string,
+  { interval = 150, delay = 0, index }: UseTypewriterOptions,
+) {
+  const startingIndex = useMemo(() => (index != undefined ? 0 : null), [index]);
+  const startingText = useMemo(
+    () => (startingIndex != null ? text.slice(0, startingIndex + 1) : ''),
+    [startingIndex, text],
+  );
+  const [renderedText, setRenderedText] = useState(startingText);
+
+  const previousIndex = useRef<number | null>(startingIndex);
+
   const typingTimeout = useRef<number>(null);
 
   const type = () => {
@@ -34,14 +50,19 @@ export function useTypewriter(text: string, interval: number) {
 
   const reset = () => {
     pause();
-    setRenderedText('');
-    previousIndex.current = null;
+    setRenderedText(startingText);
+    previousIndex.current = startingIndex;
   };
 
   useLayoutEffect(() => {
-    play();
+    const delayTimeout = setTimeout(() => {
+      play();
+    }, delay);
 
-    return () => reset();
+    return () => {
+      clearTimeout(delayTimeout);
+      reset();
+    };
   }, [text, interval]);
 
   return renderedText;

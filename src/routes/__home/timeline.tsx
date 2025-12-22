@@ -327,7 +327,7 @@ function RouteComponent() {
       }}
     >
       <Grid
-        bg="black"
+        bg="bg"
         h="35dvh"
         hideBelow="md"
         overflow="clip"
@@ -416,7 +416,7 @@ function RouteComponent() {
             </VStack>
 
             <Grid
-              bg="black"
+              bg="bg"
               h="35dvh"
               overflow="clip"
               hideFrom="md"
@@ -488,7 +488,7 @@ function RouteComponent() {
               key={index}
               as="button"
               bg="white/8"
-              w="0.125rem"
+              w="0.0625rem"
               flex={1}
               _hover={{
                 bg: 'theme.blue/50',
@@ -501,7 +501,7 @@ function RouteComponent() {
           <Box
             ref={progressThumbRef}
             bg="theme.blue"
-            w="0.375rem"
+            w="0.25rem"
             pos="absolute"
             top={0}
             left="50%"

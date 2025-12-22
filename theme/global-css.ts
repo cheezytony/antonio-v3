@@ -41,6 +41,9 @@ export const globalCss = defineGlobalStyles({
     fontSize: {
       md: '0.9vw',
     },
+    '@media screen and (min-width: 112.5rem)': {
+      fontSize: '16px',
+    },
   },
   body: {
     overflowX: 'clip',

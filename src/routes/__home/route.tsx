@@ -2,12 +2,23 @@ import { IconArrowRight } from '@/components/icons/icon-arrow-right';
 import { IconHome } from '@/components/icons/icon-home';
 import { IconX } from '@/components/icons/icon-x';
 import { SquareButton } from '@/components/square-button';
-import { AppContext } from '@/contexts/app-context';
+import { ROUTES } from '@/content/routes';
+import { AppContext } from '@/contexts/app.context';
+import { useHistory } from '@/hooks/use-history';
 import { Cursor } from '@/modules/cursor';
 import { SplashScreen } from '@/modules/splash-screen';
 import { generateColorVariants } from '@/utils/colors';
 import type { CenterProps } from '@chakra-ui/react';
-import { Box, Center, Flex, HStack, Span, Stack, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Center,
+  Flex,
+  HStack,
+  Span,
+  Stack,
+  Text,
+  useMediaQuery,
+} from '@chakra-ui/react';
 import {
   Link,
   Outlet,
@@ -18,15 +29,8 @@ import {
 import { AnimatePresence, motion } from 'framer-motion';
 import { use, useMemo, useState } from 'react';
 
-interface RouteProps {
-  title: string;
-  key: string;
-  color: string;
-  href?: string;
-}
-
 interface TileProps extends CenterProps {
-  route: RouteProps;
+  route: AppRoute;
   shade?: string;
 }
 
@@ -34,51 +38,6 @@ const PRIMARY_COLOR = '#F06056';
 
 const MotionBox = motion.create(Box);
 const MotionCenter = motion.create(Center);
-
-const ROUTES: Array<RouteProps> = [
-  {
-    title: 'My Bio',
-    key: 'bio',
-    color: '#F06056',
-    href: '/my-bio',
-  },
-  {
-    title: 'Tech Stack',
-    key: 'stack',
-    color: '#35977D',
-    href: '/my-stack',
-  },
-  {
-    title: 'Timeline',
-    key: 'timeline',
-    color: '#2C95C9',
-    href: '/timeline',
-  },
-  {
-    title: 'Projects',
-    key: 'projects',
-    color: '#BFA436',
-    href: '/my-projects',
-  },
-  {
-    title: 'Gaming',
-    key: 'gaming',
-    color: '#686CDE',
-    href: '/gaming',
-  },
-  {
-    title: 'Socials',
-    key: 'socials',
-    color: '#BF6D36',
-    href: '/my-socials',
-  },
-  {
-    title: 'Chat Me',
-    key: 'chat-me',
-    color: '#833597',
-    href: '/contact-me',
-  },
-];
 
 export const Route = createFileRoute('/__home')({
   component: RouteComponent,
@@ -110,11 +69,7 @@ function Tile({ route, shade, ...props }: TileProps) {
       {...props}
       as="button"
       aria-current={isActive && 'page'}
-      bg={
-        isOnHomepage
-          ? { base: route.color, md: shade || route.color }
-          : undefined
-      }
+      bg={isOnHomepage ? shade || route.color : undefined}
       className="group"
       flex={1}
       h="full"
@@ -188,41 +143,52 @@ function Tile({ route, shade, ...props }: TileProps) {
 function RouteComponent() {
   const { canHideLoader, canShowRoute } = use(AppContext);
   const { pathname } = useLocation();
+  const { last } = useHistory();
+
+  const [isSmallScreen] = useMediaQuery(['(max-width: 767px)']);
 
   const isOnHomepage = pathname === '/';
 
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(0);
+
+  const focusedIndex = useMemo(() => {
+    if (hoveredIndex) return hoveredIndex;
+    return Math.max(
+      ROUTES.findIndex((route) => route.href === last?.pathname),
+      0,
+    );
+  }, [hoveredIndex, last]);
 
   const activeRoute = useMemo(
     () => ROUTES.find((route) => route.href === pathname),
     [pathname],
   );
 
-  const hoveredRoute = useMemo(
-    () => hoveredIndex !== null && ROUTES[hoveredIndex],
-    [hoveredIndex],
+  const previousRoute = useMemo(
+    () => ROUTES.find((route) => route.href === last?.pathname) ?? null,
+    [last],
   );
 
+  const focusedRoute = useMemo(() => {
+    return ROUTES[focusedIndex];
+  }, [hoveredIndex, isSmallScreen, previousRoute]);
+
   const accentColor =
-    (activeRoute && activeRoute.color) ||
-    (hoveredRoute && hoveredRoute.color) ||
-    PRIMARY_COLOR;
+    (activeRoute && activeRoute.color) || focusedRoute.color || PRIMARY_COLOR;
 
   const colorShades = useMemo(() => {
-    if (!hoveredRoute || hoveredIndex === null) return [];
-
-    const hoveredColor = hoveredRoute.color;
+    const hoveredColor = focusedRoute.color;
 
     return ROUTES.map((_, index) => {
-      if (index === hoveredIndex) return hoveredColor;
+      if (index === focusedIndex) return hoveredColor;
 
-      const distance = Math.abs(index - hoveredIndex);
+      const distance = Math.abs(index - focusedIndex);
 
       const variants = generateColorVariants(hoveredColor, 0, 'darker');
 
       return variants[Math.min(distance, variants.length - 1)];
     });
-  }, [hoveredRoute, pathname]);
+  }, [focusedRoute, pathname]);
 
   const handleMouseEnter = (index: number) => {
     setHoveredIndex(index);
@@ -240,7 +206,8 @@ function RouteComponent() {
         bg={accentColor}
         direction={{ base: 'column', md: 'row' }}
         gap={0}
-        h="100dvh"
+        minH="100dvh"
+        h={{ md: '100dvh' }}
         ml="auto"
         pos="relative"
         transitionDuration="1000ms"
@@ -261,6 +228,20 @@ function RouteComponent() {
             w: '4.75rem',
           }}
         >
+          {!isOnHomepage && (
+            <SquareButton
+              accentColor={accentColor}
+              as={Link}
+              href="/"
+              pos="absolute"
+              hideFrom="sm"
+              top={0}
+              left={0}
+            >
+              <IconHome />
+            </SquareButton>
+          )}
+
           <Text
             fontSize="2.5rem"
             fontWeight="bold"
@@ -287,11 +268,10 @@ function RouteComponent() {
           )}
         </Center>
 
-        <Flex pos="relative" pb={{ md: '3.5rem' }} flex={1}>
+        <Flex pos="relative" isolation="isolate" pb={{ md: '3.5rem' }} flex={1}>
           <Flex
             as="main"
-            bg="rgb(0 0 0 / 84)"
-            key={pathname}
+            bg="rgb(0 0 0 / 0.92)"
             flexDirection="column"
             flex={1}
             pos="relative"
@@ -330,6 +310,7 @@ function RouteComponent() {
                   }}
                   as={Link}
                   aspectRatio={1}
+                  bg="black/88"
                   className="group"
                   color="white/40"
                   key="home-button"

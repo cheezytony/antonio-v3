@@ -1,6 +1,13 @@
-import { createContext, useCallback, useMemo, useState } from 'react';
 import type { ParsedLocation } from '@tanstack/react-router';
+import { useLocation } from '@tanstack/react-router';
 import type { PropsWithChildren } from 'react';
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 interface HistoryContextProps {
   history: Array<ParsedLocation>;
@@ -14,10 +21,13 @@ export const HistoryContext = createContext<HistoryContextProps>(
 );
 
 export function HistoryProvider({ children }: Readonly<PropsWithChildren>) {
+  const location = useLocation();
+
   const [history, setHistory] = useState<Array<ParsedLocation>>([]);
 
   const current = history.at(-1);
   const last = history[history.length - 2];
+
   const push = useCallback(
     (item: ParsedLocation) => setHistory([...history, item]),
     [history],
@@ -27,6 +37,8 @@ export function HistoryProvider({ children }: Readonly<PropsWithChildren>) {
     () => ({ history, last, current, push }),
     [history, last, current],
   );
+
+  useEffect(() => push(location), [location.pathname]);
 
   return (
     <HistoryContext.Provider value={value}>{children}</HistoryContext.Provider>

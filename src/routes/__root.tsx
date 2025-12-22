@@ -1,5 +1,5 @@
-import { AppContextProvider } from '@/contexts/app-context';
-import { HistoryProvider } from '@/contexts/history';
+import { AppContextProvider } from '@/contexts/app.context';
+import { HistoryProvider } from '@/contexts/history.context';
 import { HeadContent, Outlet, createRootRoute } from '@tanstack/react-router';
 
 export const Route = createRootRoute({

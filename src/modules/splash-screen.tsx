@@ -1,19 +1,24 @@
-import { AppContext } from '@/contexts/app-context';
+import { AppContext } from '@/contexts/app.context';
 import { useTypewriter } from '@/hooks/useTypewriter';
 import { Box, Center, Span, Text } from '@chakra-ui/react';
 import { use } from 'react';
 
 const TYPEWRITER_TEXT = 'antonio';
-const TYPEWRITER_INTERVAL = 150;
+const TYPEWRITER_INTERVAL = 50;
+const TYPEWRITER_DELAY = 500;
 
-const ANIMATION_DURATION = TYPEWRITER_TEXT.length * TYPEWRITER_INTERVAL;
+const ANIMATION_DURATION = 1750;
 
 const CIRCLE_STROKE_DASHARRAY = 4876;
 
 export function SplashScreen() {
   const { canStartLoader } = use(AppContext);
 
-  const text = useTypewriter(TYPEWRITER_TEXT, TYPEWRITER_INTERVAL);
+  const text = useTypewriter(TYPEWRITER_TEXT, {
+    interval: TYPEWRITER_INTERVAL,
+    delay: TYPEWRITER_DELAY,
+    index: 0,
+  });
 
   return (
     <Center w="100dvw" h="100dvh" pos="fixed" inset={0}>

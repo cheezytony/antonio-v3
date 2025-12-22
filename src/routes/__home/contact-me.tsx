@@ -24,23 +24,15 @@ const MotionVStack = motion.create(VStack);
 
 function RouteComponent() {
   return (
-    <Stack
-      flexDir="column"
-      gap={0}
-      md={{
-        alignItems: 'flex-start',
-        flexDir: 'row',
-        h: 'full',
-        isolation: 'isolate',
-        overflowY: 'auto',
-      }}
-    >
-      <MotionBox
-        initial={{ scale: 0.9 }}
-        animate={{ scale: 1 }}
-        exit={{ scale: 0.9 }}
-        h="12.5rem"
-        md={{ w: 'max(40rem, 40%)', h: 'full', pos: 'sticky', top: 0 }}
+    <>
+      <Box
+        h="full"
+        hideFrom="md"
+        left={0}
+        opacity={0.7}
+        pos="absolute"
+        w="full"
+        zIndex={-1}
       >
         <Box
           asChild
@@ -55,114 +47,149 @@ function RouteComponent() {
             layout="fullWidth"
           />
         </Box>
-      </MotionBox>
-
-      <MotionVStack
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        align="stretch"
-        gap={5}
-        px={5}
-        py={10}
-        md={{ maxW: '45.25rem', p: '5rem' }}
-        w="full"
+      </Box>
+      <Stack
+        flexDir="column"
+        gap={0}
+        md={{
+          alignItems: 'flex-start',
+          flexDir: 'row',
+          h: 'full',
+          isolation: 'isolate',
+          overflowY: 'auto',
+        }}
       >
-        <VStack align="stretch" gap={6}>
-          <Heading
-            fontWeight="900"
-            lineHeight={1.0625}
-            fontSize="5xl"
-            md={{ fontSize: '4rem' }}
+        <MotionBox
+          initial={{ scale: 0.9 }}
+          animate={{ scale: 1 }}
+          exit={{ scale: 0.9 }}
+          h="full"
+          hideBelow="md"
+          left={0}
+          md={{ w: 'max(40rem, 40%)', h: 'full', pos: 'sticky', top: 0 }}
+        >
+          <Box
+            asChild
+            w="full"
+            h="full"
+            objectFit="cover"
+            objectPosition="center"
           >
-            Drop me a line.
-          </Heading>
-          <Heading
-            fontWeight="900"
-            color="theme.violet"
-            lineHeight={1.1}
-            fontSize="3xl"
-            md={{ fontSize: '2.5rem' }}
-          >
-            I'll respond in no time.
-          </Heading>
-        </VStack>
+            <Image
+              src="/images/contact-me-daft-punk.webp"
+              alt="Antonio Okoro"
+              layout="fullWidth"
+            />
+          </Box>
+        </MotionBox>
 
-        <VStack asChild align="stretch" gap={20} flex={1}>
-          <form onSubmit={(e) => e.preventDefault()}>
-            <VStack align="stretch" gap={4}>
-              <Field>
-                <Input
-                  h="3.5rem"
-                  placeholder="Your name"
-                  py={4}
-                  size="xl"
-                  variant="flushed"
-                  css={{
-                    '--focus-color': 'var(--chakra-colors-theme-violet)',
-                  }}
-                />
-              </Field>
-              <Field>
-                <Input
-                  h="3.5rem"
-                  placeholder="Email address"
-                  py={4}
-                  size="xl"
-                  variant="flushed"
-                  css={{
-                    '--focus-color': 'var(--chakra-colors-theme-violet)',
-                  }}
-                />
-              </Field>
-              <Field>
-                <Input
-                  h="3.5rem"
-                  placeholder="Purpose"
-                  py={4}
-                  size="xl"
-                  variant="flushed"
-                  css={{
-                    '--focus-color': 'var(--chakra-colors-theme-violet)',
-                  }}
-                />
-              </Field>
-              <Field>
-                <Textarea
-                  placeholder="Your message"
-                  h="8.75rem"
-                  py={4}
-                  resize="none"
-                  size="xl"
-                  variant="flushed"
-                  css={{
-                    '--focus-color': 'var(--chakra-colors-theme-violet)',
-                  }}
-                />
-              </Field>
-            </VStack>
-
-            <Button
-              alignSelf="flex-start"
-              fontSize="sm"
-              gap={2}
-              mt="auto"
-              py={3}
-              px={6}
-              type="submit"
-              variant="outline"
-              _hover={{
-                bg: 'theme.violet',
-              }}
+        <MotionVStack
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          align="stretch"
+          gap={5}
+          px={5}
+          py={10}
+          md={{ maxW: '45.25rem', p: '5rem' }}
+          w="full"
+        >
+          <VStack align="stretch" gap={6}>
+            <Heading
+              fontWeight="900"
+              lineHeight={1.0625}
+              fontSize="5xl"
+              md={{ fontSize: '4rem' }}
             >
-              <Span>Send Message</Span>
-              <IconArrowRight />
-            </Button>
-          </form>
-        </VStack>
-      </MotionVStack>
+              Drop me a line.
+            </Heading>
+            <Heading
+              fontWeight="900"
+              color="theme.violet"
+              lineHeight={1.1}
+              fontSize="3xl"
+              md={{ fontSize: '2.5rem' }}
+            >
+              I'll respond in no time.
+            </Heading>
+          </VStack>
 
-      <RightGlyph accentColor="theme.violet" />
-    </Stack>
+          <VStack asChild align="stretch" gap={20} flex={1}>
+            <form onSubmit={(e) => e.preventDefault()}>
+              <VStack align="stretch" gap={4}>
+                <Field>
+                  <Input
+                    h="3.5rem"
+                    placeholder="Your name"
+                    py={4}
+                    size="xl"
+                    variant="flushed"
+                    css={{
+                      '--focus-color': 'var(--chakra-colors-theme-violet)',
+                    }}
+                  />
+                </Field>
+                <Field>
+                  <Input
+                    h="3.5rem"
+                    placeholder="Email address"
+                    py={4}
+                    size="xl"
+                    variant="flushed"
+                    css={{
+                      '--focus-color': 'var(--chakra-colors-theme-violet)',
+                    }}
+                  />
+                </Field>
+                <Field>
+                  <Input
+                    h="3.5rem"
+                    placeholder="Purpose"
+                    py={4}
+                    size="xl"
+                    variant="flushed"
+                    css={{
+                      '--focus-color': 'var(--chakra-colors-theme-violet)',
+                    }}
+                  />
+                </Field>
+                <Field>
+                  <Textarea
+                    placeholder="Your message"
+                    h="8.75rem"
+                    py={4}
+                    resize="none"
+                    size="xl"
+                    variant="flushed"
+                    css={{
+                      '--focus-color': 'var(--chakra-colors-theme-violet)',
+                    }}
+                  />
+                </Field>
+              </VStack>
+
+              <Button
+                alignSelf="flex-start"
+                fontSize="sm"
+                gap={2}
+                mt="auto"
+                py={3}
+                px={6}
+                type="submit"
+                variant="outline"
+                _hover={{
+                  bg: 'theme.violet',
+                }}
+              >
+                <Span>Send Message</Span>
+                <IconArrowRight />
+              </Button>
+            </form>
+          </VStack>
+        </MotionVStack>
+
+        <RightGlyph accentColor="theme.violet" />
+      </Stack>
+    </>
   );
 }

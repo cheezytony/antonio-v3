@@ -2,7 +2,7 @@ import { IconArrowRight } from '@/components/icons/icon-arrow-right';
 import { IconX } from '@/components/icons/icon-x';
 import { SquareButton } from '@/components/square-button';
 import { ALL_ITEMS, STACK_CATEGORIES } from '@/content/stack';
-import { StackContext, StackContextProvider } from '@/contexts/stack-context';
+import { StackContext, StackContextProvider } from '@/contexts/stack.context';
 import type { DialogOpenChangeDetails } from '@chakra-ui/react';
 import {
   Box,
@@ -20,8 +20,9 @@ import { createFileRoute } from '@tanstack/react-router';
 import { AnimatePresence, motion } from 'framer-motion';
 import { use, useCallback, useMemo } from 'react';
 
-const MotionVStack = motion.create(VStack);
 const MotionBox = motion.create(Box);
+const MotionCircle = motion.create(Circle);
+const MotionVStack = motion.create(VStack);
 
 export const Route = createFileRoute('/__home/my-stack')({
   component: RouteComponent,
@@ -41,12 +42,38 @@ function StackItem({ item }: { item: StackItem }) {
     [item.style],
   );
 
+  const hoverScale = useMemo(() => {
+    const size = item.style.size;
+
+    if (size >= 40) return 1.05;
+
+    if (size >= 25) return 1.1;
+
+    return 1.25;
+  }, [item.style.size]);
+
+  const animationDelay = useMemo(() => {
+    const size = item.style.size;
+
+    if (size >= 50) return 0.4;
+
+    if (size >= 25) return 0.2;
+
+    return 0.1;
+  }, [item.style.size]);
+
   const toggleItem = useCallback(() => {
     isSelected ? setActiveItem(null) : setActiveItem(item);
   }, [isSelected]);
 
   return (
-    <Circle
+    <MotionCircle
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{
+        opacity: 1,
+        scale: 1,
+        transition: { delay: animationDelay, duration: 0.25, ease: 'linear' },
+      }}
       aria-selected={isSelected}
       as="button"
       bg="theme.green/16"
@@ -58,7 +85,7 @@ function StackItem({ item }: { item: StackItem }) {
       translate="-50% -50%"
       _hover={{
         bg: 'theme.green/25',
-        scale: 1.1,
+        scale: hoverScale,
       }}
       _selected={{
         borderColor: 'theme.green',
@@ -66,7 +93,7 @@ function StackItem({ item }: { item: StackItem }) {
       onClick={toggleItem}
     >
       {item.icon && <Icon as={item.icon} />}
-    </Circle>
+    </MotionCircle>
   );
 }
 
@@ -241,13 +268,7 @@ function SmallScreen() {
             overflowY="auto"
             w="full"
           >
-            <HStack
-              bg="theme.green/8"
-              borderBottom="1px solid"
-              borderColor="theme.green/16"
-              className="group"
-              gap={4}
-            >
+            <HStack bg="theme.green/8" className="group" gap={4}>
               <SquareButton
                 accentColor="theme.green"
                 onClick={() => setActiveItem(null)}
