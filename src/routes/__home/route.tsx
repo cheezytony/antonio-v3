@@ -281,8 +281,9 @@ function RouteComponent() {
             flexDirection="column"
             flex={1}
             pos="relative"
+            opacity={canShowRoute ? 1 : 0}
           >
-            <AnimatePresence>{canShowRoute && <Outlet />}</AnimatePresence>
+            <Outlet />
           </Flex>
 
           <Stack
