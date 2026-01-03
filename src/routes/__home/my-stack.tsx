@@ -17,12 +17,10 @@ import {
   useMediaQuery,
 } from '@chakra-ui/react';
 import { createFileRoute } from '@tanstack/react-router';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { use, useCallback, useMemo } from 'react';
 
-const MotionBox = motion.create(Box);
 const MotionCircle = motion.create(Circle);
-const MotionVStack = motion.create(VStack);
 
 export const Route = createFileRoute('/__home/my-stack')({
   component: RouteComponent,
@@ -99,18 +97,9 @@ function StackItem({ item }: { item: StackItem }) {
 
 function StackCategory({ category }: { category: StackCategory }) {
   return (
-    <Box
-    // _groupHover={{
-    //   filter: 'blur(4px)',
-    //   opacity: 0.9,
-    //   _hover: {
-    //     filter: 'none',
-    //     opacity: 1,
-    //   },
-    // }}
-    >
-      {category.tools.map((item) => (
-        <StackItem key={item.slug} item={item} />
+    <Box>
+      {category.tools.map((item, index) => (
+        <StackItem key={`${index}-${item.slug}`} item={item} />
       ))}
     </Box>
   );
@@ -128,8 +117,11 @@ function LargeScreen() {
   return (
     <Center w="full" h="full" md={{ h: 'full', overflowY: 'auto' }}>
       <Box className="group" pos="relative" w="43.5rem" h="45rem" mx="auto">
-        {STACK_CATEGORIES.map((category) => (
-          <StackCategory key={category.slug} category={category} />
+        {STACK_CATEGORIES.map((category, index) => (
+          <StackCategory
+            key={`${index}-${category.slug}`}
+            category={category}
+          />
         ))}
       </Box>
 
@@ -206,102 +198,111 @@ function SmallScreen() {
   const { activeItem, setActiveItem } = use(StackContext);
 
   return (
-    <Box pos="relative" h="full" overflowX="clip">
-      <AnimatePresence>
-        {!activeItem && (
-          <MotionVStack
-            initial={{ opacity: 0, translateX: '-100%' }}
-            animate={{ opacity: 1, translateX: 0 }}
-            exit={{ opacity: 0, translateX: '-100%' }}
-            align="stretch"
-            gap={0}
-            h="full"
-            inset={0}
-            pos="absolute"
-            overflowY="auto"
-            w="full"
+    <Box pos="relative">
+      <VStack
+        align="stretch"
+        gap={0}
+        transitionDuration="slower"
+        transitionTimingFunction="ease-out"
+        w="full"
+        css={
+          activeItem
+            ? {
+                opacity: 0,
+                translate: '-100% 0',
+              }
+            : {
+                opacity: 1,
+                translate: '0 0 ',
+              }
+        }
+      >
+        {ALL_ITEMS.map((item, index) => (
+          <HStack
+            key={`${index}-${item.slug}`}
+            bg="theme.green/8"
+            borderBottom="1px solid"
+            borderColor="theme.green/16"
+            className="group"
+            px={5}
+            py={5}
+            _active={{
+              bg: 'theme.green',
+            }}
+            onClick={() => setActiveItem(item)}
           >
-            {ALL_ITEMS.map((item) => (
-              <HStack
-                key={item.slug}
-                bg="theme.green/8"
-                borderBottom="1px solid"
-                borderColor="theme.green/16"
-                className="group"
-                px={5}
-                py={5}
-                _active={{
-                  bg: 'theme.green',
-                }}
-                onClick={() => setActiveItem(item)}
-              >
-                <Center boxSize="3.5rem">
-                  {item.icon && <Icon as={item.icon} />}
-                </Center>
-                <VStack align="flex-start" gap={0}>
-                  <Text fontSize="xl" fontWeight="black">
-                    {item.name}
-                  </Text>
-                  <Text
-                    color="theme.green"
-                    fontSize="md"
-                    fontWeight="black"
-                    _groupActive={{ color: 'white' }}
-                  >
-                    {item.type}
-                  </Text>
-                </VStack>
-
-                <Icon as={IconArrowRight} color="theme.green" ml="auto" />
-              </HStack>
-            ))}
-          </MotionVStack>
-        )}
-
-        {activeItem && (
-          <MotionBox
-            initial={{ opacity: 0, translateX: '100%' }}
-            animate={{ opacity: 1, translateX: 0 }}
-            exit={{ opacity: 0, translateX: '100%' }}
-            inset={0}
-            pos="absolute"
-            overflowY="auto"
-            w="full"
-          >
-            <HStack bg="theme.green/8" className="group" gap={4}>
-              <SquareButton
-                accentColor="theme.green"
-                onClick={() => setActiveItem(null)}
-              >
-                <Icon as={IconArrowRight} rotate="180deg" />
-              </SquareButton>
-
+            <Center boxSize="3.5rem">
+              {item.icon && <Icon as={item.icon} />}
+            </Center>
+            <VStack align="flex-start" gap={0}>
               <Text fontSize="xl" fontWeight="black">
-                {activeItem.name}
+                {item.name}
               </Text>
-            </HStack>
-            <Box p={5}>
-              {activeItem.icon && (
-                <Icon as={activeItem.icon} boxSize="4.5rem" />
-              )}
-              <VStack align="stretch" gap={2} mb={6}>
-                <Text fontSize="3xl" fontWeight="extrabold">
-                  {activeItem.name}
-                </Text>
-                <Text color="theme.green" fontSize="xl" fontWeight="extrabold">
-                  {activeItem.type}
-                </Text>
-              </VStack>
-              <Text color="fg/64">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Debitis, placeat soluta! Laborum eligendi sit excepturi
-                accusantium doloribus nesciunt natus delectus qui quasi minima,
-                magni voluptatem repudiandae earum! Consequatur, eum magni!
+              <Text
+                color="theme.green"
+                fontSize="md"
+                fontWeight="black"
+                _groupActive={{ color: 'white' }}
+              >
+                {item.type}
               </Text>
-            </Box>
-          </MotionBox>
-        )}
-      </AnimatePresence>
+            </VStack>
+
+            <Icon as={IconArrowRight} color="theme.green" ml="auto" />
+          </HStack>
+        ))}
+      </VStack>
+
+      <Box
+        inset={0}
+        pos="absolute"
+        overflowY="auto"
+        transitionDuration="slower"
+        transitionTimingFunction="ease-out"
+        w="full"
+        css={
+          activeItem
+            ? {
+                opacity: 1,
+                translate: '0 0 ',
+              }
+            : {
+                opacity: 0,
+                translate: '100% 0',
+              }
+        }
+      >
+        <HStack bg="theme.green/8" className="group" gap={4}>
+          <SquareButton
+            accentColor="theme.green"
+            onClick={() => setActiveItem(null)}
+          >
+            <Icon as={IconArrowRight} rotate="180deg" />
+          </SquareButton>
+
+          <Text fontSize="xl" fontWeight="black">
+            {activeItem?.name}
+          </Text>
+        </HStack>
+
+        <Box p={5}>
+          {activeItem?.icon && <Icon as={activeItem.icon} boxSize="4.5rem" />}
+          <VStack align="stretch" gap={2} mb={6}>
+            <Text fontSize="3xl" fontWeight="extrabold">
+              {activeItem?.name}
+            </Text>
+            <Text color="theme.green" fontSize="xl" fontWeight="extrabold">
+              {activeItem?.type}
+            </Text>
+          </VStack>
+          <Text color="fg/64">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis,
+            placeat soluta! Laborum eligendi sit excepturi accusantium doloribus
+            nesciunt natus delectus qui quasi minima, magni voluptatem
+            repudiandae earum! Consequatur, eum magni!
+          </Text>
+        </Box>
+      </Box>
     </Box>
   );
 }
