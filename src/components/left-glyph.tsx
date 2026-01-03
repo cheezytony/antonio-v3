@@ -66,7 +66,7 @@ export function LeftGlyph({ accentColor }: RightGlyphProps) {
                 d={PATH}
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="3"
+                strokeWidth="1"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 initial={{

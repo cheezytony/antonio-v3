@@ -23,7 +23,12 @@ export function SplashScreen() {
   return (
     <Center w="100dvw" h="100dvh" pos="fixed" inset={0}>
       <Box>
-        <Text fontSize="5.5rem" fontWeight="bold" letterSpacing="-0.04em">
+        <Text
+          fontSize="2.5rem"
+          fontWeight="bold"
+          letterSpacing="-0.04em"
+          md={{ fontSize: '5rem' }}
+        >
           {text}
           <Span color="red">/</Span>
         </Text>

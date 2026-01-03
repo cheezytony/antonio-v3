@@ -63,7 +63,7 @@ function RouteComponent() {
             <Heading
               fontWeight="900"
               lineHeight={1.0625}
-              fontSize="5xl"
+              fontSize="2.5rem"
               md={{ fontSize: '4rem' }}
             >
               My name is Antonio Okoro.
@@ -72,7 +72,7 @@ function RouteComponent() {
               fontWeight="900"
               color="theme.red"
               lineHeight={1.1}
-              fontSize="3xl"
+              fontSize="1.5rem"
               md={{ fontSize: '2.5rem' }}
             >
               I'm a Full-Stack Developer and a Pro Gamer.

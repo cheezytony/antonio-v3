@@ -98,7 +98,7 @@ function RouteComponent() {
             <Heading
               fontWeight="900"
               lineHeight={1.0625}
-              fontSize="5xl"
+              fontSize="2.5rem"
               md={{ fontSize: '4rem' }}
             >
               Drop me a line.
@@ -107,7 +107,7 @@ function RouteComponent() {
               fontWeight="900"
               color="theme.violet"
               lineHeight={1.1}
-              fontSize="3xl"
+              fontSize="1.5rem"
               md={{ fontSize: '2.5rem' }}
             >
               I'll respond in no time.

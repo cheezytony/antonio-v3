@@ -199,7 +199,7 @@ function RouteComponent() {
   };
 
   return (
-    <Box overflowX="clip">
+    <Box overflowX="clip" overflowY={canShowRoute ? 'unset' : 'clip'}>
       <SplashScreen />
 
       <Stack
@@ -212,61 +212,67 @@ function RouteComponent() {
         pos="relative"
         transitionDuration="1000ms"
         transitionTimingFunction="ease-in-smooth"
-        translate={canHideLoader ? '0 0' : { base: '100% 0', md: '0 0 ' }}
+        translate={canHideLoader ? '0 0' : { base: '0 100%', md: '0 0' }}
         w={canHideLoader ? 'full' : { base: 'full', md: 0 }}
         zIndex={1}
       >
-        <Center
-          bg="rgb(0 0 0 / 0.85)"
+        <Box
           as="aside"
+          bg={accentColor}
           flexShrink={0}
-          h="3.5rem"
+          h={{ base: '3.75rem', md: '3.5rem' }}
           w="full"
+          pos="sticky"
+          top={0}
+          zIndex="sticky"
           md={{
             h: 'auto',
             pos: 'relative',
+            top: 'unset',
             w: '4.75rem',
           }}
         >
-          {!isOnHomepage && (
-            <SquareButton
-              accentColor={accentColor}
-              as={Link}
-              href="/"
-              pos="absolute"
-              hideFrom="sm"
-              top={0}
-              left={0}
-            >
-              <IconHome />
-            </SquareButton>
-          )}
+          <Center bg="rgb(0 0 0 / 0.85)" pos="absolute" inset={0}>
+            {!isOnHomepage && (
+              <SquareButton
+                accentColor={accentColor}
+                as={Link}
+                href="/"
+                pos="absolute"
+                hideFrom="sm"
+                top={0}
+                left={0}
+              >
+                <IconHome />
+              </SquareButton>
+            )}
 
-          <Text
-            fontSize="2.5rem"
-            fontWeight="bold"
-            lineHeight={1.1}
-            letterSpacing="-0.02em"
-            rotate={{ md: '-90deg' }}
-          >
-            antonio
-            <Span color={accentColor}>/</Span>
-          </Text>
-
-          {!isOnHomepage && (
-            <SquareButton
-              accentColor={accentColor}
-              as={Link}
-              href="/"
-              pos="absolute"
-              hideFrom="sm"
-              top={0}
-              right={0}
+            <Text
+              fontSize={{ base: '1.75rem', md: '2.5rem' }}
+              fontWeight="bold"
+              lineHeight={1.1}
+              letterSpacing="-0.02em"
+              rotate={{ md: '-90deg' }}
             >
-              <IconX />
-            </SquareButton>
-          )}
-        </Center>
+              antonio
+              <Span color={accentColor}>/</Span>
+            </Text>
+
+            {!isOnHomepage && (
+              <SquareButton
+                accentColor={accentColor}
+                as={Link}
+                href="/"
+                pos="absolute"
+                hideFrom="sm"
+                top={0}
+                right={0}
+              >
+                <IconX />
+              </SquareButton>
+            )}
+          </Center>
+        </Box>
 
         <Flex pos="relative" isolation="isolate" pb={{ md: '3.5rem' }} flex={1}>
           <Flex

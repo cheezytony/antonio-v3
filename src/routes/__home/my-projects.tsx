@@ -391,7 +391,7 @@ function RouteComponent() {
                 <Heading
                   fontWeight="900"
                   lineHeight={1.0625}
-                  fontSize="5xl"
+                  fontSize="2.5rem"
                   md={{ fontSize: '4rem' }}
                 >
                   {project.title}
