@@ -5,7 +5,6 @@ import { SquareButton } from '@/components/square-button';
 import { ROUTES } from '@/content/routes';
 import { AppContext } from '@/contexts/app.context';
 import { useHistory } from '@/hooks/use-history';
-import { Cursor } from '@/modules/cursor';
 import { SplashScreen } from '@/modules/splash-screen';
 import { generateColorVariants } from '@/utils/colors';
 import type { CenterProps } from '@chakra-ui/react';
@@ -71,6 +70,7 @@ function Tile({ route, shade, ...props }: TileProps) {
       aria-current={isActive && 'page'}
       bg={isOnHomepage ? shade || route.color : undefined}
       className="group"
+      cursor="pointer"
       flex={1}
       h="full"
       transition={transition}
@@ -239,7 +239,7 @@ function RouteComponent() {
                 as={Link}
                 href="/"
                 pos="absolute"
-                hideFrom="sm"
+                hideFrom="md"
                 top={0}
                 left={0}
               >
@@ -264,7 +264,7 @@ function RouteComponent() {
                 as={Link}
                 href="/"
                 pos="absolute"
-                hideFrom="sm"
+                hideFrom="md"
                 top={0}
                 right={0}
               >
@@ -347,7 +347,7 @@ function RouteComponent() {
         </Flex>
       </Stack>
 
-      <Cursor />
+      {/* <Cursor /> */}
     </Box>
   );
 }

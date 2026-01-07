@@ -2,7 +2,7 @@ import { defineGlobalStyles } from '@chakra-ui/react';
 
 export const globalCss = defineGlobalStyles({
   '*': {
-    cursor: 'none !important',
+    // cursor: 'none !important',
     fontFeatureSettings: '"cv11"',
     '--ring-inset': 'var(--chakra-empty,/*!*/ /*!*/)',
     '--ring-offset-width': '0px',
@@ -32,7 +32,7 @@ export const globalCss = defineGlobalStyles({
     '--global-color-border': 'colors.border',
   },
   html: {
-    cursor: 'none !important',
+    // cursor: 'none !important',
     color: 'fg',
     bg: 'bg',
     lineHeight: '1.5',

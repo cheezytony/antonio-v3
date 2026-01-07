@@ -20,7 +20,7 @@ export function SquareButton({
   return (
     <Center
       as={href ? Link : 'button'}
-      boxSize="3.5rem"
+      boxSize={{ base: '3.75rem', md: '3.5rem' }}
       bg="white/5"
       color="white/40"
       _active={{

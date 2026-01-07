@@ -389,7 +389,7 @@ function RouteComponent() {
             gap={5}
             flexShrink={0}
             px={5}
-            py={10}
+            py={20}
             md={{ h: 'calc(100dvh - 3.5rem)', p: '5rem' }}
             maxW="50.25rem"
             w="full"

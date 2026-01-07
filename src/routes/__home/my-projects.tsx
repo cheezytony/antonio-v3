@@ -18,7 +18,7 @@ import {
 import { createFileRoute } from '@tanstack/react-router';
 import { Image } from '@unpic/react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 
 interface Project {
   badges?: Array<string>;
@@ -221,40 +221,58 @@ function RouteComponent() {
   const trackRef = useRef<HTMLDivElement>(null);
   const itemRef = useRef<Array<HTMLDivElement>>([]);
 
-  const [previousIndex, setPreviousIndex] = useState<number>(0);
+  const previousIndexRef = useRef(0);
+  const activeIndexRef = useRef(0);
+
+  const directionRef = useRef<1 | -1 | 0>(0);
+
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const activeItem = useMemo(() => PROJECTS.at(activeIndex), [activeIndex]);
 
-  const counterAnimationVariants = {
-    initial: ([prev, active]: [number, number]) => {
-      return {
-        translateY: prev > active ? '-100%' : '100%',
-        scale: 0.9,
-      };
-    },
-    animate: { translateY: 0, scale: 1 },
-    exit: ([prev, active]: [number, number]) => {
-      return {
-        translateY: prev > active ? '100%' : '-100%',
-        scale: 0.9,
-      };
-    },
-  };
+  const counterAnimationVariants = useMemo(
+    () => ({
+      initial: () => {
+        return {
+          translateY: directionRef.current > 0 ? '100%' : '-100%',
+          scale: 0.9,
+        };
+      },
+      animate: {
+        translateY: 0,
+        scale: 1,
+      },
+      exit: () => {
+        return {
+          translateY: directionRef.current > 0 ? '-100%' : '100%',
+          scale: 0.9,
+        };
+      },
+    }),
+    [],
+  );
+
+  const updateIndex = useCallback((index: number) => {
+    previousIndexRef.current = activeIndexRef.current;
+
+    activeIndexRef.current = index;
+
+    directionRef.current =
+      activeIndexRef.current > previousIndexRef.current ? 1 : -1;
+  }, []);
 
   useIntersectionObserver(
     itemRef,
-    (entries) => {
+    useCallback((entries) => {
       entries.map((entry) => {
         if (entry.isIntersecting) {
           const index = Number(entry.target.getAttribute('data-index'));
-          setActiveIndex((currentIndex) => {
-            setPreviousIndex(currentIndex);
-            return index;
-          });
+
+          setActiveIndex(index);
+          updateIndex(index);
         }
       });
-    },
+    }, []),
     {
       root: trackRef.current,
       threshold: 0.6,
@@ -325,7 +343,6 @@ function RouteComponent() {
                     initial="initial"
                     animate="animate"
                     exit="exit"
-                    custom={[previousIndex, activeIndex]}
                     key={activeIndex}
                     fontSize="2rem"
                     fontWeight="extrabold"
@@ -370,8 +387,8 @@ function RouteComponent() {
               gap={10}
               flexShrink={0}
               px={5}
-              py={10}
-              md={{ h: 'calc(100dvh - 3.5rem)', p: '5rem' }}
+              py={20}
+              md={{ h: 'calc(100dvh - 3.5rem)', p: 20 }}
               maxW="50.25rem"
               w="full"
               scrollSnapAlign="center"

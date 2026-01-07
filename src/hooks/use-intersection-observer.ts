@@ -29,5 +29,5 @@ export function useIntersectionObserver<TObjectType extends HTMLElement>(
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [callback]);
 }

@@ -12,13 +12,15 @@ const ANIMATION_DURATION = 1750;
 const CIRCLE_STROKE_DASHARRAY = 4876;
 
 export function SplashScreen() {
-  const { canStartLoader } = use(AppContext);
+  const { canStartLoader, canShowRoute } = use(AppContext);
 
   const text = useTypewriter(TYPEWRITER_TEXT, {
     interval: TYPEWRITER_INTERVAL,
     delay: TYPEWRITER_DELAY,
     index: 0,
   });
+
+  if (canShowRoute) return null;
 
   return (
     <Center w="100dvw" h="100dvh" pos="fixed" inset={0}>
