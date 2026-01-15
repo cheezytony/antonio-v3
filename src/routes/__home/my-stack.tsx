@@ -1,4 +1,5 @@
 import { IconArrowRight } from '@/components/icons/icon-arrow-right';
+import { IconBolt } from '@/components/icons/icon-bolt';
 import { IconX } from '@/components/icons/icon-x';
 import { SquareButton } from '@/components/square-button';
 import { ALL_ITEMS, STACK_CATEGORIES } from '@/content/stack';
@@ -90,7 +91,12 @@ function StackItem({ item }: { item: StackItem }) {
       }}
       onClick={toggleItem}
     >
-      {item.icon && <Icon as={item.icon} />}
+      <Icon
+        as={item.icon || IconBolt}
+        color="theme.green"
+        height={`${item.style.size}px`}
+        width={`${item.style.size}px`}
+      />
     </MotionCircle>
   );
 }
@@ -175,9 +181,7 @@ function LargeScreen() {
                     </Dialog.Description>
                   </VStack>
 
-                  {activeItem?.icon && (
-                    <Icon as={activeItem.icon} boxSize="4.5rem" />
-                  )}
+                  <Icon as={activeItem?.icon || IconBolt} boxSize="4.5rem" />
                 </HStack>
               </Dialog.Header>
               <Dialog.Body color="fg/64" pt={6}>
@@ -232,7 +236,7 @@ function SmallScreen() {
             onClick={() => setActiveItem(item)}
           >
             <Center boxSize="3.5rem">
-              {item.icon && <Icon as={item.icon} />}
+              <Icon as={item.icon || IconBolt} color="theme.green" />
             </Center>
             <VStack align="flex-start" gap={0}>
               <Text fontSize="xl" fontWeight="black">

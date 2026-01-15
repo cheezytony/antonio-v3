@@ -14,7 +14,7 @@
 
 ## My Stack
 
-- [] Use placeholder icon for tools without icons
+- [x] Use placeholder icon for tools without icons
 - [] Speed up slide animation for list and detail on mobile screens
 - [] Remove backdrop on large screens
 
