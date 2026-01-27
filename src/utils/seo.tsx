@@ -41,6 +41,7 @@ export function registerPageSeo(
   const pageUrl = domain + '/' + pathname?.replace(/(^\/)|(\/$)/g, '');
 
   const meta = [
+    { name: 'title', title },
     { name: 'description', content: description },
     { name: 'twitter:title', content: title },
     {
