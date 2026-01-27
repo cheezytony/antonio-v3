@@ -77,6 +77,7 @@ function StackItem({ item }: { item: StackItem }) {
       as="button"
       bg="theme.green/16"
       border="1px solid transparent"
+      cursor="pointer"
       id={item.slug}
       pos="absolute"
       style={dimensions}
@@ -137,7 +138,7 @@ function LargeScreen() {
         placement="bottom"
       >
         <Portal>
-          {/* <Dialog.Backdrop /> */}
+          <Dialog.Backdrop />
           <Dialog.Positioner>
             <Dialog.Content
               bg="#071310"
@@ -206,7 +207,7 @@ function SmallScreen() {
       <VStack
         align="stretch"
         gap={0}
-        transitionDuration="slower"
+        transitionDuration="moderate"
         transitionTimingFunction="ease-out"
         w="full"
         css={
@@ -261,7 +262,7 @@ function SmallScreen() {
         inset={0}
         pos="absolute"
         overflowY="auto"
-        transitionDuration="slower"
+        transitionDuration="moderate"
         transitionTimingFunction="ease-out"
         w="full"
         css={

@@ -8,7 +8,6 @@ import {
   Span,
   Text,
 } from '@chakra-ui/react';
-import '@fontsource/averia-serif-libre';
 import { useNavigate } from '@tanstack/react-router';
 import { AnimatePresence, useAnimate } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
