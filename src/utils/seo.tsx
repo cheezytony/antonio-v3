@@ -41,7 +41,9 @@ export function registerPageSeo(
 
   const pathname = options.pathname;
   const domain = 'https://antoniookoro.com';
-  const pageUrl = domain + '/' + pathname?.replace(/(^\/)|(\/$)/g, '');
+  const pageUrl = [domain, pathname?.replace(/(^\/)|(\/$)/g, '')]
+    .filter(Boolean)
+    .join('/');
 
   const meta = [
     { name: 'title', title },
