@@ -7,6 +7,7 @@ import { AppContext } from '@/contexts/app.context';
 import { useHistory } from '@/hooks/use-history';
 import { SplashScreen } from '@/modules/splash-screen';
 import { generateColorVariants } from '@/utils/colors';
+import { registerPageSeo } from '@/utils/seo';
 import type { CenterProps } from '@chakra-ui/react';
 import {
   Box,
@@ -40,6 +41,11 @@ const MotionCenter = motion.create(Center);
 
 export const Route = createFileRoute('/__home')({
   component: RouteComponent,
+  head: () =>
+    registerPageSeo({
+      title: 'Antonio',
+      description: 'Digital Alchemist, gaming specialist and son of Christ',
+    }),
 });
 
 function Tile({ route, shade, ...props }: TileProps) {
