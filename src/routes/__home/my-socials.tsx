@@ -5,6 +5,7 @@ import { IconTwitter } from '@/components/icons/icon-twitter';
 import { IconYoutube } from '@/components/icons/icon-youtube';
 import { LeftGlyph } from '@/components/left-glyph';
 import { RightGlyph } from '@/components/right-glyph';
+import { registerPageSeo } from '@/utils/seo';
 import { Box, Center, Grid, GridItem, Text, VStack } from '@chakra-ui/react';
 import { Link, createFileRoute } from '@tanstack/react-router';
 import { Image } from '@unpic/react';
@@ -79,6 +80,12 @@ const SOCIAL_MEDIA_LINKS: Array<SocialLinkProps> = [
 
 export const Route = createFileRoute('/__home/my-socials')({
   component: RouteComponent,
+  head: () =>
+    registerPageSeo({
+      title: 'My Socials',
+      description:
+        'Find me on your favorite collaborative or social media platforms',
+    }),
 });
 
 function ExternalIndicator() {

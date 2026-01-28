@@ -1,6 +1,7 @@
 import { IconArrowRight } from '@/components/icons/icon-arrow-right';
 import { RightGlyph } from '@/components/right-glyph';
 import { Field } from '@/components/ui/field';
+import { registerPageSeo } from '@/utils/seo';
 import {
   Box,
   Button,
@@ -17,6 +18,12 @@ import { motion } from 'framer-motion';
 
 export const Route = createFileRoute('/__home/contact-me')({
   component: RouteComponent,
+  head: () =>
+    registerPageSeo({
+      title: 'Contact Me',
+      description:
+        'Drop me a personal message, request a partnership, a compliment or a roast.',
+    }),
 });
 
 const MotionBox = motion.create(Box);

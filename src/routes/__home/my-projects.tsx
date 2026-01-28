@@ -4,6 +4,7 @@ import { RightGlyph } from '@/components/right-glyph';
 import { SquareButton } from '@/components/square-button';
 import { PROJECTS } from '@/content/projects';
 import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
+import { registerPageSeo } from '@/utils/seo';
 import {
   Box,
   Button,
@@ -26,6 +27,11 @@ const MotionSpan = motion.create(Span);
 
 export const Route = createFileRoute('/__home/my-projects')({
   component: RouteComponent,
+  head: () =>
+    registerPageSeo({
+      title: 'My Projects',
+      description: 'Browse my gallery of previous and current works.',
+    }),
 });
 
 function RouteComponent() {

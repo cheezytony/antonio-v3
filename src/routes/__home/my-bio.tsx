@@ -10,8 +10,7 @@ export const Route = createFileRoute('/__home/my-bio')({
   component: RouteComponent,
   head: () =>
     registerPageSeo({
-      title: 'My name is Antonio Okoro.',
-      description: "I'm a Full-Stack Developer and a Pro Gamer.",
+      title: 'My Bio',
     }),
 });
 

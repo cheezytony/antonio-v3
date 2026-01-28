@@ -1,3 +1,4 @@
+import { registerPageSeo } from '@/utils/seo';
 import { Box, Center, Grid } from '@chakra-ui/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { Image } from '@unpic/react';
@@ -53,6 +54,11 @@ const MotionCenter = motion.create(Center);
 
 export const Route = createFileRoute('/__home/gaming')({
   component: RouteComponent,
+  head: () =>
+    registerPageSeo({
+      title: 'My Games',
+      description: 'Discover my favorite games across all platforms and genres',
+    }),
 });
 
 function RouteComponent() {

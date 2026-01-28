@@ -11,10 +11,10 @@ interface RegisterPageSeoOptions {
 }
 
 const DEFAULTS = {
-  TITLE: '',
-  DESCRIPTION: '',
-  KEYWORDS: '',
-  SCREENSHOT: '',
+  TITLE: 'Chimezie Antonio Okoro',
+  DESCRIPTION: 'Digital Alchemist, gaming specialist and son of Christ',
+  KEYWORDS: 'software engineer, developer, gamer, christian',
+  SCREENSHOT: '/images/thumbnail.png',
   THEMECOLOR: colors.theme.red.value,
 } as const;
 
@@ -26,7 +26,10 @@ export function registerPageSeo(
   scripts?: AnyRouteMatch['headScripts'];
   meta?: AnyRouteMatch['meta'];
 } {
-  const title = options.title;
+  const title =
+    options.title.length > 0
+      ? `${options.title} - ${DEFAULTS.TITLE}`
+      : DEFAULTS.TITLE;
   const description =
     options.description ?? (useDefaultValues ? DEFAULTS.DESCRIPTION : '');
   const screenshot =
@@ -43,46 +46,34 @@ export function registerPageSeo(
   const meta = [
     { name: 'title', title },
     { name: 'description', content: description },
+
     { name: 'twitter:title', content: title },
-    {
-      name: 'twitter:description',
-      content: description,
-    },
-    // { name: 'robots', content: 'index, follow' },
-    { name: 'author', content: 'Antonio Chimezie Okoro' },
-    {
-      name: 'twitter:card',
-      content: 'summary_large_image',
-    },
-
+    { name: 'twitter:description', content: description },
+    { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:site', content: '@antonio_okoro' },
-    {
-      name: 'twitter:creator',
-      content: '@antonio_okoro',
-    },
+    { name: 'twitter:creator', content: '@antonio_okoro' },
 
+    { name: 'og:site_name', content: 'Chimezie Antonio Okoro' },
+    { name: 'og:title', content: title },
+    { name: 'og:description', content: description },
+    { name: 'og:url', content: pageUrl },
+
+    { name: 'author', content: 'Antonio Chimezie Okoro' },
     { name: 'format-detection', content: 'telephone=no' },
     { name: 'theme-color', content: themeColor },
+    // { name: 'robots', content: 'index, follow' },
   ];
 
   if (keywords.length) {
-    meta.push({
-      name: 'keywords',
-      content: keywords,
-    });
+    meta.push({ name: 'keywords', content: keywords });
   }
 
   if (screenshot) {
     meta.push(
       { name: 'image', content: screenshot },
-      {
-        name: 'screenshot',
-        content: screenshot,
-      },
-      {
-        name: 'twitter:image',
-        content: screenshot,
-      },
+      { name: 'screenshot', content: screenshot },
+      { name: 'twitter:image', content: screenshot },
+      { name: 'og:image', content: screenshot },
     );
   }
 

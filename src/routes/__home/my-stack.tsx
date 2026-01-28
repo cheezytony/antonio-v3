@@ -4,6 +4,7 @@ import { IconX } from '@/components/icons/icon-x';
 import { SquareButton } from '@/components/square-button';
 import { ALL_ITEMS, STACK_CATEGORIES } from '@/content/stack';
 import { StackContext, StackContextProvider } from '@/contexts/stack.context';
+import { registerPageSeo } from '@/utils/seo';
 import type { DialogOpenChangeDetails } from '@chakra-ui/react';
 import {
   Box,
@@ -25,6 +26,12 @@ const MotionCircle = motion.create(Circle);
 
 export const Route = createFileRoute('/__home/my-stack')({
   component: RouteComponent,
+  head: () =>
+    registerPageSeo({
+      title: 'My Stack',
+      description:
+        "Ever wanted to know all of the tools I use and what they're for? Now you can.",
+    }),
 });
 
 function StackItem({ item }: { item: StackItem }) {

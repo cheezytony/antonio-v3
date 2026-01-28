@@ -4,6 +4,7 @@ import { IconX } from '@/components/icons/icon-x';
 import { SquareButton } from '@/components/square-button';
 import { TIMELINE } from '@/content/timeline';
 import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
+import { registerPageSeo } from '@/utils/seo';
 import {
   Box,
   Grid,
@@ -22,6 +23,12 @@ const MotionGridItem = motion.create(GridItem);
 
 export const Route = createFileRoute('/__home/timeline')({
   component: RouteComponent,
+  head: () =>
+    registerPageSeo({
+      title: 'My Timeline',
+      description:
+        'Take a trip down memory lane with me as we go through some of the highlights of my professional career',
+    }),
 });
 
 function RouteComponent() {

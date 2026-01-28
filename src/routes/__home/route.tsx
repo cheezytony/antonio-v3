@@ -28,13 +28,12 @@ import {
 } from '@tanstack/react-router';
 import { AnimatePresence, motion } from 'framer-motion';
 import { use, useMemo, useState } from 'react';
+import { colors } from '~/theme/tokens/colors';
 
 interface TileProps extends CenterProps {
   route: AppRoute;
   shade?: string;
 }
-
-const PRIMARY_COLOR = '#F06056';
 
 const MotionBox = motion.create(Box);
 const MotionCenter = motion.create(Center);
@@ -43,7 +42,7 @@ export const Route = createFileRoute('/__home')({
   component: RouteComponent,
   head: () =>
     registerPageSeo({
-      title: 'Antonio',
+      title: '',
       description: 'Digital Alchemist, gaming specialist and son of Christ',
     }),
 });
@@ -180,7 +179,9 @@ function RouteComponent() {
   }, [hoveredIndex, isSmallScreen, previousRoute]);
 
   const accentColor =
-    (activeRoute && activeRoute.color) || focusedRoute.color || PRIMARY_COLOR;
+    (activeRoute && activeRoute.color) ||
+    focusedRoute.color ||
+    colors.theme.red.value;
 
   const colorShades = useMemo(() => {
     const hoveredColor = focusedRoute.color;
