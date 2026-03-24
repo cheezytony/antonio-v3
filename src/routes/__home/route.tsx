@@ -96,6 +96,13 @@ function Tile({ route, shade, ...props }: TileProps) {
         <Text
           aria-current={isActive && 'page'}
           color={`rgb(255 255 255 / ${isOnHomepage ? 0.64 : 0.4})`}
+          _light={
+            isOnHomepage
+              ? undefined
+              : {
+                  color: 'blackAlpha.600',
+                }
+          }
           fontSize="0.875rem"
           textTransform="uppercase"
           _currentPage={{
@@ -125,6 +132,7 @@ function Tile({ route, shade, ...props }: TileProps) {
           {isOnHomepage && (
             <MotionBox
               asChild
+              color="white"
               pos="absolute"
               left="100%"
               opacity={0}
@@ -239,7 +247,14 @@ function RouteComponent() {
             w: '4.75rem',
           }}
         >
-          <Center bg="rgb(0 0 0 / 0.85)" pos="absolute" inset={0}>
+          <Center
+            bg="rgb(0 0 0 / 0.85)"
+            pos="absolute"
+            inset={0}
+            _light={{
+              bg: 'rgba(255, 255, 255, 0.84)',
+            }}
+          >
             {!isOnHomepage && (
               <SquareButton
                 accentColor={accentColor}
@@ -285,6 +300,9 @@ function RouteComponent() {
           <Flex
             as="main"
             bg="rgb(0 0 0 / 0.92)"
+            _light={{
+              bg: 'rgba(255, 255, 255, 0.92)',
+            }}
             flexDirection="column"
             flex={1}
             pos="relative"
@@ -297,6 +315,9 @@ function RouteComponent() {
             align="flex-end"
             as="nav"
             bg="rgb(0 0 0 / 0.85)"
+            _light={{
+              bg: 'rgba(255, 255, 255, 0.84)',
+            }}
             bottom="0"
             direction={{ base: 'column', md: 'row' }}
             gap={0}
@@ -327,6 +348,10 @@ function RouteComponent() {
                   bg="black/88"
                   className="group"
                   color="white/40"
+                  _light={{
+                    bg: 'blackAlpha.100',
+                    color: 'fg.muted',
+                  }}
                   key="home-button"
                   hideBelow="md"
                   h="full"

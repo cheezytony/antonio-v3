@@ -149,6 +149,9 @@ function LargeScreen() {
           <Dialog.Positioner>
             <Dialog.Content
               bg="#071310"
+              _light={{
+                bg: 'bg.panel',
+              }}
               border={0}
               borderTop="1px solid"
               borderColor="theme.green"
@@ -254,7 +257,12 @@ function SmallScreen() {
                 color="theme.green"
                 fontSize="md"
                 fontWeight="black"
-                _groupActive={{ color: 'white' }}
+                _groupActive={{
+                  color: 'white',
+                  _light: {
+                    color: 'fg',
+                  },
+                }}
               >
                 {item.type}
               </Text>

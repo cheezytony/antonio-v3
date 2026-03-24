@@ -186,6 +186,7 @@ function RouteComponent() {
                 variant="outline"
                 _hover={{
                   bg: 'theme.violet',
+                  color: 'white',
                 }}
               >
                 <Span>Send Message</Span>

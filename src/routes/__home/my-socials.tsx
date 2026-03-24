@@ -38,7 +38,7 @@ const PROFESSIONAL_LINKS: Array<SocialLinkProps> = [
     title: 'Linkedin',
   },
   {
-    href: 'https://',
+    href: 'https://hackmd.io/@cheezytony/By3i4qrY-e',
     key: 'my-resume',
     thumbnailUrl: '/images/my-socials-resume.webp',
     title: 'My Resume',
@@ -156,6 +156,9 @@ function ProfessionalLink({
             filter: 'none',
             opacity: 1,
           },
+          _light: {
+            opacity: 0.48,
+          },
         }}
       >
         <Image src={thumbnailUrl!} alt={title} layout="fullWidth" />
@@ -188,6 +191,9 @@ function SocialLink({
         _hover: {
           borderBottomColor: 'theme.orange',
           color: 'theme.orange',
+        },
+        _light: {
+          color: 'fg.muted',
         },
       }}
       smDown={{

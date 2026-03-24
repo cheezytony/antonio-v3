@@ -43,7 +43,7 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <Provider defaultTheme="dark" forcedTheme="dark">
+    <Provider>
       <HistoryProvider>
         <AppContextProvider>
           <RootDocument>
@@ -57,7 +57,7 @@ function RootComponent() {
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html>
+    <html suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>

@@ -9,6 +9,7 @@ import {
   Box,
   Button,
   Center,
+  HStack,
   Heading,
   Span,
   Square,
@@ -292,23 +293,36 @@ function RouteComponent() {
                 </VStack>
               </VStack>
 
-              <Button
-                as="a"
-                alignSelf="flex-start"
-                fontSize="sm"
-                gap={2}
-                py={3}
-                px={6}
-                type="submit"
-                variant="outline"
-                _hover={{
-                  bg: 'theme.yellow',
-                }}
-                {...{ href: project.url, target: '_blank' }}
-              >
-                <Span>View Project</Span>
-                <IconArrowUpRight />
-              </Button>
+              <HStack>
+                {project.url.map((url, urlIndex) => {
+                  const label = typeof url === 'string' ? 'View Project' : url.label;
+                  const href = typeof url === 'string' ? url : url.url;
+                  
+                  return (
+                    (
+                      <Button
+                        key={urlIndex}
+                        as="a"
+                        alignSelf="flex-start"
+                        fontSize="sm"
+                        gap={2}
+                        py={3}
+                        px={6}
+                        type="submit"
+                        variant="outline"
+                        _hover={{
+                          bg: 'theme.yellow',
+                        }}
+                        {...{ href, target: '_blank' }}
+                      >
+                        <Span>{label}</Span>
+                        <IconArrowUpRight />
+                      </Button>
+                    )
+                  )
+                })}
+
+              </HStack>
             </VStack>
           ))}
         </VStack>

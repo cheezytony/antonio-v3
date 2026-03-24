@@ -10,7 +10,7 @@ export function IconArrowUpRight(props: React.SVGProps<SVGSVGElement>) {
     >
       <path
         d="M6.00016 4.4342C6.00016 4.4342 10.6257 4.07238 11.2771 4.72374C11.9284 5.3751 11.5666 10.0007 11.5666 10.0007M11.0002 5.00065L4.3335 11.6673"
-        stroke="white"
+        stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
       />

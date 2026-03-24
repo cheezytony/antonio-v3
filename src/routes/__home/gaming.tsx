@@ -3,7 +3,7 @@ import { Box, Center, Grid } from '@chakra-ui/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { Image } from '@unpic/react';
 import { motion } from 'framer-motion';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 const GAMES = [
   {
@@ -63,11 +63,20 @@ export const Route = createFileRoute('/__home/gaming')({
 
 function RouteComponent() {
   const [page] = useState(1);
+  const [isReady, setIsReady] = useState(false);
 
   const items = useMemo(() => {
     return GAMES.slice(page - 1, ITEMS_PER_PAGE);
   }, [page]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsReady(true);
+      console.log(isReady);
+      
+    }, 500);
+  }, []);
+  
   return (
     <Grid
       className="group"
@@ -97,6 +106,7 @@ function RouteComponent() {
             aspectRatio: 'unset',
             filter: 'grayscale()',
             opacity: 0.5,
+            transitionDuration: isReady ? '300ms' : undefined,
             _groupHover: {
               filter: 'grayscale() opacity(0.5)',
               _hover: {

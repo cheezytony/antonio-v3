@@ -31,7 +31,7 @@ if (rootElement && !rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <StrictMode>
-      <Provider defaultTheme="dark" forcedTheme="dark">
+      <Provider>
         <RouterProvider router={router} />
       </Provider>
     </StrictMode>,

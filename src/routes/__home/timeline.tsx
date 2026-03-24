@@ -283,6 +283,9 @@ function RouteComponent() {
               bg="white/8"
               w="0.0625rem"
               flex={1}
+              _light={{
+                bg: 'blackAlpha.100',
+              }}
               _hover={{
                 bg: 'theme.blue/50',
                 w: '0.25rem',
@@ -300,6 +303,9 @@ function RouteComponent() {
             left="50%"
             translate="-50% 0"
             boxShadow="0px 0px 8px rgba(44, 149, 201, 0.8)"
+            _light={{
+              boxShadow: '0px 0px 8px rgba(44, 149, 201, 0.5)',
+            }}
           />
         </VStack>
 

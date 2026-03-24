@@ -8,7 +8,7 @@ export interface Project {
   tags: Array<string>;
   title: string;
   subtitle?: string;
-  url: string;
+  url: Array<string | { label: string; url: string }>;
 }
 
 export const PROJECTS: Array<Project> = [
@@ -18,14 +18,32 @@ export const PROJECTS: Array<Project> = [
       "A portfolio website for one of Africa's best graphic and UI/UX designers.",
     ],
     screenshots: [
-      // 'https://res.cloudinary.com/cheezytony/image/upload/v1664373338/portfolio/cp8daknv6i8jytokcnwa.webp',
-      '/images/projects-daniel-koya.png',
+      'https://res.cloudinary.com/cheezytony/image/upload/v1774354088/Portfolio/projects-daniel-koya_d6xcxn.png',
     ],
-    url: 'https://danielkoya.com',
+    url: ['https://danielkoya.com'],
     client: {
       name: 'Daniel Koya',
     },
     tags: ['Website', 'PWA', 'Vue', 'Nuxt', 'TypeScript'],
+  },
+  {
+    title: 'Rockcity 101.9 FM Mobile',
+    description: [
+      'A cross-platform mobile app for Rockcity 101.9 FM radio station, built with Expo and React Native.',
+      '',
+      '- Live broadcast streaming',
+      '- Sleep timer',
+      '- Custom alarms',
+      '- Background audio playback',
+    ],
+    screenshots: [
+      'https://res.cloudinary.com/cheezytony/image/upload/v1774353617/Portfolio/projects-rockcity-101-9-fm_ibkr0n.webp',
+    ],
+    url: [
+      { label: 'iOS', url: 'https://apps.apple.com/ng/app/rockcity-101-9-fm/id6759060485' },
+      { label: 'Android', url: 'https://play.google.com/store/apps/details?id=com.rockcityfm.mobile' },
+    ],
+    tags: ['Mobile App', 'Expo', 'React Native', 'Cross-platform', 'Radio'],
   },
   {
     title: 'CredPal Product Development',
@@ -43,9 +61,9 @@ export const PROJECTS: Array<Project> = [
       '- Integrations with thousands of stores across the globe e.g. Jumia, Slot, Hard Rock Cafe',
     ],
     screenshots: [
-      'https://res.cloudinary.com/cheezytony/image/upload/v1664373516/portfolio/z7gdqijpheiqdztgbpsh.webp',
+      'https://res.cloudinary.com/cheezytony/image/upload/v1774353617/Portfolio/z7gdqijpheiqdztgbpsh_l0v7yv.webp',
     ],
-    url: 'https://credpal.com',
+    url: ['https://credpal.com'],
     client: {
       name: 'CredPal (Crednet Technologies)',
     },
@@ -75,16 +93,16 @@ export const PROJECTS: Array<Project> = [
       'https://img.shields.io/bundlephobia/minzip/bootstrap-vue-datatable?style=for-the-badge',
     ],
     screenshots: [
-      'https://res.cloudinary.com/cheezytony/image/upload/v1664377056/Portfolio/rnirbnxwip2qrsaqhvet.webp',
+      'https://res.cloudinary.com/cheezytony/image/upload/v1774353616/Portfolio/rnirbnxwip2qrsaqhvet_l2x4zw.webp',
     ],
-    url: 'https://www.npmjs.com/bootstrap-vue-datatable',
+    url: ['https://www.npmjs.com/bootstrap-vue-datatable'],
     tags: ['NPM', 'Library', 'Vue', 'Bootstrap'],
   },
   {
     title: 'Nahcon Hajj 360',
     description: [''],
     screenshots: [],
-    url: 'https://staging.auth.hajj360.com.ng',
+    url: ['https://staging.auth.hajj360.com.ng'],
     tags: [
       'Full-stack',
       'Node.js',
@@ -111,7 +129,7 @@ export const PROJECTS: Array<Project> = [
       '- Insurance Claims',
     ],
     screenshots: [],
-    url: 'https://casava.com',
+    url: ['https://casava.com'],
     tags: [
       'Java/Spring Boot',
       'PHP',
@@ -147,7 +165,7 @@ export const PROJECTS: Array<Project> = [
       '- Dynamic Quote Form Sharability via Social Media',
     ],
     screenshots: [],
-    url: 'https://partner.casava.com',
+    url: ['https://partner.casava.com'],
     tags: [
       'Java/Spring Boot',
       'TypeScript',
@@ -177,7 +195,7 @@ export const PROJECTS: Array<Project> = [
       '- Policy Renewal',
     ],
     screenshots: [],
-    url: 'https://health.smedanregister.ng',
+    url: ['https://health.smedanregister.ng'],
     tags: [
       'PHP',
       'Laravel',
@@ -206,9 +224,9 @@ export const PROJECTS: Array<Project> = [
       '- Beneficiary Managment',
     ],
     screenshots: [
-      'https://res.cloudinary.com/cheezytony/image/upload/v1664373637/portfolio/nxkh7aocsevjy5i4oab5.webp',
+      'https://res.cloudinary.com/cheezytony/image/upload/v1774353617/Portfolio/nxkh7aocsevjy5i4oab5_n5vdnn.webp',
     ],
-    url: 'https://mighty.ng',
+    url: ['https://mighty.ng'],
     client: {
       name: 'Mighty Interactive',
     },
@@ -229,9 +247,9 @@ export const PROJECTS: Array<Project> = [
       'Ipsam soluta officiis corrupti aspernatur deserunt asperiores repellendus temporibus dicta quasi est odit quaerat perferendis, maiores corporis qui ducimus repellat unde perspiciatis.',
     ],
     screenshots: [
-      'https://res.cloudinary.com/cheezytony/image/upload/v1664373704/portfolio/frrc57zscjb5v3w1wnp3.webp',
+      'https://res.cloudinary.com/cheezytony/image/upload/v1774353617/Portfolio/frrc57zscjb5v3w1wnp3_dxameu.webp',
     ],
-    url: 'https://mightyi.com',
+    url: ['https://mightyi.com'],
     client: {
       name: 'Mighty Interactive',
     },
@@ -243,9 +261,9 @@ export const PROJECTS: Array<Project> = [
       'Ipsam soluta officiis corrupti aspernatur deserunt asperiores repellendus temporibus dicta quasi est odit quaerat perferendis, maiores corporis qui ducimus repellat unde perspiciatis.',
     ],
     screenshots: [
-      'https://res.cloudinary.com/cheezytony/image/upload/v1664373591/portfolio/cs6nim7v40zlrit6xnez.webp',
+      'https://res.cloudinary.com/cheezytony/image/upload/v1774353616/Portfolio/cs6nim7v40zlrit6xnez_f2lfcc.webp',
     ],
-    url: 'https://adlantique.com',
+    url: ['https://adlantique.com'],
     client: {
       name: 'Adlantique',
     },
@@ -265,9 +283,9 @@ export const PROJECTS: Array<Project> = [
       'Ipsam soluta officiis corrupti aspernatur deserunt asperiores repellendus temporibus dicta quasi est odit quaerat perferendis, maiores corporis qui ducimus repellat unde perspiciatis.',
     ],
     screenshots: [
-      'https://res.cloudinary.com/cheezytony/image/upload/v1664373448/portfolio/xqokgivxv1pezkjpf6sp.webp',
+      'https://res.cloudinary.com/cheezytony/image/upload/v1774353616/Portfolio/xqokgivxv1pezkjpf6sp_nla0cp.webp',
     ],
-    url: 'https://trifta.com',
+    url: ['https://trifta.com'],
     client: {
       name: 'Trifta',
     },
@@ -279,9 +297,9 @@ export const PROJECTS: Array<Project> = [
       'Ipsam soluta officiis corrupti aspernatur deserunt asperiores repellendus temporibus dicta quasi est odit quaerat perferendis, maiores corporis qui ducimus repellat unde perspiciatis.',
     ],
     screenshots: [
-      'https://res.cloudinary.com/cheezytony/image/upload/v1664373405/portfolio/apchxjov4pmxrho3m1x0.webp',
+      'https://res.cloudinary.com/cheezytony/image/upload/v1774353616/Portfolio/apchxjov4pmxrho3m1x0_cgrhwx.webp',
     ],
-    url: 'https://fluxhublegal.com',
+    url: ['https://fluxhublegal.com'],
     client: {
       name: 'Fluxhub Legal',
     },
@@ -297,10 +315,10 @@ export const PROJECTS: Array<Project> = [
       'https://img.shields.io/bundlephobia/min/vue3-form?style=for-the-badge',
     ],
     screenshots: [
-      'https://res.cloudinary.com/cheezytony/image/upload/v1664377018/Portfolio/vn9t1fnfk1hjsfpitksn.webp',
+      'https://res.cloudinary.com/cheezytony/image/upload/v1774353616/Portfolio/vn9t1fnfk1hjsfpitksn_oflwuj.webp',
     ],
     tags: ['NPM', 'Library', 'Vue', 'TypeScript'],
-    url: 'https://npmjs.com/vue3-form',
+    url: ['https://npmjs.com/vue3-form'],
   },
   {
     title: 'Storagedotjs NPM Package',
@@ -312,10 +330,10 @@ export const PROJECTS: Array<Project> = [
       'https://img.shields.io/bundlephobia/min/storagedotjs?style=for-the-badge',
     ],
     screenshots: [
-      'https://res.cloudinary.com/cheezytony/image/upload/v1664377148/Portfolio/tgusatsdh7sabshs1edq1.webp',
+      'https://res.cloudinary.com/cheezytony/image/upload/v1774353617/Portfolio/tgusatsdh7sabshs1edq1_uui69v.webp',
     ],
     tags: ['NPM', 'Library', 'TypeScript'],
-    url: 'https://npmjs.com/storagedotjs',
+    url: ['https://npmjs.com/storagedotjs'],
   },
 ].filter((project) => {
   if (project.screenshots.length <= 0) {

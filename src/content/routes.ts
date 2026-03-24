@@ -11,12 +11,12 @@ export const ROUTES: Array<AppRoute> = [
     color: '#35977D',
     href: '/my-stack',
   },
-  {
-    title: 'Timeline',
-    key: 'timeline',
-    color: '#2C95C9',
-    href: '/timeline',
-  },
+  // {
+  //   title: 'Timeline',
+  //   key: 'timeline',
+  //   color: '#2C95C9',
+  //   href: '/timeline',
+  // },
   {
     title: 'Projects',
     key: 'projects',
