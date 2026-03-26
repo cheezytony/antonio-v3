@@ -192,7 +192,7 @@ function LargeScreen() {
                     </Dialog.Description>
                   </VStack>
 
-                  <Icon as={activeItem?.icon || IconBolt} boxSize="4.5rem" />
+                  <Icon as={activeItem?.icon || IconBolt} boxSize="4.5rem" color="theme.green" />
                 </HStack>
               </Dialog.Header>
               <Dialog.Body color="fg/64" pt={6}>
@@ -244,7 +244,7 @@ function SmallScreen() {
             onClick={() => setActiveItem(item)}
           >
             <Center boxSize="3.5rem">
-              <Icon as={item.icon || IconBolt} color="theme.green" />
+              <Icon as={item.icon || IconBolt} color="theme.green" maxW={9} />
             </Center>
             <VStack align="flex-start" gap={0}>
               <Text fontSize="xl" fontWeight="black">
