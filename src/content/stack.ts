@@ -1,20 +1,51 @@
+import { IconAdonisJs } from '@/components/icons/icon-adonis-js';
+import { IconApache } from '@/components/icons/icon-apache';
+import { IconAsana } from '@/components/icons/icon-asana';
+import { IconAws } from '@/components/icons/icon-aws';
 import { IconBootstrap } from '@/components/icons/icon-bootstrap';
 import { IconChakraUi } from '@/components/icons/icon-chakra-ui';
 import { IconComposer } from '@/components/icons/icon-composer';
+import { IconCss } from '@/components/icons/icon-css';
+import { IconDigitalOcean } from '@/components/icons/icon-digital-ocean';
 import { IconDocker } from '@/components/icons/icon-docker';
+import { IconExpressJs } from '@/components/icons/icon-express-js';
 import { IconFigma } from '@/components/icons/icon-figma';
 import { IconGit } from '@/components/icons/icon-git';
+import { IconGithub } from '@/components/icons/icon-github';
+import { IconGitlab } from '@/components/icons/icon-gitlab';
+import { IconGraphql } from '@/components/icons/icon-graphql';
+import { IconJavaScript } from '@/components/icons/icon-javascript';
+import { IconJest } from '@/components/icons/icon-jest';
+import { IconJira } from '@/components/icons/icon-jira';
+import { IconJquery } from '@/components/icons/icon-jquery';
 import { IconLaravel } from '@/components/icons/icon-laravel';
+import { IconLinux } from '@/components/icons/icon-linux';
+import { IconMacos } from '@/components/icons/icon-macos';
+import { IconMongodb } from '@/components/icons/icon-mongodb';
+import { IconMysql } from '@/components/icons/icon-mysql';
+import { IconNetlify } from '@/components/icons/icon-netlify';
 import { IconNextJs } from '@/components/icons/icon-next-js';
+import { IconNginx } from '@/components/icons/icon-nginx';
 import { IconNodejs } from '@/components/icons/icon-node-js';
 import { IconNpm } from '@/components/icons/icon-npm';
 import { IconNuxtJs } from '@/components/icons/icon-nuxt-js';
+import { IconPhp } from '@/components/icons/icon-php';
+import { IconPhpunit } from '@/components/icons/icon-phpunit';
+import { IconPnpm } from '@/components/icons/icon-pnpm';
 import { IconReact } from '@/components/icons/icon-react';
+import { IconReactNative } from '@/components/icons/icon-react-native';
+import { IconRedis } from '@/components/icons/icon-redis';
+import { IconSailsJs } from '@/components/icons/icon-sails-js';
 import { IconSass } from '@/components/icons/icon-sass';
+import { IconSlack } from '@/components/icons/icon-slack';
 import { IconTailwind } from '@/components/icons/icon-tailwind';
 import { IconTypescript } from '@/components/icons/icon-typecript';
+import { IconVercel } from '@/components/icons/icon-vercel';
 import { IconVite } from '@/components/icons/icon-vite';
+import { IconVitest } from '@/components/icons/icon-vitest';
 import { IconVue } from '@/components/icons/icon-vue';
+import { IconWebpack } from '@/components/icons/icon-webpack';
+import { IconWindows } from '@/components/icons/icon-windows';
 import { IconYarn } from '@/components/icons/icon-yarn';
 
 export const STACK_CATEGORIES: Array<StackCategory> = [
@@ -26,7 +57,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
     tools: [
       {
         name: 'PHP',
-        description: [''],
+          icon: IconPhp,
+          description: [
+            'A popular server-side scripting language for backend development. As a senior developer, I use PHP to build robust APIs, automate server tasks, and maintain legacy systems. It is ideal for rapid prototyping and powering content-heavy web applications.'
+          ],
         parent: 'backend',
         proficiency: 8,
         slug: 'php',
@@ -36,7 +70,9 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       {
         name: 'Laravel',
         icon: IconLaravel,
-        description: [''],
+          description: [
+            'A modern PHP framework for building scalable web applications. I leverage Laravel for its elegant syntax, built-in tools (ORM, migrations, queues), and rapid development of RESTful APIs and complex business logic.'
+          ],
         parent: 'backend',
         proficiency: 8,
         slug: 'laravel',
@@ -46,7 +82,9 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       {
         name: 'Node js',
         icon: IconNodejs,
-        description: [''],
+          description: [
+            'A JavaScript runtime for server-side development. I use Node.js to build high-performance APIs, real-time services, and microservices, especially when I need non-blocking I/O and a unified JS stack.'
+          ],
         parent: 'backend',
         proficiency: 7,
         slug: 'nodejs',
@@ -55,7 +93,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'Adonis js',
-        description: [''],
+          icon: IconAdonisJs,
+          description: [
+            'A full-featured Node.js MVC framework. I use AdonisJS for projects that require structure, built-in authentication, and ORM, making backend development in JavaScript more maintainable.'
+          ],
         parent: 'backend',
         proficiency: 7,
         slug: 'adonisjs',
@@ -64,7 +105,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'MySQL',
-        description: [''],
+          icon: IconMysql,
+          description: [
+            'A widely-used relational database. I use MySQL for structured data storage, complex queries, and transactional systems where data integrity is critical.'
+          ],
         parent: 'backend',
         proficiency: 9,
         slug: 'mysql',
@@ -73,7 +117,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'Sails js',
-        description: [''],
+          icon: IconSailsJs,
+          description: [
+            'A Node.js MVC framework inspired by Ruby on Rails. I use Sails.js for building data-driven APIs and real-time apps, especially when I want convention over configuration.'
+          ],
         parent: 'backend',
         proficiency: 7,
         slug: 'sailsjs',
@@ -82,7 +129,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'Redis',
-        description: [''],
+          icon: IconRedis,
+          description: [
+            'An in-memory data store, often used as a cache or message broker. I use Redis to optimize performance, manage sessions, and implement pub/sub patterns in distributed systems.'
+          ],
         parent: 'backend',
         proficiency: 6,
         slug: 'redis',
@@ -91,7 +141,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'MongoDB',
-        description: [''],
+          icon: IconMongodb,
+          description: [
+            'A NoSQL document database. I use MongoDB for flexible, schema-less data storage, rapid prototyping, and applications with unstructured or evolving data models.'
+          ],
         parent: 'backend',
         proficiency: 5,
         slug: 'mongodb',
@@ -100,7 +153,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'Express js',
-        description: [''],
+          icon: IconExpressJs,
+          description: [
+            'A minimalist web framework for Node.js. I use Express.js to quickly scaffold REST APIs, middleware, and server-side logic for web and mobile backends.'
+          ],
         parent: 'backend',
         proficiency: 9,
         slug: 'expressjs',
@@ -109,7 +165,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'Phpunit',
-        description: [''],
+          icon: IconPhpunit,
+          description: [
+            'A unit testing framework for PHP. I use PHPUnit to ensure code quality, automate regression testing, and maintain confidence during refactoring.'
+          ],
         parent: 'backend',
         proficiency: 10,
         slug: 'phpunit',
@@ -118,7 +177,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'GraphQL',
-        description: [''],
+          icon: IconGraphql,
+          description: [
+            'A query language for APIs. I use GraphQL to provide flexible, efficient data fetching for frontend clients, especially in complex or highly interactive applications.'
+          ],
         parent: 'backend',
         proficiency: 4,
         slug: 'graphql',
@@ -127,7 +189,9 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'REST API',
-        description: [''],
+          description: [
+            'A standard architectural style for web APIs. I design and consume REST APIs to enable communication between services and clients in a predictable, scalable way.'
+          ],
         parent: 'backend',
         proficiency: 10,
         slug: 'rest',
@@ -144,7 +208,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
     tools: [
       {
         name: 'JavaScript',
-        description: [''],
+          icon: IconJavaScript,
+          description: [
+            'The language of the web. I use JavaScript for building interactive UIs, client-side logic, and, with Node.js, full-stack development.'
+          ],
         parent: 'frontend',
         proficiency: 8,
         slug: 'javascript',
@@ -153,7 +220,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'CSS',
-        description: [''],
+          icon: IconCss,
+          description: [
+            'The styling language for web pages. I use CSS to create responsive, visually appealing layouts and ensure cross-browser compatibility.'
+          ],
         parent: 'frontend',
         proficiency: 10,
         slug: 'css',
@@ -163,7 +233,9 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       {
         name: 'Vue.js',
         icon: IconVue,
-        description: [''],
+          description: [
+            'A progressive JavaScript framework for building UIs. I use Vue.js for its simplicity, reactivity, and component-based architecture in SPAs and PWAs.'
+          ],
         parent: 'frontend',
         proficiency: 9,
         slug: 'vue',
@@ -173,7 +245,9 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       {
         name: 'Typescript',
         icon: IconTypescript,
-        description: [''],
+          description: [
+            'A statically typed superset of JavaScript. I use TypeScript to catch errors early, improve code maintainability, and enable better tooling in large codebases.'
+          ],
         parent: 'frontend',
         proficiency: 8,
         slug: 'typescript',
@@ -183,7 +257,9 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       {
         name: 'React',
         icon: IconReact,
-        description: [''],
+          description: [
+            'A popular library for building user interfaces. I use React for its component model, hooks, and ecosystem to build scalable, interactive web and mobile apps.'
+          ],
         parent: 'frontend',
         proficiency: 9,
         slug: 'react',
@@ -193,7 +269,9 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       {
         name: 'SASS/SCSS',
         icon: IconSass,
-        description: [''],
+          description: [
+            'A CSS preprocessor that adds variables, nesting, and more. I use SASS/SCSS to write maintainable, modular, and DRY stylesheets.'
+          ],
         parent: 'frontend',
         proficiency: 8,
         slug: 'sass',
@@ -203,7 +281,9 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       {
         name: 'Tailwind CSS',
         icon: IconTailwind,
-        description: [''],
+          description: [
+            'A utility-first CSS framework. I use Tailwind CSS to rapidly prototype and build consistent, responsive UIs with minimal custom CSS.'
+          ],
         parent: 'frontend',
         proficiency: 10,
         slug: 'tailwindcss',
@@ -213,7 +293,9 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       {
         name: 'Nuxt JS',
         icon: IconNuxtJs,
-        description: [''],
+          description: [
+            'A framework for server-side rendered Vue.js apps. I use Nuxt.js for SEO-friendly SPAs, static sites, and universal apps.'
+          ],
         parent: 'frontend',
         proficiency: 8,
         slug: 'nuxtjs',
@@ -223,7 +305,9 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       {
         name: 'Next.js',
         icon: IconNextJs,
-        description: [''],
+          description: [
+            'A React framework for server-side rendering and static site generation. I use Next.js for high-performance, SEO-optimized web applications.'
+          ],
         parent: 'frontend',
         proficiency: 7,
         slug: 'nextjs',
@@ -233,7 +317,9 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       {
         name: 'Chakra UI',
         icon: IconChakraUi,
-        description: [''],
+          description: [
+            'A modular React component library. I use Chakra UI to build accessible, themeable UIs quickly, with a focus on developer experience.'
+          ],
         parent: 'frontend',
         proficiency: 8,
         slug: 'chakra-ui',
@@ -243,7 +329,9 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       {
         name: 'Bootstrap CSS',
         icon: IconBootstrap,
-        description: [''],
+          description: [
+            'A popular CSS framework. I use Bootstrap to speed up UI development with prebuilt components and ensure responsive design.'
+          ],
         parent: 'frontend',
         proficiency: 8,
         slug: 'bootstrap',
@@ -252,7 +340,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'Vitest',
-        description: [''],
+          icon: IconVitest,
+          description: [
+            'A fast unit testing framework for Vite projects. I use Vitest to write and run tests efficiently in modern frontend stacks.'
+          ],
         parent: 'frontend',
         proficiency: 7,
         slug: 'vitest',
@@ -261,7 +352,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'Jest',
-        description: [''],
+          icon: IconJest,
+          description: [
+            'A JavaScript testing framework. I use Jest for unit and integration testing, especially in React and TypeScript projects.'
+          ],
         parent: 'frontend',
         proficiency: 7,
         slug: 'jest',
@@ -270,7 +364,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'JQuery',
-        description: [''],
+          icon: IconJquery,
+          description: [
+            'A classic JavaScript library for DOM manipulation. I use jQuery for legacy projects or when I need quick, cross-browser scripting.'
+          ],
         parent: 'frontend',
         proficiency: 10,
         slug: 'jquery',
@@ -279,7 +376,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'React Native',
-        description: [''],
+          icon: IconReactNative,
+          description: [
+            'A framework for building native mobile apps with React. I use React Native to deliver cross-platform mobile experiences using a single codebase.'
+          ],
         parent: 'frontend',
         proficiency: 6,
         slug: 'react-native',
@@ -296,7 +396,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
     tools: [
       {
         name: 'Github',
-        description: [''],
+          icon: IconGithub,
+          description: [
+            'A platform for hosting and collaborating on code. I use GitHub for version control, code reviews, CI/CD, and open-source contributions.'
+          ],
         parent: 'cloud',
         proficiency: 8,
         slug: 'github',
@@ -305,7 +408,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'Vercel',
-        description: [''],
+          icon: IconVercel,
+          description: [
+            'A cloud platform for frontend deployment. I use Vercel to deploy Next.js and static sites with zero-config, preview deployments, and global CDN.'
+          ],
         parent: 'cloud',
         proficiency: 8,
         slug: 'vercel',
@@ -314,7 +420,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'Gitlab',
-        description: [''],
+          icon: IconGitlab,
+          description: [
+            'A DevOps platform for code hosting and CI/CD. I use GitLab for private repos, pipelines, and integrated project management.'
+          ],
         parent: 'cloud',
         proficiency: 7,
         slug: 'gitlab',
@@ -323,7 +432,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'Linux',
-        description: [''],
+          icon: IconLinux,
+          description: [
+            'An open-source operating system. I use Linux for server hosting, development environments, and automation scripts.'
+          ],
         parent: 'cloud',
         proficiency: 7,
         slug: 'linux',
@@ -332,7 +444,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'Apache',
-        description: [''],
+          icon: IconApache,
+          description: [
+            'A widely-used HTTP server. I use Apache to serve web content, configure virtual hosts, and manage SSL certificates.'
+          ],
         parent: 'cloud',
         proficiency: 7,
         slug: 'apache',
@@ -341,7 +456,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'AWS',
-        description: [''],
+          icon: IconAws,
+          description: [
+            'Amazon Web Services, a cloud platform. I use AWS for scalable infrastructure, managed databases, and cloud-native deployments.'
+          ],
         parent: 'cloud',
         proficiency: 5,
         slug: 'aws',
@@ -350,7 +468,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'Netlify',
-        description: [''],
+          icon: IconNetlify,
+          description: [
+            'A platform for deploying static sites and JAMstack apps. I use Netlify for quick deployments, serverless functions, and instant rollbacks.'
+          ],
         parent: 'cloud',
         proficiency: 5,
         slug: 'netlify',
@@ -359,7 +480,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'Nginx',
-        description: [''],
+          icon: IconNginx,
+          description: [
+            'A high-performance web server and reverse proxy. I use Nginx for load balancing, SSL termination, and serving static assets.'
+          ],
         parent: 'cloud',
         proficiency: 7,
         slug: 'nginx',
@@ -369,7 +493,9 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       {
         name: 'Docker',
         icon: IconDocker,
-        description: [''],
+          description: [
+            'A containerization platform. I use Docker to package, deploy, and run applications consistently across environments.'
+          ],
         parent: 'cloud',
         proficiency: 5,
         slug: 'docker',
@@ -378,7 +504,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'Digital Ocean',
-        description: [''],
+          icon: IconDigitalOcean,
+          description: [
+            'A cloud provider for developers. I use Digital Ocean for affordable VPS hosting, managed databases, and scalable infrastructure.'
+          ],
         parent: 'cloud',
         proficiency: 6,
         slug: 'digitalocean',
@@ -387,7 +516,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'Windows',
-        description: [''],
+          icon: IconWindows,
+          description: [
+            'A widely-used operating system. I use Windows for cross-platform testing, desktop development, and compatibility checks.'
+          ],
         parent: 'cloud',
         proficiency: 7,
         slug: 'windows',
@@ -396,7 +528,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'Mac OS',
-        description: [''],
+          icon: IconMacos,
+          description: [
+            'Apple’s desktop operating system. I use macOS for development, especially for iOS apps and a Unix-like environment.'
+          ],
         parent: 'cloud',
         proficiency: 8,
         slug: 'macos',
@@ -414,7 +549,9 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       {
         name: 'Figma',
         icon: IconFigma,
-        description: [''],
+          description: [
+            'A collaborative design tool. I use Figma for UI/UX design, prototyping, and sharing design systems with teams.'
+          ],
         parent: 'design',
         proficiency: 9,
         slug: 'figma',
@@ -423,7 +560,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'Jira',
-        description: [''],
+          icon: IconJira,
+          description: [
+            'A project management tool. I use Jira to track issues, plan sprints, and manage agile workflows.'
+          ],
         parent: 'design',
         proficiency: 7,
         slug: 'jira',
@@ -432,7 +572,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'Slack',
-        description: [''],
+          icon: IconSlack,
+          description: [
+            'A team communication platform. I use Slack for real-time collaboration, notifications, and integrations with development tools.'
+          ],
         parent: 'design',
         proficiency: 10,
         slug: 'slack',
@@ -441,7 +584,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'Asana',
-        description: [''],
+          icon: IconAsana,
+          description: [
+            'A work management platform. I use Asana to organize tasks, set deadlines, and coordinate with cross-functional teams.'
+          ],
         parent: 'design',
         proficiency: 6,
         slug: 'asana',
@@ -450,7 +596,9 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'Whimsical',
-        description: [''],
+          description: [
+            'A visual workspace for flowcharts, wireframes, and mind maps. I use Whimsical to brainstorm, diagram systems, and communicate ideas visually.'
+          ],
         parent: 'design',
         proficiency: 8,
         slug: 'whimsical',
@@ -468,7 +616,9 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       {
         name: 'NPM',
         icon: IconNpm,
-        description: [''],
+          description: [
+            'The default package manager for Node.js. I use NPM to manage dependencies, publish packages, and automate scripts in JavaScript projects.'
+          ],
         parent: 'package_management',
         proficiency: 10,
         slug: 'npm',
@@ -478,7 +628,9 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       {
         name: 'Git',
         icon: IconGit,
-        description: [''],
+          description: [
+            'A distributed version control system. I use Git to track changes, collaborate with teams, and manage code history.'
+          ],
         parent: 'package_management',
         proficiency: 8,
         slug: 'git',
@@ -488,7 +640,9 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       {
         name: 'Vite',
         icon: IconVite,
-        description: [''],
+          description: [
+            'A fast frontend build tool. I use Vite for instant hot module replacement and rapid development in modern JS frameworks.'
+          ],
         parent: 'package_management',
         proficiency: 8,
         slug: 'vite',
@@ -497,7 +651,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'PNPM',
-        description: [''],
+          icon: IconPnpm,
+          description: [
+            'A performant package manager for Node.js. I use PNPM for efficient dependency management and monorepo support.'
+          ],
         parent: 'package_management',
         proficiency: 10,
         slug: 'pnpm',
@@ -506,7 +663,10 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       },
       {
         name: 'Webpack',
-        description: [''],
+          icon: IconWebpack,
+          description: [
+            'A powerful module bundler. I use Webpack to bundle assets, optimize builds, and enable advanced frontend workflows.'
+          ],
         parent: 'package_management',
         proficiency: 7,
         slug: 'webpack',
@@ -516,7 +676,9 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       {
         name: 'Yarn',
         icon: IconYarn,
-        description: [''],
+          description: [
+            'A fast, reliable package manager. I use Yarn for dependency management, workspaces, and deterministic installs.'
+          ],
         parent: 'package_management',
         proficiency: 7,
         slug: 'yarn',
@@ -526,7 +688,9 @@ export const STACK_CATEGORIES: Array<StackCategory> = [
       {
         name: 'Composer',
         icon: IconComposer,
-        description: [''],
+          description: [
+            'A dependency manager for PHP. I use Composer to manage libraries, autoloading, and package versioning in PHP projects.'
+          ],
         parent: 'package_management',
         proficiency: 8,
         slug: 'composer',

@@ -196,10 +196,7 @@ function LargeScreen() {
                 </HStack>
               </Dialog.Header>
               <Dialog.Body color="fg/64" pt={6}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Debitis, placeat soluta! Laborum eligendi sit excepturi
-                accusantium doloribus nesciunt natus delectus qui quasi minima,
-                magni voluptatem repudiandae earum! Consequatur, eum magni!
+                {activeItem?.description.join(' ')}
               </Dialog.Body>
             </Dialog.Content>
           </Dialog.Positioner>
@@ -316,10 +313,7 @@ function SmallScreen() {
             </Text>
           </VStack>
           <Text color="fg/64">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis,
-            placeat soluta! Laborum eligendi sit excepturi accusantium doloribus
-            nesciunt natus delectus qui quasi minima, magni voluptatem
-            repudiandae earum! Consequatur, eum magni!
+            {activeItem?.description.join(' ')}
           </Text>
         </Box>
       </Box>
