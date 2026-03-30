@@ -10,6 +10,7 @@ import {
   createRootRoute,
 } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
+import { useEffect } from 'react';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -21,8 +22,24 @@ export const Route = createRootRoute({
         name: 'viewport',
         content: 'width=device-width, initial-scale=1',
       },
+      {
+        name: 'theme-color',
+        content: '#f06056',
+      },
     ],
     links: [
+      {
+        rel: 'icon',
+        href: '/favicon.ico',
+      },
+      {
+        rel: 'apple-touch-icon',
+        href: '/apple-touch-icon.png',
+      },
+      {
+        rel: 'manifest',
+        href: '/manifest.webmanifest',
+      },
       {
         rel: 'preconnect',
         href: 'https://fonts.googleapis.com',
@@ -42,6 +59,12 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js', { scope: '/' });
+    }
+  }, []);
+
   return (
     <Provider>
       <HistoryProvider>
