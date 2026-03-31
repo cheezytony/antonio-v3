@@ -17,7 +17,11 @@ self.addEventListener('activate', (event) => {
     caches
       .keys()
       .then((keys) =>
-        Promise.all(keys.filter((k) => !ALL_CACHES.includes(k)).map((k) => caches.delete(k))),
+        Promise.all(
+          keys
+            .filter((k) => !ALL_CACHES.includes(k))
+            .map((k) => caches.delete(k)),
+        ),
       ),
   );
   self.clients.claim();
@@ -31,7 +35,11 @@ self.addEventListener('fetch', (event) => {
   if (request.method !== 'GET' || url.origin !== self.location.origin) return;
 
   // Static assets (JS, CSS, images, fonts) — cache first, network fallback
-  if (/\.(js|css|png|jpg|jpeg|svg|gif|webp|ico|woff2?|ttf|otf)(\?.*)?$/.test(url.pathname)) {
+  if (
+    /\.(js|css|png|jpg|jpeg|svg|gif|webp|ico|woff2?|ttf|otf)(\?.*)?$/.test(
+      url.pathname,
+    )
+  ) {
     event.respondWith(
       caches.open(ASSET_CACHE).then((cache) =>
         cache.match(request).then((cached) => {
@@ -48,8 +56,6 @@ self.addEventListener('fetch', (event) => {
 
   // Navigation — network first, fall back to cached shell
   if (request.mode === 'navigate') {
-    event.respondWith(
-      fetch(request).catch(() => caches.match('/')),
-    );
+    event.respondWith(fetch(request).catch(() => caches.match('/')));
   }
 });
