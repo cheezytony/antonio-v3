@@ -96,9 +96,6 @@ importers:
       web-vitals:
         specifier: ^4.2.4
         version: 4.2.4
-      workbox-build:
-        specifier: ^7.4.0
-        version: 7.4.0(@types/babel__core@7.20.5)
 
 packages:
 
