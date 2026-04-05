@@ -162,7 +162,7 @@ function RouteComponent() {
                 objectFit="cover"
                 objectPosition="center"
               >
-                <Image src={image.src} alt="Antonio Okoro" layout="fullWidth" />
+                <Image src={image.src} alt={image.alt} layout="fullWidth" />
               </Box>
             </MotionGridItem>
           ))}
@@ -232,7 +232,7 @@ function RouteComponent() {
                   >
                     <Image
                       src={image.src}
-                      alt="Antonio Okoro"
+                      alt={image.alt}
                       layout="fullWidth"
                     />
                   </Box>
