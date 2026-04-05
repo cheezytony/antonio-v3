@@ -1,5 +1,6 @@
 // import { ReversedBendingLine } from '@/components/line-track';
 import { RightGlyph } from '@/components/right-glyph';
+import { registerPageSeo } from '@/utils/seo';
 import { Box, Heading, Stack, Text, VStack } from '@chakra-ui/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { Image } from '@unpic/react';
@@ -7,6 +8,10 @@ import { motion } from 'framer-motion';
 
 export const Route = createFileRoute('/__home/my-bio')({
   component: RouteComponent,
+  head: () =>
+    registerPageSeo({
+      title: 'My Bio',
+    }),
 });
 
 const MotionBox = motion.create(Box);

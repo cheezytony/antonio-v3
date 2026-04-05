@@ -5,15 +5,8 @@ import { IconTwitter } from '@/components/icons/icon-twitter';
 import { IconYoutube } from '@/components/icons/icon-youtube';
 import { LeftGlyph } from '@/components/left-glyph';
 import { RightGlyph } from '@/components/right-glyph';
-import {
-  Box,
-  Center,
-  Grid,
-  GridItem,
-  Square,
-  Text,
-  VStack,
-} from '@chakra-ui/react';
+import { registerPageSeo } from '@/utils/seo';
+import { Box, Center, Grid, GridItem, Text, VStack } from '@chakra-ui/react';
 import { Link, createFileRoute } from '@tanstack/react-router';
 import { Image } from '@unpic/react';
 import type { MotionNodeAnimationOptions } from 'framer-motion';
@@ -29,7 +22,7 @@ interface SocialLinkProps {
 }
 
 const MotionGridItem = motion.create(GridItem);
-const MotionSquare = motion.create(Square);
+const MotionCenter = motion.create(Center);
 
 const PROFESSIONAL_LINKS: Array<SocialLinkProps> = [
   {
@@ -45,7 +38,7 @@ const PROFESSIONAL_LINKS: Array<SocialLinkProps> = [
     title: 'Linkedin',
   },
   {
-    href: 'https://',
+    href: 'https://hackmd.io/@cheezytony/By3i4qrY-e',
     key: 'my-resume',
     thumbnailUrl: '/images/my-socials-resume.webp',
     title: 'My Resume',
@@ -87,6 +80,12 @@ const SOCIAL_MEDIA_LINKS: Array<SocialLinkProps> = [
 
 export const Route = createFileRoute('/__home/my-socials')({
   component: RouteComponent,
+  head: () =>
+    registerPageSeo({
+      title: 'My Socials',
+      description:
+        'Find me on your favorite collaborative or social media platforms',
+    }),
 });
 
 function ExternalIndicator() {
@@ -157,6 +156,9 @@ function ProfessionalLink({
             filter: 'none',
             opacity: 1,
           },
+          _light: {
+            opacity: 0.48,
+          },
         }}
       >
         <Image src={thumbnailUrl!} alt={title} layout="fullWidth" />
@@ -173,18 +175,29 @@ function SocialLink({
   ...props
 }: SocialLinkProps & MotionNodeAnimationOptions) {
   return (
-    <MotionSquare
+    <MotionCenter
       {...props}
       as={Link}
-      aspectRatio={1}
       bg="theme.orange/4"
       borderBottom="1px solid transparent"
       color="theme.orange"
+      h="8rem"
       pos="relative"
       className="group"
       md={{
+        aspectRatio: 1,
         color: 'white/40',
+        height: 'auto',
         _hover: {
+          borderBottomColor: 'theme.orange',
+          color: 'theme.orange',
+        },
+        _light: {
+          color: 'fg.muted',
+        },
+      }}
+      smDown={{
+        _active: {
           borderBottomColor: 'theme.orange',
           color: 'theme.orange',
         },
@@ -210,7 +223,7 @@ function SocialLink({
       >
         {title}
       </Text>
-    </MotionSquare>
+    </MotionCenter>
   );
 }
 
@@ -243,7 +256,11 @@ function RouteComponent() {
 
         <Grid
           gap={2}
-          templateColumns={{ base: 'repeat(3, 1fr)', md: 'repeat(5, 1fr)' }}
+          templateColumns={{
+            base: 'repeat(2, 1fr)',
+            sm: 'repeat(3, 1fr)',
+            md: 'repeat(5, 1fr)',
+          }}
         >
           {SOCIAL_MEDIA_LINKS.map((link, index) => (
             <SocialLink

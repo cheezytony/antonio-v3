@@ -2,11 +2,14 @@ import { IconArrowUpRight } from '@/components/icons/icon-arrow-up-right';
 import { IconX } from '@/components/icons/icon-x';
 import { RightGlyph } from '@/components/right-glyph';
 import { SquareButton } from '@/components/square-button';
+import { PROJECTS } from '@/content/projects';
 import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
+import { registerPageSeo } from '@/utils/seo';
 import {
   Box,
   Button,
   Center,
+  HStack,
   Heading,
   Span,
   Square,
@@ -20,202 +23,17 @@ import { Image } from '@unpic/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useCallback, useMemo, useRef, useState } from 'react';
 
-interface Project {
-  badges?: Array<string>;
-  client?: {
-    name: string;
-  };
-  description: Array<string>;
-  screenshots: Array<string>;
-  tags: Array<string>;
-  title: string;
-  url: string;
-}
-
 const MotionBox = motion.create(Box);
 const MotionSpan = motion.create(Span);
 
 export const Route = createFileRoute('/__home/my-projects')({
   component: RouteComponent,
+  head: () =>
+    registerPageSeo({
+      title: 'My Projects',
+      description: 'Browse my gallery of previous and current works.',
+    }),
 });
-
-const PROJECTS: Array<Project> = [
-  {
-    title: 'DanielKoya Website Development',
-    description: [
-      'Ipsam soluta officiis corrupti aspernatur deserunt asperiores repellendus temporibus dicta quasi est odit quaerat perferendis, maiores corporis qui ducimus repellat unde perspiciatis.',
-    ],
-    screenshots: [
-      // 'https://res.cloudinary.com/cheezytony/image/upload/v1664373338/portfolio/cp8daknv6i8jytokcnwa.webp',
-      '/images/projects-daniel-koya.png',
-    ],
-    url: 'https://danielkoya.com/',
-    client: {
-      name: 'Daniel Koya',
-    },
-    tags: ['Website', 'PWA', 'Vue', 'Nuxt', 'TypeScript'],
-  },
-  {
-    title: 'CredPal Product Development',
-    description: [
-      'Ipsam soluta officiis corrupti aspernatur deserunt asperiores repellendus temporibus dicta quasi est odit quaerat perferendis, maiores corporis qui ducimus repellat unde perspiciatis.',
-    ],
-    screenshots: [
-      'https://res.cloudinary.com/cheezytony/image/upload/v1664373516/portfolio/z7gdqijpheiqdztgbpsh.webp',
-    ],
-    url: 'https://credpal.com',
-    client: {
-      name: 'CredPal (Crednet Technologies)',
-    },
-    tags: [
-      'Website',
-      'Micro-service',
-      'Full-stack',
-      'Frontend',
-      'Backend',
-      'PHP',
-      'Laravel',
-      'Node.Js',
-      'Next.Js',
-      'Vue',
-      'Nuxt',
-      'React',
-      'Next',
-    ],
-  },
-  {
-    title: 'Bootstrap/Vue Datatable NPM Package',
-    description: [
-      'Ipsam soluta officiis corrupti aspernatur deserunt asperiores repellendus temporibus dicta quasi est odit quaerat perferendis, maiores corporis qui ducimus repellat unde perspiciatis.',
-    ],
-    badges: [
-      'https://img.shields.io/npm/dy/bootstrap-vue-datatable?style=for-the-badge',
-      'https://img.shields.io/bundlephobia/minzip/bootstrap-vue-datatable?style=for-the-badge',
-    ],
-    screenshots: [
-      'https://res.cloudinary.com/cheezytony/image/upload/v1664377056/Portfolio/rnirbnxwip2qrsaqhvet.webp',
-    ],
-    url: 'https://www.npmjs.com/bootstrap-vue-datatable',
-    tags: ['NPM', 'Library', 'Vue', 'Bootstrap'],
-  },
-  {
-    title: 'Mighty NG Product Development',
-    description: [
-      'Ipsam soluta officiis corrupti aspernatur deserunt asperiores repellendus temporibus dicta quasi est odit quaerat perferendis, maiores corporis qui ducimus repellat unde perspiciatis.',
-    ],
-    screenshots: [
-      'https://res.cloudinary.com/cheezytony/image/upload/v1664373637/portfolio/nxkh7aocsevjy5i4oab5.webp',
-    ],
-    url: 'https://mighty.ng',
-    client: {
-      name: 'Mighty Interactive',
-    },
-    tags: [
-      'Web App',
-      'Full-stack',
-      'Frontend',
-      'Backend',
-      'PHP',
-      'Laravel',
-      'JavaScript',
-      'jQuery',
-    ],
-  },
-  {
-    title: 'Mighty Interactive Website Development',
-    description: [
-      'Ipsam soluta officiis corrupti aspernatur deserunt asperiores repellendus temporibus dicta quasi est odit quaerat perferendis, maiores corporis qui ducimus repellat unde perspiciatis.',
-    ],
-    screenshots: [
-      'https://res.cloudinary.com/cheezytony/image/upload/v1664373704/portfolio/frrc57zscjb5v3w1wnp3.webp',
-    ],
-    url: 'https://mightyi.com',
-    client: {
-      name: 'Mighty Interactive',
-    },
-    tags: ['Website', 'HTML', 'CSS', 'SASS/SCSS', 'JavaScript', 'jQuery'],
-  },
-  {
-    title: 'Adlantique Website Design',
-    description: [
-      'Ipsam soluta officiis corrupti aspernatur deserunt asperiores repellendus temporibus dicta quasi est odit quaerat perferendis, maiores corporis qui ducimus repellat unde perspiciatis.',
-    ],
-    screenshots: [
-      'https://res.cloudinary.com/cheezytony/image/upload/v1664373591/portfolio/cs6nim7v40zlrit6xnez.webp',
-    ],
-    url: 'https://adlantique.com/',
-    client: {
-      name: 'Adlantique',
-    },
-    tags: [
-      'Website',
-      'PUG',
-      'HTML',
-      'CSS',
-      'Bootstrap',
-      'JavaScript',
-      'jQUery',
-    ],
-  },
-  {
-    title: 'Trifta Website design',
-    description: [
-      'Ipsam soluta officiis corrupti aspernatur deserunt asperiores repellendus temporibus dicta quasi est odit quaerat perferendis, maiores corporis qui ducimus repellat unde perspiciatis.',
-    ],
-    screenshots: [
-      'https://res.cloudinary.com/cheezytony/image/upload/v1664373448/portfolio/xqokgivxv1pezkjpf6sp.webp',
-    ],
-    url: 'https://trifta.com/',
-    client: {
-      name: 'Trifta',
-    },
-    tags: ['Website', 'Vue', 'Nuxt', 'TypeScript'],
-  },
-  {
-    title: 'Fluxhub Legal Website Development',
-    description: [
-      'Ipsam soluta officiis corrupti aspernatur deserunt asperiores repellendus temporibus dicta quasi est odit quaerat perferendis, maiores corporis qui ducimus repellat unde perspiciatis.',
-    ],
-    screenshots: [
-      'https://res.cloudinary.com/cheezytony/image/upload/v1664373405/portfolio/apchxjov4pmxrho3m1x0.webp',
-    ],
-    url: 'https://fluxhublegal.com/',
-    client: {
-      name: 'Fluxhub Legal',
-    },
-    tags: ['Website', 'Vue', 'Nuxt', 'TypeScript'],
-  },
-  {
-    title: 'Vue3 Form NPM Package',
-    description: [
-      'Ipsam soluta officiis corrupti aspernatur deserunt asperiores repellendus temporibus dicta quasi est odit quaerat perferendis, maiores corporis qui ducimus repellat unde perspiciatis.',
-    ],
-    badges: [
-      'https://img.shields.io/npm/dy/vue3-form?style=for-the-badge',
-      'https://img.shields.io/bundlephobia/min/vue3-form?style=for-the-badge',
-    ],
-    screenshots: [
-      'https://res.cloudinary.com/cheezytony/image/upload/v1664377018/Portfolio/vn9t1fnfk1hjsfpitksn.webp',
-    ],
-    tags: ['NPM', 'Library', 'Vue', 'TypeScript'],
-    url: 'https://npmjs.com/vue3-form',
-  },
-  {
-    title: 'Storagedotjs NPM Package',
-    description: [
-      'Ipsam soluta officiis corrupti aspernatur deserunt asperiores repellendus temporibus dicta quasi est odit quaerat perferendis, maiores corporis qui ducimus repellat unde perspiciatis.',
-    ],
-    badges: [
-      'https://img.shields.io/npm/dy/storagedotjs?style=for-the-badge',
-      'https://img.shields.io/bundlephobia/min/storagedotjs?style=for-the-badge',
-    ],
-    screenshots: [
-      'https://res.cloudinary.com/cheezytony/image/upload/v1664377148/Portfolio/tgusatsdh7sabshs1edq1.webp',
-    ],
-    tags: ['NPM', 'Library', 'TypeScript'],
-    url: 'https://npmjs.com/storagedotjs',
-  },
-];
 
 function RouteComponent() {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -364,7 +182,10 @@ function RouteComponent() {
                   w="full"
                 >
                   <Image
-                    src={activeItem.screenshots[0]}
+                    src={
+                      activeItem.screenshots[0] ??
+                      'https://placehold.net/shape-600x400.png'
+                    }
                     alt={activeItem.title}
                     layout="fullWidth"
                   />
@@ -413,6 +234,17 @@ function RouteComponent() {
                 >
                   {project.title}
                 </Heading>
+                {project.subtitle && (
+                  <Heading
+                    fontWeight="900"
+                    color="theme.yellow"
+                    lineHeight={1.1}
+                    fontSize="1.5rem"
+                    md={{ fontSize: '2.5rem' }}
+                  >
+                    {project.subtitle}
+                  </Heading>
+                )}
 
                 <Wrap gap={1}>
                   {project.tags.map((tag, tagIndex) => (
@@ -434,9 +266,13 @@ function RouteComponent() {
                         w="full"
                       >
                         <Image
-                          src={project.screenshots[0]}
+                          src={
+                            project.screenshots[0] ??
+                            'https://placehold.net/shape-600x400.png'
+                          }
                           alt={project.title}
                           layout="fullWidth"
+                          srcSet=""
                         />
                       </Box>
                     </Box>
@@ -457,23 +293,36 @@ function RouteComponent() {
                 </VStack>
               </VStack>
 
-              <Button
-                as="a"
-                alignSelf="flex-start"
-                fontSize="sm"
-                gap={2}
-                py={3}
-                px={6}
-                type="submit"
-                variant="outline"
-                _hover={{
-                  bg: 'theme.yellow',
-                }}
-                {...{ href: project.url, target: '_blank' }}
-              >
-                <Span>View Project</Span>
-                <IconArrowUpRight />
-              </Button>
+              <HStack>
+                {project.url.map((url, urlIndex) => {
+                  const label = typeof url === 'string' ? 'View Project' : url.label;
+                  const href = typeof url === 'string' ? url : url.url;
+                  
+                  return (
+                    (
+                      <Button
+                        key={urlIndex}
+                        as="a"
+                        alignSelf="flex-start"
+                        fontSize="sm"
+                        gap={2}
+                        py={3}
+                        px={6}
+                        type="submit"
+                        variant="outline"
+                        _hover={{
+                          bg: 'theme.yellow',
+                        }}
+                        {...{ href, target: '_blank' }}
+                      >
+                        <Span>{label}</Span>
+                        <IconArrowUpRight />
+                      </Button>
+                    )
+                  )
+                })}
+
+              </HStack>
             </VStack>
           ))}
         </VStack>

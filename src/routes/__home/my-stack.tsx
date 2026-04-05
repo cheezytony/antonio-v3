@@ -4,6 +4,7 @@ import { IconX } from '@/components/icons/icon-x';
 import { SquareButton } from '@/components/square-button';
 import { ALL_ITEMS, STACK_CATEGORIES } from '@/content/stack';
 import { StackContext, StackContextProvider } from '@/contexts/stack.context';
+import { registerPageSeo } from '@/utils/seo';
 import type { DialogOpenChangeDetails } from '@chakra-ui/react';
 import {
   Box,
@@ -25,6 +26,12 @@ const MotionCircle = motion.create(Circle);
 
 export const Route = createFileRoute('/__home/my-stack')({
   component: RouteComponent,
+  head: () =>
+    registerPageSeo({
+      title: 'My Stack',
+      description:
+        "Ever wanted to know all of the tools I use and what they're for? Now you can.",
+    }),
 });
 
 function StackItem({ item }: { item: StackItem }) {
@@ -77,6 +84,7 @@ function StackItem({ item }: { item: StackItem }) {
       as="button"
       bg="theme.green/16"
       border="1px solid transparent"
+      cursor="pointer"
       id={item.slug}
       pos="absolute"
       style={dimensions}
@@ -137,10 +145,13 @@ function LargeScreen() {
         placement="bottom"
       >
         <Portal>
-          {/* <Dialog.Backdrop /> */}
+          <Dialog.Backdrop />
           <Dialog.Positioner>
             <Dialog.Content
               bg="#071310"
+              _light={{
+                bg: 'bg.panel',
+              }}
               border={0}
               borderTop="1px solid"
               borderColor="theme.green"
@@ -181,14 +192,11 @@ function LargeScreen() {
                     </Dialog.Description>
                   </VStack>
 
-                  <Icon as={activeItem?.icon || IconBolt} boxSize="4.5rem" />
+                  <Icon as={activeItem?.icon || IconBolt} boxSize="4.5rem" color="theme.green" />
                 </HStack>
               </Dialog.Header>
               <Dialog.Body color="fg/64" pt={6}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Debitis, placeat soluta! Laborum eligendi sit excepturi
-                accusantium doloribus nesciunt natus delectus qui quasi minima,
-                magni voluptatem repudiandae earum! Consequatur, eum magni!
+                {activeItem?.description.join(' ')}
               </Dialog.Body>
             </Dialog.Content>
           </Dialog.Positioner>
@@ -206,7 +214,7 @@ function SmallScreen() {
       <VStack
         align="stretch"
         gap={0}
-        transitionDuration="slower"
+        transitionDuration="moderate"
         transitionTimingFunction="ease-out"
         w="full"
         css={
@@ -236,7 +244,7 @@ function SmallScreen() {
             onClick={() => setActiveItem(item)}
           >
             <Center boxSize="3.5rem">
-              <Icon as={item.icon || IconBolt} color="theme.green" />
+              <Icon as={item.icon || IconBolt} color="theme.green" maxW={9} />
             </Center>
             <VStack align="flex-start" gap={0}>
               <Text fontSize="xl" fontWeight="black">
@@ -246,7 +254,12 @@ function SmallScreen() {
                 color="theme.green"
                 fontSize="md"
                 fontWeight="black"
-                _groupActive={{ color: 'white' }}
+                _groupActive={{
+                  color: 'white',
+                  _light: {
+                    color: 'fg',
+                  },
+                }}
               >
                 {item.type}
               </Text>
@@ -261,7 +274,7 @@ function SmallScreen() {
         inset={0}
         pos="absolute"
         overflowY="auto"
-        transitionDuration="slower"
+        transitionDuration="moderate"
         transitionTimingFunction="ease-out"
         w="full"
         css={
@@ -300,10 +313,7 @@ function SmallScreen() {
             </Text>
           </VStack>
           <Text color="fg/64">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis,
-            placeat soluta! Laborum eligendi sit excepturi accusantium doloribus
-            nesciunt natus delectus qui quasi minima, magni voluptatem
-            repudiandae earum! Consequatur, eum magni!
+            {activeItem?.description.join(' ')}
           </Text>
         </Box>
       </Box>

@@ -15,8 +15,8 @@
 ## My Stack
 
 - [x] Use placeholder icon for tools without icons
-- [] Speed up slide animation for list and detail on mobile screens
-- [] Remove backdrop on large screens
+- [x] Speed up slide animation for list and detail on mobile screens
+- [-] Remove backdrop on large screens
 
 ## Timeline
 
@@ -25,7 +25,7 @@
 ## Projects
 
 - [x] Add spacing between each project on mobile screens
-- [] Fix delayed direction change on project index when scrolling between projects
+- [x] Fix delayed direction change on project index when scrolling between projects
 
 ## Gaming
 

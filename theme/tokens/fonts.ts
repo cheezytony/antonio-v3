@@ -3,7 +3,7 @@ import { defineTokens } from '@chakra-ui/react';
 export const fonts = defineTokens.fonts({
   heading: {
     value:
-      '"Funnel Display", "Averia Serif Libre", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+      '"Funnel Display", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
   },
   body: {
     value:

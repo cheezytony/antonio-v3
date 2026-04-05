@@ -456,4 +456,4 @@ export const colors = defineTokens.colors({
       value: '#2c0514',
     },
   },
-});
+} as const);

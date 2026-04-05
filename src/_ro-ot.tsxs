@@ -1,0 +1,46 @@
+import { Provider } from '@/components/ui/provider';
+import { AppContextProvider } from '@/contexts/app.context';
+import { HistoryProvider } from '@/contexts/history.context';
+import {FileRoot
+  HeadContent,
+  Outlet,
+  createRootRoute,
+  createFileRoute,
+} from '@tanstack/react-router';
+
+export const Route = createRootRoute('/_root')({
+  component: () => {
+    return (
+      <Provider defaultTheme="dark" forcedTheme="dark">
+        <HistoryProvider>
+          <AppContextProvider>
+            <HeadContent />
+
+            <Outlet />
+
+            {/* <TanStackRouterDevtools /> */}
+          </AppContextProvider>
+        </HistoryProvider>
+      </Provider>
+    );
+  },
+  head: () => ({
+    meta: [],
+    links: [
+      {
+        rel: 'preconnect',
+        href: 'https://fonts.googleapis.com',
+      },
+      {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossOrigin: 'anonymous',
+      },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Funnel+Display&display=swap',
+      },
+    ],
+  }),
+  ssr: true,
+});

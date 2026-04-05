@@ -23,6 +23,10 @@ export function SquareButton({
       boxSize={{ base: '3.75rem', md: '3.5rem' }}
       bg="white/5"
       color="white/40"
+      _light={{
+        bg: 'blackAlpha.100',
+        color: 'fg.muted',
+      }}
       _active={{
         bg: accentColor,
         color: 'white',
