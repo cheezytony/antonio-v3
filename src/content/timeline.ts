@@ -55,6 +55,25 @@ export const TIMELINE: Array<Item> = [
       'Easter Monday marks the day after the Resurrection Sunday, continuing the joyful celebration of Christ\'s triumph over death. In many Christian traditions, this day is observed as a public holiday, with communities gathering for fellowship, reflection, and festivity in the wake of the holiest weekend of the year.',
       'On this day, the disciples were still reeling from the wonder of the empty tomb and the first resurrection appearances. The risen Christ continued to manifest Himself to His followers — most famously to the two disciples on the road to Emmaus, whose hearts burned within them as He walked with them and opened the Scriptures, before being recognised at the breaking of bread. (Luke 24:13–35)',
     ],
-    images: [],
+    images: [
+      {
+        colSpan: 2,
+        rowSpan: 2,
+        src: '/images/easter-monday-emmaus.jpg',
+        alt: 'The Road to Emmaus — the risen Christ walks with two disciples, opening the Scriptures before being recognised at the breaking of bread',
+      },
+      {
+        colSpan: 1,
+        rowSpan: 2,
+        src: '/images/easter-monday-celebration.jpg',
+        alt: 'Easter Monday — communities gather in joyful celebration, marking the continuation of the Easter feast',
+      },
+      {
+        colSpan: 1,
+        rowSpan: 2,
+        src: '/images/easter-monday-disciples.jpg',
+        alt: 'Christ Among the Disciples — the risen Lord appears to His gathered disciples, showing His wounds and breathing peace upon them',
+      },
+    ],
   },
 ];
