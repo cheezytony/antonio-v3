@@ -13,6 +13,25 @@ export interface Project {
 
 export const PROJECTS: Array<Project> = [
   {
+    title: 'Votu',
+    description: [
+      'An open-source polling platform built with AI for creating, managing and sharing polls.',
+      '',
+      '- Create and manage polls with multiple options',
+      '- Search and filter polls — publicly visible to all users',
+      '- Authentication required to place a vote',
+      '- Full voter transparency — see who voted on each poll and option',
+    ],
+    screenshots: [
+      'https://res.cloudinary.com/cheezytony/image/upload/q_auto/f_auto/v1775655844/Portfolio/projects-votu.png',
+    ],
+    url: [
+      { label: 'App', url: 'https://votu-frontend.vercel.app/' },
+      { label: 'GitHub', url: 'https://github.com/cheezytony/votu' },
+    ],
+    tags: ['Web App', 'Full-stack', 'Open Source', 'AI', 'TypeScript', 'NestJS', 'Next.js', 'Polls'],
+  },
+  {
     title: 'Daniel Koya Website Development',
     description: [
       "A portfolio website for one of Africa's best graphic and UI/UX designers.",
