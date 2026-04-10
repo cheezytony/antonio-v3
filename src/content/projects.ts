@@ -29,7 +29,16 @@ export const PROJECTS: Array<Project> = [
       { label: 'App', url: 'https://votu-frontend.vercel.app/' },
       { label: 'GitHub', url: 'https://github.com/cheezytony/votu' },
     ],
-    tags: ['Web App', 'Full-stack', 'Open Source', 'AI', 'TypeScript', 'NestJS', 'Next.js', 'Polls'],
+    tags: [
+      'Web App',
+      'Full-stack',
+      'Open Source',
+      'AI',
+      'TypeScript',
+      'NestJS',
+      'Next.js',
+      'Polls',
+    ],
   },
   {
     title: 'Daniel Koya Website Development',
@@ -59,8 +68,14 @@ export const PROJECTS: Array<Project> = [
       'https://res.cloudinary.com/cheezytony/image/upload/v1774353617/Portfolio/projects-rockcity-101-9-fm_ibkr0n.webp',
     ],
     url: [
-      { label: 'iOS', url: 'https://apps.apple.com/ng/app/rockcity-101-9-fm/id6759060485' },
-      { label: 'Android', url: 'https://play.google.com/store/apps/details?id=com.rockcityfm.mobile' },
+      {
+        label: 'iOS',
+        url: 'https://apps.apple.com/ng/app/rockcity-101-9-fm/id6759060485',
+      },
+      {
+        label: 'Android',
+        url: 'https://play.google.com/store/apps/details?id=com.rockcityfm.mobile',
+      },
     ],
     tags: ['Mobile App', 'Expo', 'React Native', 'Cross-platform', 'Radio'],
   },

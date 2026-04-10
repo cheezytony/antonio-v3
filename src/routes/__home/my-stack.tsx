@@ -192,7 +192,11 @@ function LargeScreen() {
                     </Dialog.Description>
                   </VStack>
 
-                  <Icon as={activeItem?.icon || IconBolt} boxSize="4.5rem" color="theme.green" />
+                  <Icon
+                    as={activeItem?.icon || IconBolt}
+                    boxSize="4.5rem"
+                    color="theme.green"
+                  />
                 </HStack>
               </Dialog.Header>
               <Dialog.Body color="fg/64" pt={6}>
@@ -312,9 +316,7 @@ function SmallScreen() {
               {activeItem?.type}
             </Text>
           </VStack>
-          <Text color="fg/64">
-            {activeItem?.description.join(' ')}
-          </Text>
+          <Text color="fg/64">{activeItem?.description.join(' ')}</Text>
         </Box>
       </Box>
     </Box>

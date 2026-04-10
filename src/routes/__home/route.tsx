@@ -226,7 +226,8 @@ function RouteComponent() {
   }, [pathname]);
   const prevPathname = prevPathnameRef.current;
 
-  const shouldAnimate = pathname !== '/' && !!prevPathname && prevPathname !== '/';
+  const shouldAnimate =
+    pathname !== '/' && !!prevPathname && prevPathname !== '/';
 
   const direction = useMemo(
     () => getSlideDirection(prevPathname, pathname),
@@ -243,11 +244,17 @@ function RouteComponent() {
   // to router context updates, so it can be frozen to the page that was active
   // when the MotionBox was created.
   const router = useRouter();
-  const routerAny = router as unknown as Record<string, Record<string, { options: { component?: ComponentType } }>>;
-  const leafRouteId = useRouterState({ select: (s) => [...s.matches].at(-1)?.routeId });
-  const CurrentComponent = (leafRouteId
-    ? routerAny.routesById[leafRouteId].options.component
-    : null) ?? null;
+  const routerAny = router as unknown as Record<
+    string,
+    Record<string, { options: { component?: ComponentType } }>
+  >;
+  const leafRouteId = useRouterState({
+    select: (s) => [...s.matches].at(-1)?.routeId,
+  });
+  const CurrentComponent =
+    (leafRouteId
+      ? routerAny.routesById[leafRouteId].options.component
+      : null) ?? null;
 
   // Sync activePage during render (state-update-during-render pattern).
   // This lets AnimatePresence see the new key in the same commit cycle,
@@ -389,7 +396,11 @@ function RouteComponent() {
             overflow="hidden"
             opacity={canShowRoute ? 1 : 0}
           >
-            <AnimatePresence custom={pageTransition} mode="wait" initial={false}>
+            <AnimatePresence
+              custom={pageTransition}
+              mode="wait"
+              initial={false}
+            >
               {activePage && (
                 <MotionBox
                   key={activePage.key}

@@ -230,11 +230,7 @@ function RouteComponent() {
                     objectFit="cover"
                     objectPosition="center"
                   >
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      layout="fullWidth"
-                    />
+                    <Image src={image.src} alt={image.alt} layout="fullWidth" />
                   </Box>
                 </GridItem>
               ))}

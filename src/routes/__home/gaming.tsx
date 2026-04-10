@@ -73,10 +73,9 @@ function RouteComponent() {
     setTimeout(() => {
       setIsReady(true);
       console.log(isReady);
-      
     }, 500);
   }, []);
-  
+
   return (
     <Grid
       className="group"
