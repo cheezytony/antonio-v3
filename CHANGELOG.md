@@ -6,6 +6,12 @@ Format: `## [version] — YYYY-MM-DD`
 
 ---
 
+## [0.0.1] — 2026-04-10
+
+### Chores
+- update token definitions to use single quotes for string values (`fc0d016`)
+
+
 ## [1.1.0] — 2026-04-08
 
 ### Added

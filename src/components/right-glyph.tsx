@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useLayoutEffect, useRef, useState } from 'react';
 
 interface RightGlyphProps {
   accentColor: string;
@@ -13,21 +13,24 @@ const SEGMENT_PX = 50;
 
 export function RightGlyph({ accentColor }: RightGlyphProps) {
   const pathRef = useRef<SVGPathElement>(null);
-  const [ratios, setRatios] = useState({ length: 0, offset: 0 });
+  const [ratios, setRatios] = useState<{ length: number; offset: number } | null>(null);
 
-  useEffect(() => {
-    if (pathRef.current) {
-      const totalLength = pathRef.current.getTotalLength();
+  useLayoutEffect(() => {
+    let raf: number;
 
+    const measure = () => {
+      const totalLength = pathRef.current?.getTotalLength() ?? 0;
       if (totalLength > 0) {
-        const lengthRatio = SEGMENT_PX / totalLength;
-        setRatios({
-          length: lengthRatio,
-          offset: 1 - lengthRatio,
-        });
+        const ratio = SEGMENT_PX / totalLength;
+        setRatios({ length: ratio, offset: 1 - ratio });
+      } else {
+        raf = requestAnimationFrame(measure);
       }
-    }
-  }, [PATH]);
+    };
+
+    raf = requestAnimationFrame(measure);
+    return () => cancelAnimationFrame(raf);
+  }, []);
 
   return (
     <Box
@@ -62,28 +65,28 @@ export function RightGlyph({ accentColor }: RightGlyphProps) {
               strokeWidth="0"
             />
 
-            {ratios.length > 0 && (
-              <motion.path
-                d={PATH}
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                initial={{
-                  pathLength: ratios.length,
-                  pathOffset: ratios.offset,
-                }}
-                animate={{ pathOffset: 0 }}
-                transition={{
-                  duration: 5,
-                  repeatDelay: 5,
-                  repeat: Infinity,
-                  ease: 'linear',
-                  repeatType: 'loop',
-                }}
-              />
-            )}
+            <AnimatePresence>
+              {ratios && (
+                <motion.path
+                  key="glyph-path"
+                  d={PATH}
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  initial={{ pathLength: ratios.length, pathOffset: ratios.offset }}
+                  animate={{ pathOffset: 0 }}
+                  transition={{
+                    duration: 5,
+                    repeatDelay: 5,
+                    repeat: Infinity,
+                    ease: 'linear',
+                    repeatType: 'loop',
+                  }}
+                />
+              )}
+            </AnimatePresence>
           </g>
           <defs>
             <clipPath id="clip0_648_2">

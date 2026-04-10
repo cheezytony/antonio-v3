@@ -12,9 +12,9 @@
  */
 
 import { execSync } from 'child_process';
-import { createInterface } from 'readline';
 import { readFileSync, writeFileSync } from 'fs';
-import { resolve, dirname } from 'path';
+import { dirname, resolve } from 'path';
+import { createInterface } from 'readline';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
