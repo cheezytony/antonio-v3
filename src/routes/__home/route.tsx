@@ -61,15 +61,15 @@ const pageVariants: Variants = {
     x: 0,
     opacity: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.3,
       ease: [0.25, 0.46, 0.45, 0.94],
-      opacity: { duration: 0.75, ease: 'easeOut' },
+      opacity: { duration: 0.4, ease: 'easeOut' },
     },
   },
   exit: ({ direction, animate }: PageTransitionCustom) => ({
     x: animate ? `${direction * -40}%` : 0,
     opacity: 0,
-    transition: { duration: animate ? 0.45 : 0, ease: [0.55, 0, 1, 0.45] },
+    transition: { duration: animate ? 0.2 : 0, ease: [0.55, 0, 1, 0.45] },
   }),
 };
 
