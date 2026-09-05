@@ -15,7 +15,7 @@ export function Cursor() {
   const { offset } = useCursor();
 
   const [isHovering, setIsHovering] = useState(false);
-  const hoverOutTimeout = useRef<number>(null);
+  const hoverOutTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useAnimationFrame(() => {
     if (!cursorRef.current || !cursorRef.current.style) return;

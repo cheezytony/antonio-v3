@@ -19,7 +19,7 @@ export function useTypewriter(
 
   const previousIndex = useRef<number | null>(startingIndex);
 
-  const typingTimeout = useRef<number>(null);
+  const typingTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const type = () => {
     const nextIndex =
