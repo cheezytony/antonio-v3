@@ -4,10 +4,13 @@
     "**/*.tsx",
     "eslint.config.js",
     "prettier.config.js",
-    "vite.config.js"
+    "vite.config.js",
+    "api/server.js",
+    "public/sw.js"
   ],
 
   "compilerOptions": {
+    "allowJs": true,
     "target": "ES2022",
     "jsx": "react-jsx",
     "module": "ESNext",
@@ -28,7 +31,7 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
     "baseUrl": ".",
-    "ignoreDeprecations": "6.0",
+    "ignoreDeprecations": "5.0",
     "paths": {
       "@/*": ["./src/*"],
       "~/*": ["./*"]
