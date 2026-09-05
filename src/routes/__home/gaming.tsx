@@ -58,6 +58,7 @@ export const Route = createFileRoute('/__home/gaming')({
     registerPageSeo({
       title: 'My Games',
       description: 'Discover my favorite games across all platforms and genres',
+      pathname: '/gaming',
     }),
 });
 
@@ -73,10 +74,9 @@ function RouteComponent() {
     setTimeout(() => {
       setIsReady(true);
       console.log(isReady);
-      
     }, 500);
   }, []);
-  
+
   return (
     <Grid
       className="group"

@@ -11,6 +11,14 @@ export const Route = createFileRoute('/__home/my-bio')({
   head: () =>
     registerPageSeo({
       title: 'My Bio',
+      pathname: '/my-bio',
+      links: [
+        {
+          rel: 'preload',
+          as: 'image',
+          href: '/images/bio-antonio.webp',
+        },
+      ],
     }),
 });
 

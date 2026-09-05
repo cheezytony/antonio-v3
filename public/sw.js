@@ -6,7 +6,20 @@ const ALL_CACHES = [STATIC_CACHE, ASSET_CACHE];
 // Pre-cache the app shell on install
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(STATIC_CACHE).then((cache) => cache.addAll(['/'])),
+    caches
+      .open(STATIC_CACHE)
+      .then((cache) =>
+        cache.addAll([
+          '/',
+          '/my-bio',
+          '/my-projects',
+          '/my-stack',
+          '/timeline',
+          '/gaming',
+          '/my-socials',
+          '/contact-me',
+        ]),
+      ),
   );
   self.skipWaiting();
 });

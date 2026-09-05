@@ -7,16 +7,16 @@ import { StackContext, StackContextProvider } from '@/contexts/stack.context';
 import { registerPageSeo } from '@/utils/seo';
 import type { DialogOpenChangeDetails } from '@chakra-ui/react';
 import {
-  Box,
-  Center,
-  Circle,
-  Dialog,
-  HStack,
-  Icon,
-  Portal,
-  Text,
-  VStack,
-  useMediaQuery,
+    Box,
+    Center,
+    Circle,
+    Dialog,
+    HStack,
+    Icon,
+    Portal,
+    Text,
+    VStack,
+    useMediaQuery,
 } from '@chakra-ui/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
@@ -31,6 +31,7 @@ export const Route = createFileRoute('/__home/my-stack')({
       title: 'My Stack',
       description:
         "Ever wanted to know all of the tools I use and what they're for? Now you can.",
+      pathname: '/my-stack',
     }),
 });
 
@@ -192,7 +193,11 @@ function LargeScreen() {
                     </Dialog.Description>
                   </VStack>
 
-                  <Icon as={activeItem?.icon || IconBolt} boxSize="4.5rem" color="theme.green" />
+                  <Icon
+                    as={activeItem?.icon || IconBolt}
+                    boxSize="4.5rem"
+                    color="theme.green"
+                  />
                 </HStack>
               </Dialog.Header>
               <Dialog.Body color="fg/64" pt={6}>
@@ -312,9 +317,7 @@ function SmallScreen() {
               {activeItem?.type}
             </Text>
           </VStack>
-          <Text color="fg/64">
-            {activeItem?.description.join(' ')}
-          </Text>
+          <Text color="fg/64">{activeItem?.description.join(' ')}</Text>
         </Box>
       </Box>
     </Box>

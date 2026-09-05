@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     // Get the host from headers - Vercel provides this
     const host = req.headers.host || 'localhost';
     const protocol = 'https';
-    
+
     // Build the full URL
     const url = `${protocol}://${host}${req.url}`;
 

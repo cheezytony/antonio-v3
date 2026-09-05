@@ -8,6 +8,7 @@ interface RegisterPageSeoOptions {
   screenshot?: string;
   themeColor?: string;
   pathname?: string;
+  links?: AnyRouteMatch['links'];
 }
 
 const DEFAULTS = {
@@ -84,6 +85,7 @@ export function registerPageSeo(
     links: [
       { rel: 'icon', type: 'image/png', href: '/favicon.ico' },
       { rel: 'canonical', href: pageUrl },
+      ...(options.links ?? []),
     ],
   } as const;
 }

@@ -85,6 +85,7 @@ export const Route = createFileRoute('/__home/my-socials')({
       title: 'My Socials',
       description:
         'Find me on your favorite collaborative or social media platforms',
+      pathname: '/my-socials',
     }),
 });
 

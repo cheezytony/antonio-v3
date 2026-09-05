@@ -12,6 +12,7 @@ export interface Project {
 }
 
 export const PROJECTS: Array<Project> = [
+  
   {
     title: 'Daniel Koya Website Development',
     description: [
@@ -40,8 +41,14 @@ export const PROJECTS: Array<Project> = [
       'https://res.cloudinary.com/cheezytony/image/upload/v1774353617/Portfolio/projects-rockcity-101-9-fm_ibkr0n.webp',
     ],
     url: [
-      { label: 'iOS', url: 'https://apps.apple.com/ng/app/rockcity-101-9-fm/id6759060485' },
-      { label: 'Android', url: 'https://play.google.com/store/apps/details?id=com.rockcityfm.mobile' },
+      {
+        label: 'iOS',
+        url: 'https://apps.apple.com/ng/app/rockcity-101-9-fm/id6759060485',
+      },
+      {
+        label: 'Android',
+        url: 'https://play.google.com/store/apps/details?id=com.rockcityfm.mobile',
+      },
     ],
     tags: ['Mobile App', 'Expo', 'React Native', 'Cross-platform', 'Radio'],
   },
@@ -334,6 +341,34 @@ export const PROJECTS: Array<Project> = [
     ],
     tags: ['NPM', 'Library', 'TypeScript'],
     url: ['https://npmjs.com/storagedotjs'],
+  },
+  {
+    title: 'Votu',
+    description: [
+      'An open-source polling platform built with AI for creating, managing and sharing polls.',
+      '',
+      '- Create and manage polls with multiple options',
+      '- Search and filter polls — publicly visible to all users',
+      '- Authentication required to place a vote',
+      '- Full voter transparency — see who voted on each poll and option',
+    ],
+    screenshots: [
+      'https://res.cloudinary.com/cheezytony/image/upload/q_auto/f_auto/v1775655844/Portfolio/projects-votu.png',
+    ],
+    url: [
+      { label: 'App', url: 'https://votu-frontend.vercel.app/' },
+      { label: 'GitHub', url: 'https://github.com/cheezytony/votu' },
+    ],
+    tags: [
+      'Web App',
+      'Full-stack',
+      'Open Source',
+      'AI',
+      'TypeScript',
+      'NestJS',
+      'Next.js',
+      'Polls',
+    ],
   },
 ].filter((project) => {
   if (project.screenshots.length <= 0) {

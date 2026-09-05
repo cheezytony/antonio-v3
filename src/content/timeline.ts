@@ -52,7 +52,7 @@ export const TIMELINE: Array<Item> = [
     title: 'Easter Monday',
     date: 'April 6, 2026',
     description: [
-      'Easter Monday marks the day after the Resurrection Sunday, continuing the joyful celebration of Christ\'s triumph over death. In many Christian traditions, this day is observed as a public holiday, with communities gathering for fellowship, reflection, and festivity in the wake of the holiest weekend of the year.',
+      "Easter Monday marks the day after the Resurrection Sunday, continuing the joyful celebration of Christ's triumph over death. In many Christian traditions, this day is observed as a public holiday, with communities gathering for fellowship, reflection, and festivity in the wake of the holiest weekend of the year.",
       'On this day, the disciples were still reeling from the wonder of the empty tomb and the first resurrection appearances. The risen Christ continued to manifest Himself to His followers — most famously to the two disciples on the road to Emmaus, whose hearts burned within them as He walked with them and opened the Scriptures, before being recognised at the breaking of bread. (Luke 24:13–35)',
     ],
     images: [

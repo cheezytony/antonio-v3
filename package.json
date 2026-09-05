@@ -10,11 +10,13 @@
     "test": "vitest run",
     "lint": "eslint",
     "format": "prettier",
-    "check": "prettier --write . && eslint --fix"
+    "check": "prettier --write . && eslint --fix",
+    "release": "node scripts/release.mjs"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.19.1",
     "@emotion/react": "^11.14.0",
+    "@fontsource-variable/funnel-display": "^5.2.8",
     "@tailwindcss/vite": "^4.0.6",
     "@tanstack/react-router": "^1.157.16",
     "@tanstack/react-router-devtools": "^1.157.16",
@@ -44,5 +46,6 @@
     "vite-tsconfig-paths": "^6.0.5",
     "vitest": "^3.0.5",
     "web-vitals": "^4.2.4"
-  }
+  },
+  "version": "0.0.1"
 }

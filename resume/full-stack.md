@@ -11,15 +11,15 @@ Senior Full Stack Software Engineer with over 8 years of experience building sca
 
 ## TECH STACK
 
-| Layer        | Technologies                                                                                                                         |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
-| **Frontend** | React.js, Next.js, Vue.js, Nuxt.js, Svelte, SvelteKit, TypeScript, Redux Toolkit, Tailwind CSS, Chakra-UI, HTML5, CSS3               |
-| **Backend**  | Node.js, Express.js, Adonis.js, NestJS, PHP, Laravel, REST APIs, GraphQL, WebSockets                                                 |
-| **Mobile**   | React Native, Expo, React Navigation, Cross-platform development, Android, iOS                                                       |
-| **Database** | PostgreSQL, MySQL, MongoDB, Redis · ORM: Prisma, Sequelize, TypeORM, Laravel Eloquent, Lucide                                        |
-| **DevOps**   | Docker, Kubernetes, AWS (EC2, S3, RDS), GitHub Actions, GitLab CI, Nginx                                                             |
-| **Testing**  | Jest, Vitest, PHPUnit, React Testing Library, Cypress, Unit & Integration Testing                                                    |
-| **Tools**    | Git, GitHub, Jira, ClickUp, Linear, Figma, Agile/Scrum, Sentry, LogRocket                                                            |
+| Layer        | Technologies                                                                                                           |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| **Frontend** | React.js, Next.js, Vue.js, Nuxt.js, Svelte, SvelteKit, TypeScript, Redux Toolkit, Tailwind CSS, Chakra-UI, HTML5, CSS3 |
+| **Backend**  | Node.js, Express.js, Adonis.js, NestJS, PHP, Laravel, REST APIs, GraphQL, WebSockets                                   |
+| **Mobile**   | React Native, Expo, React Navigation, Cross-platform development, Android, iOS                                         |
+| **Database** | PostgreSQL, MySQL, MongoDB, Redis · ORM: Prisma, Sequelize, TypeORM, Laravel Eloquent, Lucide                          |
+| **DevOps**   | Docker, Kubernetes, AWS (EC2, S3, RDS), GitHub Actions, GitLab CI, Nginx                                               |
+| **Testing**  | Jest, Vitest, PHPUnit, React Testing Library, Cypress, Unit & Integration Testing                                      |
+| **Tools**    | Git, GitHub, Jira, ClickUp, Linear, Figma, Agile/Scrum, Sentry, LogRocket                                              |
 
 ---
 
@@ -133,9 +133,11 @@ French: Basic proficiency (reading and writing)
 - Implemented comprehensive logging and monitoring solutions using Sentry and Grafana, enabling proactive issue detection and resolution.
 
 **CredPal Microservice Architecture**: A collection of microservices built with TypeScript and Nest.js, responsible for specific domains such as payments, notifications, and user management.
+
 - Led the design and implementation of microservices using Docker and Kubernetes, improving deployment flexibility and system resilience while reducing time-to-market for new features by 40%.
 
 **Circle Wealth Microservice**: A microservice built with TypeScript and Nest.js, focused on wealth management functionalities and integrations with financial data providers.
+
 - Developed RESTful API endpoints, Rabbit MQ and Kafka integrations for wealth management features, enabling seamless integration with frontend applications and third-party services.
 
 **Key Stack:** React.js, Vue.js, Node.js, PHP, Laravel, TypeScript, REST APIs, PostgreSQL, MySQL, MongoDB, Redis, Sequelize, TypeORM, RabbitMQ, Kafka, Docker, Kubernetes, AWS, GitHub Actions

@@ -6,17 +6,17 @@ import { PROJECTS } from '@/content/projects';
 import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
 import { registerPageSeo } from '@/utils/seo';
 import {
-  Box,
-  Button,
-  Center,
-  HStack,
-  Heading,
-  Span,
-  Square,
-  Stack,
-  Text,
-  VStack,
-  Wrap,
+    Box,
+    Button,
+    Center,
+    HStack,
+    Heading,
+    Span,
+    Square,
+    Stack,
+    Text,
+    VStack,
+    Wrap,
 } from '@chakra-ui/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { Image } from '@unpic/react';
@@ -32,6 +32,7 @@ export const Route = createFileRoute('/__home/my-projects')({
     registerPageSeo({
       title: 'My Projects',
       description: 'Browse my gallery of previous and current works.',
+      pathname: '/my-projects',
     }),
 });
 
@@ -295,33 +296,31 @@ function RouteComponent() {
 
               <HStack>
                 {project.url.map((url, urlIndex) => {
-                  const label = typeof url === 'string' ? 'View Project' : url.label;
+                  const label =
+                    typeof url === 'string' ? 'View Project' : url.label;
                   const href = typeof url === 'string' ? url : url.url;
-                  
-                  return (
-                    (
-                      <Button
-                        key={urlIndex}
-                        as="a"
-                        alignSelf="flex-start"
-                        fontSize="sm"
-                        gap={2}
-                        py={3}
-                        px={6}
-                        type="submit"
-                        variant="outline"
-                        _hover={{
-                          bg: 'theme.yellow',
-                        }}
-                        {...{ href, target: '_blank' }}
-                      >
-                        <Span>{label}</Span>
-                        <IconArrowUpRight />
-                      </Button>
-                    )
-                  )
-                })}
 
+                  return (
+                    <Button
+                      key={urlIndex}
+                      as="a"
+                      alignSelf="flex-start"
+                      fontSize="sm"
+                      gap={2}
+                      py={3}
+                      px={6}
+                      type="submit"
+                      variant="outline"
+                      _hover={{
+                        bg: 'theme.yellow',
+                      }}
+                      {...{ href, target: '_blank' }}
+                    >
+                      <Span>{label}</Span>
+                      <IconArrowUpRight />
+                    </Button>
+                  );
+                })}
               </HStack>
             </VStack>
           ))}

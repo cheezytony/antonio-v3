@@ -10,24 +10,27 @@ import { generateColorVariants } from '@/utils/colors';
 import { registerPageSeo } from '@/utils/seo';
 import type { CenterProps } from '@chakra-ui/react';
 import {
-  Box,
-  Center,
-  Flex,
-  HStack,
-  Span,
-  Stack,
-  Text,
-  useMediaQuery,
+    Box,
+    Center,
+    Flex,
+    HStack,
+    Span,
+    Stack,
+    Text,
+    useMediaQuery,
 } from '@chakra-ui/react';
 import {
-  Link,
-  Outlet,
-  createFileRoute,
-  useLocation,
-  useNavigate,
+    Link,
+    createFileRoute,
+    useLocation,
+    useNavigate,
+    useRouter,
+    useRouterState,
 } from '@tanstack/react-router';
+import type { Variants } from 'framer-motion';
 import { AnimatePresence, motion } from 'framer-motion';
-import { use, useMemo, useState } from 'react';
+import type { ComponentType } from 'react';
+import { use, useEffect, useMemo, useRef, useState } from 'react';
 import { colors } from '~/theme/tokens/colors';
 
 interface TileProps extends CenterProps {
@@ -38,12 +41,45 @@ interface TileProps extends CenterProps {
 const MotionBox = motion.create(Box);
 const MotionCenter = motion.create(Center);
 
+type PageTransitionCustom = { direction: 1 | -1; animate: boolean };
+
+function getSlideDirection(
+  fromPathname: string | undefined,
+  toPathname: string,
+): 1 | -1 {
+  const toIndex = ROUTES.findIndex((r) => r.href === toPathname);
+  const fromIndex = ROUTES.findIndex((r) => r.href === fromPathname);
+  return toIndex >= fromIndex ? 1 : -1;
+}
+
+const pageVariants: Variants = {
+  initial: ({ direction, animate }: PageTransitionCustom) => ({
+    x: animate ? `${direction * 40}%` : 0,
+    opacity: 0,
+  }),
+  animate: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+      ease: [0.25, 0.46, 0.45, 0.94],
+      opacity: { duration: 0.4, ease: 'easeOut' },
+    },
+  },
+  exit: ({ direction, animate }: PageTransitionCustom) => ({
+    x: animate ? `${direction * -40}%` : 0,
+    opacity: 0,
+    transition: { duration: animate ? 0.2 : 0, ease: [0.55, 0, 1, 0.45] },
+  }),
+};
+
 export const Route = createFileRoute('/__home')({
   component: RouteComponent,
   head: () =>
     registerPageSeo({
       title: '',
       description: 'Digital Alchemist, gaming specialist and son of Christ',
+      pathname: '/',
     }),
 });
 
@@ -72,6 +108,7 @@ function Tile({ route, shade, ...props }: TileProps) {
     <Center
       {...props}
       as="button"
+      aria-label={`Navigate to ${route.title}`}
       aria-current={isActive && 'page'}
       bg={isOnHomepage ? shade || route.color : undefined}
       className="group"
@@ -95,7 +132,7 @@ function Tile({ route, shade, ...props }: TileProps) {
       <HStack gap={1} pos="relative" justify="center">
         <Text
           aria-current={isActive && 'page'}
-          color={`rgb(255 255 255 / ${isOnHomepage ? 0.64 : 0.4})`}
+          color={`rgb(255 255 255 / ${isOnHomepage ? 0.64 : 0.6})`}
           _light={
             isOnHomepage
               ? undefined
@@ -154,7 +191,7 @@ function Tile({ route, shade, ...props }: TileProps) {
 }
 
 function RouteComponent() {
-  const { canHideLoader, canShowRoute } = use(AppContext);
+  const { canHideLoader } = use(AppContext);
   const { pathname } = useLocation();
   const { last } = useHistory();
 
@@ -181,6 +218,58 @@ function RouteComponent() {
     () => ROUTES.find((route) => route.href === last?.pathname) ?? null,
     [last],
   );
+
+  // Track the previous pathname via a ref updated after each render.
+  // useHistory's `last` lags behind due to its own useEffect, causing wrong
+  // direction on the first render after navigation. This pattern avoids that.
+  const prevPathnameRef = useRef<string | undefined>(undefined);
+  useEffect(() => {
+    prevPathnameRef.current = pathname;
+  }, [pathname]);
+  const prevPathname = prevPathnameRef.current;
+
+  const shouldAnimate =
+    pathname !== '/' && !!prevPathname && prevPathname !== '/';
+
+  const direction = useMemo(
+    () => getSlideDirection(prevPathname, pathname),
+    [pathname],
+  );
+
+  const pageTransition = useMemo<PageTransitionCustom>(
+    () => ({ direction, animate: shouldAnimate }),
+    [direction, shouldAnimate],
+  );
+
+  // Get the current leaf route's component constructor from the router.
+  // Unlike <Outlet />, this is a plain React component that doesn't subscribe
+  // to router context updates, so it can be frozen to the page that was active
+  // when the MotionBox was created.
+  const router = useRouter();
+  const routerAny = router as unknown as Record<
+    string,
+    Record<string, { options: { component?: ComponentType } }>
+  >;
+  const leafRouteId = useRouterState({
+    select: (s) => [...s.matches].at(-1)?.routeId,
+  });
+  const CurrentComponent =
+    (leafRouteId
+      ? routerAny.routesById[leafRouteId].options.component
+      : null) ?? null;
+
+  // Sync activePage during render (state-update-during-render pattern).
+  // This lets AnimatePresence see the new key in the same commit cycle,
+  // without waiting for a useEffect tick.
+  const [activePage, setActivePage] = useState<{
+    key: string;
+    Component: ComponentType;
+  } | null>(null);
+  const [trackedRouteId, setTrackedRouteId] = useState<string | null>(null);
+  if (leafRouteId !== trackedRouteId && leafRouteId && CurrentComponent) {
+    setTrackedRouteId(leafRouteId);
+    setActivePage({ key: leafRouteId, Component: CurrentComponent });
+  }
 
   const focusedRoute = useMemo(() => {
     return ROUTES[focusedIndex];
@@ -214,7 +303,7 @@ function RouteComponent() {
   };
 
   return (
-    <Box overflowX="clip" overflowY={canShowRoute ? 'unset' : 'clip'}>
+    <Box overflowX="clip" overflowY="auto">
       <SplashScreen />
 
       <Stack
@@ -258,6 +347,7 @@ function RouteComponent() {
             {!isOnHomepage && (
               <SquareButton
                 accentColor={accentColor}
+                aria-label="Go to homepage"
                 as={Link}
                 href="/"
                 pos="absolute"
@@ -283,6 +373,7 @@ function RouteComponent() {
             {!isOnHomepage && (
               <SquareButton
                 accentColor={accentColor}
+                aria-label="Close and go to homepage"
                 as={Link}
                 href="/"
                 pos="absolute"
@@ -299,6 +390,8 @@ function RouteComponent() {
         <Flex pos="relative" isolation="isolate" pb={{ md: '3.5rem' }} flex={1}>
           <Flex
             as="main"
+            aria-live="polite"
+            aria-atomic="true"
             bg="rgb(0 0 0 / 0.92)"
             _light={{
               bg: 'rgba(255, 255, 255, 0.92)',
@@ -306,9 +399,31 @@ function RouteComponent() {
             flexDirection="column"
             flex={1}
             pos="relative"
-            opacity={canShowRoute ? 1 : 0}
+            overflow="hidden"
           >
-            <Outlet />
+            <AnimatePresence
+              custom={pageTransition}
+              mode="wait"
+              initial={false}
+            >
+              {activePage && (
+                <MotionBox
+                  key={activePage.key}
+                  custom={pageTransition}
+                  variants={pageVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  position="absolute"
+                  inset={0}
+                  display="flex"
+                  flexDirection="column"
+                  overflowY="auto"
+                >
+                  <activePage.Component />
+                </MotionBox>
+              )}
+            </AnimatePresence>
           </Flex>
 
           <Stack
