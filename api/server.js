@@ -14,6 +14,7 @@ export default async function handler(req, res) {
       method: req.method,
       headers: req.headers,
       body: req.method !== 'GET' && req.method !== 'HEAD' ? req : undefined,
+      duplex: req.method !== 'GET' && req.method !== 'HEAD' ? 'half' : undefined,
     });
 
     const response = await server.fetch(request);
