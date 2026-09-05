@@ -58,6 +58,7 @@ export const Route = createFileRoute('/__home/gaming')({
     registerPageSeo({
       title: 'My Games',
       description: 'Discover my favorite games across all platforms and genres',
+      pathname: '/gaming',
     }),
 });
 

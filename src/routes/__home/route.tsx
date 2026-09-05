@@ -10,22 +10,22 @@ import { generateColorVariants } from '@/utils/colors';
 import { registerPageSeo } from '@/utils/seo';
 import type { CenterProps } from '@chakra-ui/react';
 import {
-  Box,
-  Center,
-  Flex,
-  HStack,
-  Span,
-  Stack,
-  Text,
-  useMediaQuery,
+    Box,
+    Center,
+    Flex,
+    HStack,
+    Span,
+    Stack,
+    Text,
+    useMediaQuery,
 } from '@chakra-ui/react';
 import {
-  Link,
-  createFileRoute,
-  useLocation,
-  useNavigate,
-  useRouter,
-  useRouterState,
+    Link,
+    createFileRoute,
+    useLocation,
+    useNavigate,
+    useRouter,
+    useRouterState,
 } from '@tanstack/react-router';
 import type { Variants } from 'framer-motion';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -79,6 +79,7 @@ export const Route = createFileRoute('/__home')({
     registerPageSeo({
       title: '',
       description: 'Digital Alchemist, gaming specialist and son of Christ',
+      pathname: '/',
     }),
 });
 
@@ -107,6 +108,7 @@ function Tile({ route, shade, ...props }: TileProps) {
     <Center
       {...props}
       as="button"
+      aria-label={`Navigate to ${route.title}`}
       aria-current={isActive && 'page'}
       bg={isOnHomepage ? shade || route.color : undefined}
       className="group"
@@ -130,7 +132,7 @@ function Tile({ route, shade, ...props }: TileProps) {
       <HStack gap={1} pos="relative" justify="center">
         <Text
           aria-current={isActive && 'page'}
-          color={`rgb(255 255 255 / ${isOnHomepage ? 0.64 : 0.4})`}
+          color={`rgb(255 255 255 / ${isOnHomepage ? 0.64 : 0.6})`}
           _light={
             isOnHomepage
               ? undefined
@@ -189,7 +191,7 @@ function Tile({ route, shade, ...props }: TileProps) {
 }
 
 function RouteComponent() {
-  const { canHideLoader, canShowRoute } = use(AppContext);
+  const { canHideLoader } = use(AppContext);
   const { pathname } = useLocation();
   const { last } = useHistory();
 
@@ -301,7 +303,7 @@ function RouteComponent() {
   };
 
   return (
-    <Box overflowX="clip" overflowY={canShowRoute ? 'unset' : 'clip'}>
+    <Box overflowX="clip" overflowY="auto">
       <SplashScreen />
 
       <Stack
@@ -345,6 +347,7 @@ function RouteComponent() {
             {!isOnHomepage && (
               <SquareButton
                 accentColor={accentColor}
+                aria-label="Go to homepage"
                 as={Link}
                 href="/"
                 pos="absolute"
@@ -370,6 +373,7 @@ function RouteComponent() {
             {!isOnHomepage && (
               <SquareButton
                 accentColor={accentColor}
+                aria-label="Close and go to homepage"
                 as={Link}
                 href="/"
                 pos="absolute"
@@ -386,6 +390,8 @@ function RouteComponent() {
         <Flex pos="relative" isolation="isolate" pb={{ md: '3.5rem' }} flex={1}>
           <Flex
             as="main"
+            aria-live="polite"
+            aria-atomic="true"
             bg="rgb(0 0 0 / 0.92)"
             _light={{
               bg: 'rgba(255, 255, 255, 0.92)',
@@ -394,7 +400,6 @@ function RouteComponent() {
             flex={1}
             pos="relative"
             overflow="hidden"
-            opacity={canShowRoute ? 1 : 0}
           >
             <AnimatePresence
               custom={pageTransition}

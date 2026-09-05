@@ -6,17 +6,17 @@ import { PROJECTS } from '@/content/projects';
 import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
 import { registerPageSeo } from '@/utils/seo';
 import {
-  Box,
-  Button,
-  Center,
-  HStack,
-  Heading,
-  Span,
-  Square,
-  Stack,
-  Text,
-  VStack,
-  Wrap,
+    Box,
+    Button,
+    Center,
+    HStack,
+    Heading,
+    Span,
+    Square,
+    Stack,
+    Text,
+    VStack,
+    Wrap,
 } from '@chakra-ui/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { Image } from '@unpic/react';
@@ -32,6 +32,7 @@ export const Route = createFileRoute('/__home/my-projects')({
     registerPageSeo({
       title: 'My Projects',
       description: 'Browse my gallery of previous and current works.',
+      pathname: '/my-projects',
     }),
 });
 

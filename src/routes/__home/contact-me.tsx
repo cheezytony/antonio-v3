@@ -3,14 +3,14 @@ import { RightGlyph } from '@/components/right-glyph';
 import { Field } from '@/components/ui/field';
 import { registerPageSeo } from '@/utils/seo';
 import {
-  Box,
-  Button,
-  Heading,
-  Input,
-  Span,
-  Stack,
-  Textarea,
-  VStack,
+    Box,
+    Button,
+    Heading,
+    Input,
+    Span,
+    Stack,
+    Textarea,
+    VStack,
 } from '@chakra-ui/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { Image } from '@unpic/react';
@@ -23,6 +23,7 @@ export const Route = createFileRoute('/__home/contact-me')({
       title: 'Contact Me',
       description:
         'Drop me a personal message, request a partnership, a compliment or a roast.',
+      pathname: '/contact-me',
     }),
 });
 

@@ -7,16 +7,16 @@ import { StackContext, StackContextProvider } from '@/contexts/stack.context';
 import { registerPageSeo } from '@/utils/seo';
 import type { DialogOpenChangeDetails } from '@chakra-ui/react';
 import {
-  Box,
-  Center,
-  Circle,
-  Dialog,
-  HStack,
-  Icon,
-  Portal,
-  Text,
-  VStack,
-  useMediaQuery,
+    Box,
+    Center,
+    Circle,
+    Dialog,
+    HStack,
+    Icon,
+    Portal,
+    Text,
+    VStack,
+    useMediaQuery,
 } from '@chakra-ui/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
@@ -31,6 +31,7 @@ export const Route = createFileRoute('/__home/my-stack')({
       title: 'My Stack',
       description:
         "Ever wanted to know all of the tools I use and what they're for? Now you can.",
+      pathname: '/my-stack',
     }),
 });
 

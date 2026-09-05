@@ -6,13 +6,13 @@ import { TIMELINE } from '@/content/timeline';
 import { useIntersectionObserver } from '@/hooks/use-intersection-observer';
 import { registerPageSeo } from '@/utils/seo';
 import {
-  Box,
-  Grid,
-  GridItem,
-  Heading,
-  Stack,
-  Text,
-  VStack,
+    Box,
+    Grid,
+    GridItem,
+    Heading,
+    Stack,
+    Text,
+    VStack,
 } from '@chakra-ui/react';
 import { Link, createFileRoute } from '@tanstack/react-router';
 import { Image } from '@unpic/react';
@@ -28,6 +28,7 @@ export const Route = createFileRoute('/__home/timeline')({
       title: 'My Timeline',
       description:
         'Take a trip down memory lane with me as we go through some of the highlights of my professional career',
+      pathname: '/timeline',
     }),
 });
 
