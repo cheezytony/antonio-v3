@@ -109,7 +109,7 @@ function RouteComponent() {
               textTransform="uppercase"
               opacity={0.48}
             >
-              Private &middot; not indexed &middot; nothing here is saved
+              Not indexed &middot; nothing you type is saved
             </Text>
             <Heading
               fontWeight="900"
