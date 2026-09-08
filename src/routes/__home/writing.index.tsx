@@ -5,7 +5,7 @@ import { Heading, Stack, Text, VStack, Wrap } from '@chakra-ui/react';
 import { Link, createFileRoute } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
 
-export const Route = createFileRoute('/__home/writing')({
+export const Route = createFileRoute('/__home/writing/')({
   component: RouteComponent,
   head: () =>
     registerPageSeo({
@@ -88,10 +88,7 @@ function RouteComponent() {
                   _hover={{ color: 'theme.green' }}
                   transition="color 0.2s"
                 >
-                  <Link
-                    to="/writing/$slug"
-                    params={{ slug: entry.slug }}
-                  >
+                  <Link to="/writing/$slug" params={{ slug: entry.slug }}>
                     {entry.title}
                   </Link>
                 </Heading>

@@ -23,7 +23,7 @@ export const WRITING: Array<WritingEntry> = [
   {
     slug: 'two-balances-and-a-log',
     title: 'Two balances and a log',
-    dek: 'Notes on the ledger I designed for a Nigerian consumer credit platform serving hundreds of thousands of users. Almost every hard problem in it lived in the gap between the money a customer had spent and the money the provider had actually moved.',
+    dek: 'Notes on the ledger I designed for CredPal, a Nigerian consumer credit platform serving hundreds of thousands of users. Almost every hard problem in it lived in the gap between the money a customer had spent and the money the provider had actually moved.',
     date: 'September 2026',
     readingTime: '9 min read',
     tags: ['Ledgers', 'Payments', 'Distributed systems', 'Fintech'],
@@ -33,7 +33,7 @@ export const WRITING: Array<WritingEntry> = [
         paragraphs: [
           'We lent money to Nigerians who could not get a card from a bank. Credit, buy-now-pay-later, savings, bill payments, merchant settlement. All of it eventually resolved to one question: how much does this person actually have right now?',
           'That question is harder than it sounds, because almost nothing about money in this system happened inside it. A card authorisation succeeded at a processor. A bank transfer landed hours later. A disbursement was accepted, then quietly failed. A webhook told us about it, or told us twice, or never arrived.',
-          'So the ledger’s job was not to record what happened. It was to hold a defensible position on what was true, at every moment, including the moments when the outside world had gone quiet and we did not yet know.',
+          "So the ledger's job was not to record what happened. It was to hold a defensible position on what was true, at every moment, including the moments when the outside world had gone quiet and we did not yet know.",
         ],
       },
       {
@@ -72,7 +72,7 @@ export const WRITING: Array<WritingEntry> = [
             body: 'A log of everything that happened, derive whatever you need later. It works until the first time two products disagree about what an account even is. Making accounts a real thing, with balances attached and movements that reference them, is what let credit, savings, bill payments and merchant settlement share one source of truth instead of four.',
           },
           {
-            term: 'Treating the provider’s records as the source of truth',
+            term: "Treating the provider's records as the source of truth",
             body: 'The seductive one, because the provider genuinely does know whether the money moved and we do not. But their view arrives on their schedule, not ours, and it does not include intent. If a customer taps pay and the processor has not answered yet, the provider has no opinion and we still have to have one. Keeping our own record and reconciling against theirs meant we could always answer, and always know when our answer was provisional.',
           },
         ],
@@ -90,7 +90,7 @@ export const WRITING: Array<WritingEntry> = [
         ],
         callout: {
           label: 'What it bought',
-          body: 'Idempotency as a property of the write, not a check before it. The provider’s reference became a uniqueness constraint on the movement itself, so the second delivery could not create a row no matter how the timing fell. A duplicate callback became a no-op the database enforced, rather than a race the application hoped to win.',
+          body: "Idempotency as a property of the write, not a check before it. The provider's reference became a uniqueness constraint on the movement itself, so the second delivery could not create a row no matter how the timing fell. A duplicate callback became a no-op the database enforced, rather than a race the application hoped to win.",
         },
       },
       {
@@ -112,7 +112,8 @@ export const WRITING: Array<WritingEntry> = [
           label: 'What it bought',
           body: 'Reconciliation as a scheduled, first-class part of the system rather than a script someone runs after an incident. Anything in flight past a threshold gets actively queried against the provider rather than waited on, and the ledger is reconciled against their records on a cycle.',
         },
-        pullQuote: 'Webhooks are an optimisation. Reconciliation is the guarantee.',
+        pullQuote:
+          'Webhooks are an optimisation. Reconciliation is the guarantee.',
       },
       {
         heading: 'What I would do differently',
