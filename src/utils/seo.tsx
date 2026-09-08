@@ -13,8 +13,10 @@ interface RegisterPageSeoOptions {
 
 const DEFAULTS = {
   TITLE: 'Chimezie Antonio Okoro',
-  DESCRIPTION: 'Digital Alchemist, gaming specialist and son of Christ',
-  KEYWORDS: 'software engineer, developer, gamer, christian',
+  DESCRIPTION:
+    'Senior software engineer, 8+ years. Fintech and insurtech backends, design systems and interfaces that hold up under load.',
+  KEYWORDS:
+    'software engineer, backend engineer, fintech, node.js, nestjs, typescript, react, postgresql, design engineer',
   SCREENSHOT: '/images/thumbnail.png',
   THEMECOLOR: colors.theme.red.value,
 } as const;

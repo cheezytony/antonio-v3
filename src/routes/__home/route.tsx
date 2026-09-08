@@ -78,7 +78,8 @@ export const Route = createFileRoute('/__home')({
   head: () =>
     registerPageSeo({
       title: '',
-      description: 'Digital Alchemist, gaming specialist and son of Christ',
+      description:
+        'Senior software engineer, 8+ years. Fintech and insurtech backends, design systems and interfaces that hold up under load.',
       pathname: '/',
     }),
 });
