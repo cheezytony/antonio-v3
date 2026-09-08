@@ -75,11 +75,12 @@ export const TIMELINE: Array<Item> = [
     ],
   },
   {
-    title: 'A double-entry ledger, from scratch',
+    title: 'The ledger, from scratch',
     date: '2018 – 2023',
     description: [
       'When you are moving other people’s money, the ledger is the system every other system eventually answers to. I designed ours from the ground up.',
-      'Building one means deciding what an entry is, what may never be mutated once written, and how balances stay correct when a provider webhook arrives twice, or arrives late, or never arrives at all and something still has to be true about the state in the gap. Every hard question in that system was a question about what happens when the outside world misbehaves. It is still the piece of engineering I am proudest of, and the one I would most want to be asked about.',
+      'Every account carried two balances. The available balance moves the moment a debit is authorised; the settled balance waits for the provider to confirm it. Almost every hard problem in the system lives in the gap between those two numbers. Movements between accounts wrote paired legs, a debit on one side and a credit on the other, and the transaction log was append-only, recording the balance both before and after each movement so a balance could be replayed and proved rather than simply trusted. Corrections were written as new movements, never as edits to history.',
+      'The rest was about what happens when the outside world misbehaves: a provider webhook that arrives twice, two debits racing against the same balance, and a callback that never arrives at all while something still has to be true about state in the gap. It is the piece of engineering I am proudest of, and the one I would most want to be asked about.',
     ],
     images: [
       { colSpan: 2, rowSpan: 2, src: IMG.generic1, alt: 'Double-entry ledger and transaction architecture' },
