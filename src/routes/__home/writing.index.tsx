@@ -5,7 +5,7 @@ import { Heading, Stack, Text, VStack, Wrap } from '@chakra-ui/react';
 import { Link, createFileRoute } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
 
-export const Route = createFileRoute('/__home/writing')({
+export const Route = createFileRoute('/__home/writing/')({
   component: RouteComponent,
   head: () =>
     registerPageSeo({

@@ -13,13 +13,13 @@ export const Route = createFileRoute('/__home/writing/$slug')({
     return entry;
   },
   component: RouteComponent,
-  head: ({ match }) => {
-    const entry = getWritingEntry(match.params.slug);
+  head: ({ params }) => {
+    const entry = getWritingEntry(params.slug);
 
     return registerPageSeo({
       title: entry?.title ?? 'Writing',
       description: entry?.dek,
-      pathname: `/writing/${match.params.slug}`,
+      pathname: `/writing/${params.slug}`,
     });
   },
 });
