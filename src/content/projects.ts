@@ -93,7 +93,7 @@ export const PROJECTS: Array<Project> = [
   {
     title: 'Bootstrap/Vue Datatable',
     description: [
-      'A customisable datatable package on npm for Vuejs and Bootstrap that has gotten over ten thousand downloads.',
+      'A customisable datatable package on npm for Vue and Bootstrap, past 22,000 downloads and still installed by people I have never met.',
     ],
     badges: [
       'https://img.shields.io/npm/dy/bootstrap-vue-datatable?style=for-the-badge',
@@ -251,7 +251,8 @@ export const PROJECTS: Array<Project> = [
   {
     title: 'Mighty Interactive Website Development',
     description: [
-      'Ipsam soluta officiis corrupti aspernatur deserunt asperiores repellendus temporibus dicta quasi est odit quaerat perferendis, maiores corporis qui ducimus repellat unde perspiciatis.',
+      'The agency’s own site, and the one that had to sell the agency. Hand-built markup and SASS with no framework underneath it, animated with jQuery, responsive and cross-browser at a time when that still meant testing it yourself.',
+      'Built while I was on staff at Mighty Interactive, iterating directly with the designers on stakeholder feedback. This is where I learned to work at a designer’s elbow rather than at the end of a handoff.',
     ],
     screenshots: [
       'https://res.cloudinary.com/cheezytony/image/upload/v1774353617/Portfolio/frrc57zscjb5v3w1wnp3_dxameu.webp',
@@ -265,7 +266,8 @@ export const PROJECTS: Array<Project> = [
   {
     title: 'Adlantique Website Design',
     description: [
-      'Ipsam soluta officiis corrupti aspernatur deserunt asperiores repellendus temporibus dicta quasi est odit quaerat perferendis, maiores corporis qui ducimus repellat unde perspiciatis.',
+      'Marketing site for a Lagos advertising and brand agency, whose own site had to demonstrate the standard they sell to clients.',
+      'Built on PUG templates over a Bootstrap grid so repeated sections — service cards, case study tiles, testimonials — came from single partials rather than duplicated markup, which kept the page consistent as the copy kept changing.',
     ],
     screenshots: [
       'https://res.cloudinary.com/cheezytony/image/upload/v1774353616/Portfolio/cs6nim7v40zlrit6xnez_f2lfcc.webp',
@@ -287,7 +289,8 @@ export const PROJECTS: Array<Project> = [
   {
     title: 'Trifta Website design',
     description: [
-      'Ipsam soluta officiis corrupti aspernatur deserunt asperiores repellendus temporibus dicta quasi est odit quaerat perferendis, maiores corporis qui ducimus repellat unde perspiciatis.',
+      'Marketing site for a Nigerian fintech bringing thrift savings, micro-investments and interest-free loans to people the banks do not reach — the digital version of ajo and esusu, with verified merchants instead of trust alone.',
+      'Built in Nuxt with TypeScript. The audience arrives on cheap Android phones over patchy mobile data, so the whole site is statically generated and image-optimised; the job of the page is to explain a familiar savings practice in an unfamiliar form and get people to the app store.',
     ],
     screenshots: [
       'https://res.cloudinary.com/cheezytony/image/upload/v1774353616/Portfolio/xqokgivxv1pezkjpf6sp_nla0cp.webp',
@@ -301,7 +304,8 @@ export const PROJECTS: Array<Project> = [
   {
     title: 'Fluxhub Legal Website Development',
     description: [
-      'Ipsam soluta officiis corrupti aspernatur deserunt asperiores repellendus temporibus dicta quasi est odit quaerat perferendis, maiores corporis qui ducimus repellat unde perspiciatis.',
+      'Marketing and practice site for a legal services firm, built in Nuxt with TypeScript.',
+      'Legal sites live or die on whether a stranger can find the one service that applies to them and then work out how to make contact, so the structure was built around service pages and a clear route to enquiry rather than around the firm’s org chart.',
     ],
     screenshots: [
       'https://res.cloudinary.com/cheezytony/image/upload/v1774353616/Portfolio/apchxjov4pmxrho3m1x0_cgrhwx.webp',
@@ -315,7 +319,7 @@ export const PROJECTS: Array<Project> = [
   {
     title: 'Vue3 Form NPM Package',
     description: [
-      'An easy to use form validation plugin on npm for Vue3 and TypeScript, with zero dependencies and a wide range of validation rules. This usually gets about a couple dozen downloads a week.',
+      'A form validation plugin on npm for Vue 3 and TypeScript, with zero dependencies and a wide range of validation rules. Past 11,000 downloads.',
     ],
     badges: [
       'https://img.shields.io/npm/dy/vue3-form?style=for-the-badge',
@@ -330,7 +334,7 @@ export const PROJECTS: Array<Project> = [
   {
     title: 'Storagedotjs NPM Package',
     description: [
-      'A simple and easy to use localstorage package that supports data expiry like cookies. This usually gets about a couple dozen downloads a week.',
+      'A TypeScript-first localStorage wrapper that supports data expiry the way cookies do, so cached values go stale on their own instead of lingering until someone clears site data.',
     ],
     badges: [
       'https://img.shields.io/npm/dy/storagedotjs?style=for-the-badge',
