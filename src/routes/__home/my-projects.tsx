@@ -299,6 +299,7 @@ function RouteComponent() {
                   const label =
                     typeof url === 'string' ? 'View Project' : url.label;
                   const href = typeof url === 'string' ? url : url.url;
+                  const isInternal = href.startsWith('/');
 
                   return (
                     <Button
@@ -314,7 +315,7 @@ function RouteComponent() {
                       _hover={{
                         bg: 'theme.yellow',
                       }}
-                      {...{ href, target: '_blank' }}
+                      {...{ href, target: isInternal ? undefined : '_blank' }}
                     >
                       <Span>{label}</Span>
                       <IconArrowUpRight />

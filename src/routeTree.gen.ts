@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as _homeRouteRouteImport } from './routes/__home/route'
 import { Route as _homeIndexRouteImport } from './routes/__home/index'
+import { Route as _homeWritingRouteImport } from './routes/__home/writing'
 import { Route as _homeTimelineRouteImport } from './routes/__home/timeline'
 import { Route as _homeMyStackRouteImport } from './routes/__home/my-stack'
 import { Route as _homeMySocialsRouteImport } from './routes/__home/my-socials'
@@ -18,6 +19,7 @@ import { Route as _homeMyProjectsRouteImport } from './routes/__home/my-projects
 import { Route as _homeMyBioRouteImport } from './routes/__home/my-bio'
 import { Route as _homeGamingRouteImport } from './routes/__home/gaming'
 import { Route as _homeContactMeRouteImport } from './routes/__home/contact-me'
+import { Route as _homeWritingSlugRouteImport } from './routes/__home/writing.$slug'
 
 const _homeRouteRoute = _homeRouteRouteImport.update({
   id: '/__home',
@@ -26,6 +28,11 @@ const _homeRouteRoute = _homeRouteRouteImport.update({
 const _homeIndexRoute = _homeIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => _homeRouteRoute,
+} as any)
+const _homeWritingRoute = _homeWritingRouteImport.update({
+  id: '/writing',
+  path: '/writing',
   getParentRoute: () => _homeRouteRoute,
 } as any)
 const _homeTimelineRoute = _homeTimelineRouteImport.update({
@@ -63,6 +70,11 @@ const _homeContactMeRoute = _homeContactMeRouteImport.update({
   path: '/contact-me',
   getParentRoute: () => _homeRouteRoute,
 } as any)
+const _homeWritingSlugRoute = _homeWritingSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => _homeWritingRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof _homeIndexRoute
@@ -73,6 +85,8 @@ export interface FileRoutesByFullPath {
   '/my-socials': typeof _homeMySocialsRoute
   '/my-stack': typeof _homeMyStackRoute
   '/timeline': typeof _homeTimelineRoute
+  '/writing': typeof _homeWritingRouteWithChildren
+  '/writing/$slug': typeof _homeWritingSlugRoute
 }
 export interface FileRoutesByTo {
   '/contact-me': typeof _homeContactMeRoute
@@ -82,7 +96,9 @@ export interface FileRoutesByTo {
   '/my-socials': typeof _homeMySocialsRoute
   '/my-stack': typeof _homeMyStackRoute
   '/timeline': typeof _homeTimelineRoute
+  '/writing': typeof _homeWritingRouteWithChildren
   '/': typeof _homeIndexRoute
+  '/writing/$slug': typeof _homeWritingSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -94,7 +110,9 @@ export interface FileRoutesById {
   '/__home/my-socials': typeof _homeMySocialsRoute
   '/__home/my-stack': typeof _homeMyStackRoute
   '/__home/timeline': typeof _homeTimelineRoute
+  '/__home/writing': typeof _homeWritingRouteWithChildren
   '/__home/': typeof _homeIndexRoute
+  '/__home/writing/$slug': typeof _homeWritingSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -107,6 +125,8 @@ export interface FileRouteTypes {
     | '/my-socials'
     | '/my-stack'
     | '/timeline'
+    | '/writing'
+    | '/writing/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/contact-me'
@@ -116,7 +136,9 @@ export interface FileRouteTypes {
     | '/my-socials'
     | '/my-stack'
     | '/timeline'
+    | '/writing'
     | '/'
+    | '/writing/$slug'
   id:
     | '__root__'
     | '/__home'
@@ -127,7 +149,9 @@ export interface FileRouteTypes {
     | '/__home/my-socials'
     | '/__home/my-stack'
     | '/__home/timeline'
+    | '/__home/writing'
     | '/__home/'
+    | '/__home/writing/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -148,6 +172,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof _homeIndexRouteImport
+      parentRoute: typeof _homeRouteRoute
+    }
+    '/__home/writing': {
+      id: '/__home/writing'
+      path: '/writing'
+      fullPath: '/writing'
+      preLoaderRoute: typeof _homeWritingRouteImport
       parentRoute: typeof _homeRouteRoute
     }
     '/__home/timeline': {
@@ -199,8 +230,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof _homeContactMeRouteImport
       parentRoute: typeof _homeRouteRoute
     }
+    '/__home/writing/$slug': {
+      id: '/__home/writing/$slug'
+      path: '/$slug'
+      fullPath: '/writing/$slug'
+      preLoaderRoute: typeof _homeWritingSlugRouteImport
+      parentRoute: typeof _homeWritingRoute
+    }
   }
 }
+
+interface _homeWritingRouteChildren {
+  _homeWritingSlugRoute: typeof _homeWritingSlugRoute
+}
+
+const _homeWritingRouteChildren: _homeWritingRouteChildren = {
+  _homeWritingSlugRoute: _homeWritingSlugRoute,
+}
+
+const _homeWritingRouteWithChildren = _homeWritingRoute._addFileChildren(
+  _homeWritingRouteChildren,
+)
 
 interface _homeRouteRouteChildren {
   _homeContactMeRoute: typeof _homeContactMeRoute
@@ -210,6 +260,7 @@ interface _homeRouteRouteChildren {
   _homeMySocialsRoute: typeof _homeMySocialsRoute
   _homeMyStackRoute: typeof _homeMyStackRoute
   _homeTimelineRoute: typeof _homeTimelineRoute
+  _homeWritingRoute: typeof _homeWritingRouteWithChildren
   _homeIndexRoute: typeof _homeIndexRoute
 }
 
@@ -221,6 +272,7 @@ const _homeRouteRouteChildren: _homeRouteRouteChildren = {
   _homeMySocialsRoute: _homeMySocialsRoute,
   _homeMyStackRoute: _homeMyStackRoute,
   _homeTimelineRoute: _homeTimelineRoute,
+  _homeWritingRoute: _homeWritingRouteWithChildren,
   _homeIndexRoute: _homeIndexRoute,
 }
 
