@@ -1,9 +1,15 @@
 import { RightGlyph } from '@/components/right-glyph';
-import { getWritingEntry } from '@/content/writing';
+import { getWritingEntry, type WritingEntry } from '@/content/writing';
 import { registerPageSeo } from '@/utils/seo';
 import { Box, Heading, Stack, Text, VStack, Wrap } from '@chakra-ui/react';
-import { Link, createFileRoute, notFound } from '@tanstack/react-router';
+import {
+  Link,
+  createFileRoute,
+  notFound,
+  useMatch,
+} from '@tanstack/react-router';
 import { motion } from 'framer-motion';
+import { useRef } from 'react';
 
 export const Route = createFileRoute('/__home/writing/$slug')({
   loader: ({ params }) => {
@@ -27,7 +33,21 @@ export const Route = createFileRoute('/__home/writing/$slug')({
 const MotionVStack = motion.create(VStack);
 
 function RouteComponent() {
-  const entry = Route.useLoaderData();
+  // The __home layout freezes the outgoing page component so AnimatePresence
+  // can animate it out, which means this renders for a moment after its route
+  // match is gone. Router hooks that assume an active match throw there, so
+  // read the slug non-strictly and fall back to the entry we last rendered.
+  const slug = useMatch({
+    from: '/__home/writing/$slug',
+    shouldThrow: false,
+    select: (match) => match.params.slug,
+  });
+
+  const lastEntry = useRef<WritingEntry | undefined>(undefined);
+  const entry = (slug ? getWritingEntry(slug) : undefined) ?? lastEntry.current;
+
+  if (entry) lastEntry.current = entry;
+  if (!entry) return null;
 
   return (
     <>
