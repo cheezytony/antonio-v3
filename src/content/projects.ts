@@ -70,7 +70,10 @@ export const PROJECTS: Array<Project> = [
     screenshots: [
       'https://res.cloudinary.com/cheezytony/image/upload/v1774353617/Portfolio/z7gdqijpheiqdztgbpsh_l0v7yv.webp',
     ],
-    url: ['https://credpal.com'],
+    url: [
+      { label: 'View Project', url: 'https://credpal.com' },
+      { label: 'Case study: the ledger', url: '/writing/two-balances-and-a-log' },
+    ],
     client: {
       name: 'CredPal (Crednet Technologies)',
     },

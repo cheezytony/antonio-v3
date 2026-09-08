@@ -248,6 +248,22 @@ function RouteComponent() {
                   {paragraph}
                 </Text>
               ))}
+
+              {activity.link && (
+                <Text
+                  asChild
+                  alignSelf="flex-start"
+                  fontSize="sm"
+                  fontWeight="700"
+                  color="theme.blue"
+                  mt={1}
+                  _hover={{ textDecoration: 'underline' }}
+                >
+                  <Link to={activity.link.href}>
+                    {activity.link.label} &rarr;
+                  </Link>
+                </Text>
+              )}
             </VStack>
           </VStack>
         ))}

@@ -10,6 +10,10 @@ export interface Item {
   date: string;
   description: Array<string>;
   images: Array<TimelineImage>;
+  link?: {
+    label: string;
+    href: string;
+  };
 }
 
 const CLOUDINARY = 'https://res.cloudinary.com/cheezytony/image/upload';
@@ -82,8 +86,12 @@ export const TIMELINE: Array<Item> = [
       'Every account carried two balances. The available balance moves the moment a debit is authorised; the settled balance waits for the provider to confirm it. Almost every hard problem in the system lives in the gap between those two numbers. Movements between accounts wrote paired legs, a debit on one side and a credit on the other, and the transaction log was append-only, recording the balance both before and after each movement so a balance could be replayed and proved rather than simply trusted. Corrections were written as new movements, never as edits to history.',
       'The rest was about what happens when the outside world misbehaves: a provider webhook that arrives twice, two debits racing against the same balance, and a callback that never arrives at all while something still has to be true about state in the gap. It is the piece of engineering I am proudest of, and the one I would most want to be asked about.',
     ],
+    link: {
+      label: 'Read the full case study',
+      href: '/writing/two-balances-and-a-log',
+    },
     images: [
-      { colSpan: 2, rowSpan: 2, src: IMG.generic1, alt: 'Double-entry ledger and transaction architecture' },
+      { colSpan: 2, rowSpan: 2, src: IMG.generic1, alt: 'Ledger and balance architecture with paired debit and credit legs' },
       { colSpan: 1, rowSpan: 2, src: IMG.credpal, alt: 'The consumer credit platform the ledger sat underneath' },
       { colSpan: 1, rowSpan: 2, src: IMG.generic2, alt: 'Reconciliation and balance integrity under duplicate and delayed webhooks' },
     ],
