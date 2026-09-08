@@ -88,10 +88,7 @@ function RouteComponent() {
                   _hover={{ color: 'theme.green' }}
                   transition="color 0.2s"
                 >
-                  <Link
-                    to="/writing/$slug"
-                    params={{ slug: entry.slug }}
-                  >
+                  <Link to="/writing/$slug" params={{ slug: entry.slug }}>
                     {entry.title}
                   </Link>
                 </Heading>
