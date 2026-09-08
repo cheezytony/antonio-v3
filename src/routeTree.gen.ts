@@ -17,6 +17,7 @@ import { Route as _homeMySocialsRouteImport } from './routes/__home/my-socials'
 import { Route as _homeMyProjectsRouteImport } from './routes/__home/my-projects'
 import { Route as _homeMyBioRouteImport } from './routes/__home/my-bio'
 import { Route as _homeGamingRouteImport } from './routes/__home/gaming'
+import { Route as _homeCoverLetterRouteImport } from './routes/__home/cover-letter'
 import { Route as _homeContactMeRouteImport } from './routes/__home/contact-me'
 import { Route as _homeWritingIndexRouteImport } from './routes/__home/writing.index'
 import { Route as _homeWritingSlugRouteImport } from './routes/__home/writing.$slug'
@@ -60,6 +61,11 @@ const _homeGamingRoute = _homeGamingRouteImport.update({
   path: '/gaming',
   getParentRoute: () => _homeRouteRoute,
 } as any)
+const _homeCoverLetterRoute = _homeCoverLetterRouteImport.update({
+  id: '/cover-letter',
+  path: '/cover-letter',
+  getParentRoute: () => _homeRouteRoute,
+} as any)
 const _homeContactMeRoute = _homeContactMeRouteImport.update({
   id: '/contact-me',
   path: '/contact-me',
@@ -79,6 +85,7 @@ const _homeWritingSlugRoute = _homeWritingSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof _homeIndexRoute
   '/contact-me': typeof _homeContactMeRoute
+  '/cover-letter': typeof _homeCoverLetterRoute
   '/gaming': typeof _homeGamingRoute
   '/my-bio': typeof _homeMyBioRoute
   '/my-projects': typeof _homeMyProjectsRoute
@@ -90,6 +97,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/contact-me': typeof _homeContactMeRoute
+  '/cover-letter': typeof _homeCoverLetterRoute
   '/gaming': typeof _homeGamingRoute
   '/my-bio': typeof _homeMyBioRoute
   '/my-projects': typeof _homeMyProjectsRoute
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/__home': typeof _homeRouteRouteWithChildren
   '/__home/contact-me': typeof _homeContactMeRoute
+  '/__home/cover-letter': typeof _homeCoverLetterRoute
   '/__home/gaming': typeof _homeGamingRoute
   '/__home/my-bio': typeof _homeMyBioRoute
   '/__home/my-projects': typeof _homeMyProjectsRoute
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/contact-me'
+    | '/cover-letter'
     | '/gaming'
     | '/my-bio'
     | '/my-projects'
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/contact-me'
+    | '/cover-letter'
     | '/gaming'
     | '/my-bio'
     | '/my-projects'
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/__home'
     | '/__home/contact-me'
+    | '/__home/cover-letter'
     | '/__home/gaming'
     | '/__home/my-bio'
     | '/__home/my-projects'
@@ -216,6 +228,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof _homeGamingRouteImport
       parentRoute: typeof _homeRouteRoute
     }
+    '/__home/cover-letter': {
+      id: '/__home/cover-letter'
+      path: '/cover-letter'
+      fullPath: '/cover-letter'
+      preLoaderRoute: typeof _homeCoverLetterRouteImport
+      parentRoute: typeof _homeRouteRoute
+    }
     '/__home/contact-me': {
       id: '/__home/contact-me'
       path: '/contact-me'
@@ -242,6 +261,7 @@ declare module '@tanstack/react-router' {
 
 interface _homeRouteRouteChildren {
   _homeContactMeRoute: typeof _homeContactMeRoute
+  _homeCoverLetterRoute: typeof _homeCoverLetterRoute
   _homeGamingRoute: typeof _homeGamingRoute
   _homeMyBioRoute: typeof _homeMyBioRoute
   _homeMyProjectsRoute: typeof _homeMyProjectsRoute
@@ -255,6 +275,7 @@ interface _homeRouteRouteChildren {
 
 const _homeRouteRouteChildren: _homeRouteRouteChildren = {
   _homeContactMeRoute: _homeContactMeRoute,
+  _homeCoverLetterRoute: _homeCoverLetterRoute,
   _homeGamingRoute: _homeGamingRoute,
   _homeMyBioRoute: _homeMyBioRoute,
   _homeMyProjectsRoute: _homeMyProjectsRoute,
