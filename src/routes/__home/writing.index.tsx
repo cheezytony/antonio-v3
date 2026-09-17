@@ -49,7 +49,7 @@ function RouteComponent() {
             </Heading>
             <Heading
               fontWeight="900"
-              color="theme.green"
+              color="theme.red"
               lineHeight={1.1}
               fontSize="1.5rem"
               md={{ fontSize: '2.5rem' }}
@@ -85,7 +85,7 @@ function RouteComponent() {
                   fontSize="1.75rem"
                   lineHeight={1.15}
                   md={{ fontSize: '2.25rem' }}
-                  _hover={{ color: 'theme.green' }}
+                  _hover={{ color: 'theme.red' }}
                   transition="color 0.2s"
                 >
                   <Link to="/writing/$slug" params={{ slug: entry.slug }}>
@@ -119,7 +119,7 @@ function RouteComponent() {
         </MotionVStack>
       </Stack>
 
-      <RightGlyph accentColor="theme.green" />
+      <RightGlyph accentColor="theme.red" />
     </>
   );
 }
