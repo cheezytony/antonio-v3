@@ -9,6 +9,8 @@ interface RegisterPageSeoOptions {
   themeColor?: string;
   pathname?: string;
   links?: AnyRouteMatch['links'];
+  /** Set to 'noindex, nofollow' to keep a page out of search results. */
+  robots?: string;
 }
 
 const DEFAULTS = {
@@ -66,7 +68,7 @@ export function registerPageSeo(
     { name: 'author', content: 'Antonio Chimezie Okoro' },
     { name: 'format-detection', content: 'telephone=no' },
     { name: 'theme-color', content: themeColor },
-    // { name: 'robots', content: 'index, follow' },
+    { name: 'robots', content: options.robots ?? 'index, follow' },
   ];
 
   if (keywords.length) {

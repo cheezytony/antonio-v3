@@ -112,7 +112,7 @@ function RouteComponent() {
                 {block.heading && (
                   <Heading
                     fontWeight="900"
-                    color="theme.green"
+                    color="theme.red"
                     lineHeight={1.2}
                     fontSize="1.25rem"
                     md={{ fontSize: '1.5rem' }}
@@ -150,7 +150,7 @@ function RouteComponent() {
                 {block.callout && (
                   <Box
                     borderLeftWidth="2px"
-                    borderColor="theme.green"
+                    borderColor="theme.red"
                     pl={5}
                     py={1}
                   >
@@ -192,7 +192,7 @@ function RouteComponent() {
         </MotionVStack>
       </Stack>
 
-      <RightGlyph accentColor="theme.green" />
+      <RightGlyph accentColor="theme.red" />
     </>
   );
 }
